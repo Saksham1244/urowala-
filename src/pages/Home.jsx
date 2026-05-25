@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, Phone, MessageCircle, Star, ArrowRight, CheckCircle, Users, Stethoscope, Heart, Award, MapPin, Calendar } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 import doctors from '../data/doctors.js';
 import testimonials from '../data/testimonials.js';
 import { getBlogsFromStorage } from '../data/blogs.js';
@@ -254,13 +255,13 @@ const Home = () => {
           </div>
           <div className="specialties__grid">
             {[
-              { key:'urology', icon:'🫁', color:'#3B82F6', path:'/services', doctor: doctors[0] },
-              { key:'derm', icon:'✨', color:'#E879A0', path:'/doctors', doctor: doctors[1] },
-              { key:'plastic', icon:'🏥', color:'#8B5CF6', path:'/doctors', doctor: doctors[2] },
+              { key:'urology', icon: <LucideIcons.Activity size={32}/>, color:'#3B82F6', path:'/services', doctor: doctors[0] },
+              { key:'derm', icon: <LucideIcons.Sparkles size={32}/>, color:'#E879A0', path:'/doctors', doctor: doctors[1] },
+              { key:'plastic', icon: <LucideIcons.Scissors size={32}/>, color:'#8B5CF6', path:'/doctors', doctor: doctors[2] },
             ].map(sp => (
               <Link to={sp.path} key={sp.key} className="specialty-card card">
                 <div className="specialty-card__icon" style={{background: sp.color + '18', color: sp.color}}>
-                  <span>{sp.icon}</span>
+                  {sp.icon}
                 </div>
                 <h3>{t(`specialties.${sp.key}.name`)}</h3>
                 <p>{t(`specialties.${sp.key}.desc`)}</p>
@@ -300,7 +301,7 @@ const Home = () => {
           <div className="services-tags">
             {services.map(s => (
               <Link to={`/services/${s.slug}`} key={s.id} className="pill-tag">
-                {s.icon} {s.title}
+                {React.createElement(LucideIcons[s.icon], { size: 16 })} {s.title}
               </Link>
             ))}
           </div>
@@ -308,7 +309,7 @@ const Home = () => {
             {services.map(s => (
               <Link to={`/services/${s.slug}`} key={s.id} className="service-card card">
                 <div className="service-card__icon" style={{background: s.color + '18', color: s.color}}>
-                  <span className="service-icon-emoji">{s.icon}</span>
+                  {React.createElement(LucideIcons[s.icon], { size: 32 })}
                 </div>
                 <h4>{s.title}</h4>
                 <p>{s.shortDesc}</p>

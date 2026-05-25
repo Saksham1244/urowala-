@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { CheckCircle, ArrowRight, Phone, MessageCircle, ChevronDown, Calendar } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 import services from '../data/services.js';
 import './ServiceDetail.css';
 
@@ -28,7 +29,7 @@ export default function ServiceDetail() {
     <div className="service-detail-page">
       <section className="page-hero">
         <div className="container">
-          <div className="section-label" style={{background:'rgba(255,255,255,0.15)',color:'white',display:'inline-flex',margin:'0 auto 16px'}}>{service.icon} {service.title}</div>
+          <div className="section-label" style={{background:'rgba(255,255,255,0.15)',color:'white',display:'inline-flex',margin:'0 auto 16px', gap: '8px'}}>{React.createElement(LucideIcons[service.icon], { size: 16 })} {service.title}</div>
           <h1>{service.title}</h1>
           <p>{service.shortDesc}</p>
           <div className="page-hero__breadcrumb"><Link to="/">Home</Link> <span>/</span> <Link to="/services">Services</Link> <span>/</span> <span>{service.title}</span></div>
@@ -100,7 +101,7 @@ export default function ServiceDetail() {
               <h4>Other Services</h4>
               {services.filter(s=>s.slug!==slug).map(s=>(
                 <Link key={s.id} to={`/services/${s.slug}`} className="sd-other-service">
-                  {s.icon} {s.title} <ArrowRight size={14}/>
+                  <div style={{display:'flex', alignItems:'center', gap:'8px'}}>{React.createElement(LucideIcons[s.icon], { size: 16 })} {s.title}</div> <ArrowRight size={14}/>
                 </Link>
               ))}
             </div>

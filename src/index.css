@@ -7,11 +7,11 @@
 
 /* ── CSS Variables ── */
 :root {
-  --primary:        #3B82F6;
-  --primary-dark:   #2563EB;
-  --primary-deeper: #1D4ED8;
-  --primary-light:  #BFDBFE;
-  --primary-bg:     #EFF6FF;
+  --primary:        #7c91db;
+  --primary-dark:   #6277c0;
+  --primary-deeper: #4b60a3;
+  --primary-light:  #c1ccf0;
+  --primary-bg:     #eef1fb;
   --accent:         #FF6C00;
   --accent-light:   #FFBC7D;
   --accent-bg:      #FFF5ED;

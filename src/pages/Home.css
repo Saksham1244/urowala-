@@ -3,7 +3,7 @@
 /* HERO */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0F172A 0%, #134E4A 40%, #2563EB 70%, #3B82F6 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 30%, var(--primary-deeper) 70%, var(--primary) 100%);
   display: flex;
   align-items: center;
   position: relative;
@@ -59,9 +59,9 @@
 }
 .hero__badge-dot {
   width: 8px; height: 8px;
-  background: #4ADE80;
+  background: var(--accent-light);
   border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(74,222,128,0.3);
+  box-shadow: 0 0 0 3px rgba(255, 188, 125, 0.3);
   animation: blink 2s infinite;
 }
 @keyframes blink {
@@ -76,7 +76,7 @@
   margin-bottom: 24px;
 }
 .hero__title-accent {
-  background: linear-gradient(90deg, #4ADE80, #3B82F6);
+  background: linear-gradient(90deg, var(--accent-light), #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -89,8 +89,8 @@
   margin-bottom: 36px;
 }
 .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
-.hero__btn-wa { background: #25D366; box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
-.hero__btn-wa:hover { background: #1DA851; }
+.hero__btn-wa { background: var(--accent); box-shadow: 0 4px 20px rgba(255, 108, 0, 0.4); }
+.hero__btn-wa:hover { background: #e05e00; }
 
 .hero__mini-stats {
   display: flex;

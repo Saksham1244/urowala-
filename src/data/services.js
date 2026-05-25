@@ -3,7 +3,7 @@ const services = [
   {
     id: 1,
     slug: 'kidney-stones',
-    icon: '💎',
+    icon: 'Activity',
     title: 'Kidney Stones',
     titleHi: 'गुर्दे की पथरी',
     shortDesc: 'Advanced laser and surgical techniques for complete kidney stone removal with minimal recovery time.',
@@ -17,7 +17,7 @@ const services = [
   {
     id: 2,
     slug: 'prostate-conditions',
-    icon: '🔬',
+    icon: 'Microscope',
     title: 'Prostate Conditions',
     titleHi: 'प्रोस्टेट रोग',
     shortDesc: 'Expert diagnosis and treatment of prostate enlargement, prostate cancer and related conditions.',
@@ -31,7 +31,7 @@ const services = [
   {
     id: 3,
     slug: 'bladder-disorders',
-    icon: '💧',
+    icon: 'Droplets',
     title: 'Bladder Disorders',
     titleHi: 'मूत्राशय रोग',
     shortDesc: 'Complete care for bladder conditions including bladder cancer, overactive bladder, and incontinence.',
@@ -45,7 +45,7 @@ const services = [
   {
     id: 4,
     slug: 'male-health',
-    icon: '👨‍⚕️',
+    icon: 'UserPlus',
     title: 'Male Health & Fertility',
     titleHi: 'पुरुष स्वास्थ्य',
     shortDesc: 'Comprehensive men\'s health services including male infertility, erectile dysfunction, and andrology.',
@@ -59,7 +59,7 @@ const services = [
   {
     id: 5,
     slug: 'kidney-cancer',
-    icon: '🩺',
+    icon: 'ShieldAlert',
     title: 'Kidney & Urological Cancer',
     titleHi: 'किडनी कैंसर',
     shortDesc: 'Advanced oncological urology with laparoscopic and robotic surgery for kidney, bladder and prostate cancers.',
@@ -73,7 +73,7 @@ const services = [
   {
     id: 6,
     slug: 'urinary-tract',
-    icon: '🧬',
+    icon: 'Syringe',
     title: 'Urinary Tract Infections',
     titleHi: 'मूत्र पथ संक्रमण',
     shortDesc: 'Expert management of recurrent UTIs, urethral strictures, and urinary tract abnormalities.',

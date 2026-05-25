@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Clock } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import services from '../data/services.js';
 import './Services.css';
@@ -25,13 +26,13 @@ export default function Services() {
         <div className="container">
           <div className="services-filter">
             <button className={`filter-btn ${active==='all'?'active':''}`} onClick={()=>setActive('all')}>All Services</button>
-            {services.map(s=><button key={s.id} className={`filter-btn ${active===String(s.id)?'active':''}`} onClick={()=>setActive(String(s.id))} style={active===String(s.id)?{borderColor:s.color,color:s.color,background:s.color+'15'}:{}}>{s.icon} {s.title}</button>)}
+            {services.map(s=><button key={s.id} className={`filter-btn ${active===String(s.id)?'active':''}`} onClick={()=>setActive(String(s.id))} style={active===String(s.id)?{borderColor:s.color,color:s.color,background:s.color+'15'}:{}}>{React.createElement(LucideIcons[s.icon], { size: 16 })} {s.title}</button>)}
           </div>
           <div className="services-detail-grid">
             {filtered.map(s=>(
               <div key={s.id} className="service-detail-card card">
                 <div className="service-detail-card__header" style={{background: s.color+'15'}}>
-                  <div className="service-detail-icon" style={{background:s.color+'25',color:s.color}}><span style={{fontSize:'2.5rem'}}>{s.icon}</span></div>
+                  <div className="service-detail-icon" style={{background:s.color+'25',color:s.color}}>{React.createElement(LucideIcons[s.icon], { size: 40 })}</div>
                   <div>
                     <h2>{s.title}</h2>
                     <p style={{color:'var(--text-muted)'}}>{s.shortDesc}</p>
