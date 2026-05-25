@@ -47,7 +47,7 @@ export default function BookAppointment() {
             <Calendar size={14}/> Book Now
           </div>
           <h1>Book an Appointment</h1>
-          <p>Schedule a consultation with our expert specialists. Available 6 days a week.</p>
+          <p>Schedule a consultation with our expert specialists. Available 7 days a week.</p>
           <div className="page-hero__breadcrumb"><Link to="/">Home</Link> <span>/</span> <span>Book Appointment</span></div>
         </div>
       </section>
@@ -115,7 +115,7 @@ export default function BookAppointment() {
               <div className="appt-contacts">
                 <div className="appt-contact-item">
                   <strong>Mansarovar Clinic</strong>
-                  <a href="tel:+919414780777"><Phone size={14}/> +91 94147 80777</a>
+                  <a href="tel:+91 90395 70761"><Phone size={14}/> +91 90395 70761</a>
                   <a href="tel:+917976219661"><Phone size={14}/> +91 79762 19661</a>
                   <div className="appt-hours"><Clock size={12}/> Mon–Sat: 10 AM–8 PM | Sun: 10 AM–2 PM</div>
                 </div>

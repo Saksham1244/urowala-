@@ -106,7 +106,7 @@ export default function Experiences() {
             <Link to="/book-appointment" className="btn btn-primary btn-lg">
               Book an Appointment <ArrowRight size={18}/>
             </Link>
-            <a href="tel:+919414780777" className="btn btn-lg" style={{background:'white',color:'var(--text-dark)',boxShadow:'var(--shadow-sm)'}}>
+            <a href="tel:+91 90395 70761" className="btn btn-lg" style={{background:'white',color:'var(--text-dark)',boxShadow:'var(--shadow-sm)'}}>
               <Phone size={18}/> Call Us Now
             </a>
           </div>

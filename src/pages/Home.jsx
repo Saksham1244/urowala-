@@ -461,7 +461,7 @@ const Home = () => {
               className="btn btn-white btn-lg">
               <MessageCircle size={20}/> {t('appointment.cta')}
             </a>
-            <a href="tel:+919414780777" className="btn btn-outline btn-lg">
+            <a href="tel:+91 90395 70761" className="btn btn-outline btn-lg">
               <Phone size={20}/> {t('appointment.call')}
             </a>
           </div>

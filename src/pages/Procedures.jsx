@@ -151,7 +151,7 @@ export default function Procedures() {
                 className="btn btn-accent" style={{width:'100%',justifyContent:'center'}}>
                 <MessageCircle size={16}/> Ask on WhatsApp
               </a>
-              <a href="tel:+919414780777"
+              <a href="tel:+91 90395 70761"
                 className="btn" style={{width:'100%',justifyContent:'center',marginTop:'10px',background:'var(--primary-bg)',color:'var(--primary)'}}>
                 <Phone size={16}/> Call Us
               </a>

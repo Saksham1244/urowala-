@@ -38,7 +38,7 @@ const Footer = () => {
             <a href="https://wa.me/9039570761" className="btn btn-white" target="_blank" rel="noreferrer">
               Book via WhatsApp
             </a>
-            <a href="tel:+919414780777" className="btn btn-outline">
+            <a href="tel:+91 90395 70761" className="btn btn-outline">
               <Phone size={16} /> Call Now
             </a>
           </div>
@@ -115,7 +115,7 @@ const Footer = () => {
                   <MapPin size={14} /> Mansarovar
                 </div>
                 <p>122, Mohan Nagar Gate No. 8, Mansarovar Link Road, near Mangalam Electronic Market, Ridhhi Sidhhi Circle, Jaipur 302018</p>
-                <a href="tel:+919414780777" className="footer__phone"><Phone size={12} /> +91 94147 80777</a>
+                <a href="tel:+91 90395 70761" className="footer__phone"><Phone size={12} /> +91 90395 70761</a>
                 <a href="tel:+917976219661" className="footer__phone"><Phone size={12} /> +91 79762 19661</a>
                 <div className="footer__hours">
                   <Clock size={12} /> Mon–Sat: 10 AM – 8 PM &nbsp;|&nbsp; Sun: 10 AM – 2 PM

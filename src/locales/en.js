@@ -96,7 +96,7 @@ const en = {
   appointment: {
     label: 'Book Now',
     title: 'Ready to Take the Next Step?',
-    subtitle: 'Schedule a consultation with one of our expert specialists today. Available 6 days a week.',
+    subtitle: 'Schedule a consultation with one of our expert specialists today. Available 7 days a week.',
     cta: 'Book via WhatsApp',
     call: 'Call Us Now',
     name: 'Full Name',
