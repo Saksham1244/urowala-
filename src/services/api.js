@@ -81,6 +81,18 @@ export const api = {
     getBySlug: (slug) => request('GET', `/services/${slug}`),
     update: (id, data) => request('PUT', `/services/${id}`, data),
   },
+  // ── Gallery ─────────────────────────────────────────────────────────────────
+  gallery: {
+    getAll: () => request('GET', '/gallery'),
+    upload: (data) => request('POST', '/gallery', data),
+    delete: (id) => request('DELETE', `/gallery/${id}`),
+  },
+
+  // ── Settings ────────────────────────────────────────────────────────────────
+  settings: {
+    getAll: () => request('GET', '/settings'),
+    update: (key, value) => request('PUT', '/settings', { key, value }),
+  },
 };
 
 export default api;

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, ChevronDown, Phone, Globe } from 'lucide-react';
+import { api } from '../services/api';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -9,12 +10,19 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
   const location = useLocation();
   const dropRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
+    
+    // Fetch settings on mount
+    api.settings.getAll().then(sets => {
+      setShowGallery(sets['show_gallery'] === 'true');
+    }).catch(console.error);
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -95,9 +103,11 @@ const Navbar = () => {
             <Link to="/doctors" className={`navbar__link ${isActive('/doctors') ? 'navbar__link--active' : ''}`}>
               {t('nav.doctors')}
             </Link>
-            <Link to="/gallery" className={`navbar__link ${isActive('/gallery') ? 'navbar__link--active' : ''}`}>
-              {t('nav.gallery')}
-            </Link>
+            {showGallery && (
+              <Link to="/gallery" className={`navbar__link ${isActive('/gallery') ? 'navbar__link--active' : ''}`}>
+                {t('nav.gallery')}
+              </Link>
+            )}
             <Link to="/blog" className={`navbar__link ${isActive('/blog') ? 'navbar__link--active' : ''}`}>
               {t('nav.blog')}
             </Link>
@@ -148,7 +158,7 @@ const Navbar = () => {
             ))}
           </div>
           <Link to="/doctors" className="mobile-menu__link">{t('nav.doctors')}</Link>
-          <Link to="/gallery" className="mobile-menu__link">{t('nav.gallery')}</Link>
+          {showGallery && <Link to="/gallery" className="mobile-menu__link">{t('nav.gallery')}</Link>}
           <Link to="/blog" className="mobile-menu__link">{t('nav.blog')}</Link>
           <Link to="/experiences" className="mobile-menu__link">{t('nav.experiences')}</Link>
           <Link to="/contact" className="mobile-menu__link">{t('nav.contact')}</Link>

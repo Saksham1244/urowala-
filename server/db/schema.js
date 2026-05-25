@@ -88,3 +88,19 @@ export const services = pgTable('services', {
   color: varchar('color', { length: 20 }),
   updatedAt: timestamp('updated_at').defaultNow(),
 });
+
+// ── Gallery ───────────────────────────────────────────────────────────────────
+export const gallery = pgTable('gallery', {
+  id: serial('id').primaryKey(),
+  label: varchar('label', { length: 200 }).notNull(),
+  category: varchar('category', { length: 100 }).notNull().default('clinic'),
+  image: text('image').notNull(), // Base64 image data
+  createdAt: timestamp('created_at').defaultNow(),
+});
+
+// ── Settings ──────────────────────────────────────────────────────────────────
+export const settings = pgTable('settings', {
+  key: varchar('key', { length: 100 }).primaryKey(),
+  value: text('value').notNull(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});

@@ -1,32 +1,45 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { X, ZoomIn } from 'lucide-react';
+import { api } from '../services/api';
 import './Gallery.css';
-
-const allItems = [
-  { id: 1, category: 'clinic', label: 'Reception Area', emoji: '🏥', color: '#0f4c5c', bg: '#e0f2fe' },
-  { id: 2, category: 'clinic', label: 'Consultation Room', emoji: '🩺', color: '#2563EB', bg: '#EFF6FF' },
-  { id: 3, category: 'clinic', label: 'Operation Theatre', emoji: '⚕️', color: '#134e4a', bg: '#ccfbf1' },
-  { id: 4, category: 'team', label: 'Dr. Mohit Sharma', emoji: '👨‍⚕️', color: '#0f4c5c', bg: '#eff6ff' },
-  { id: 5, category: 'team', label: 'Dr. Priyanka Sharma', emoji: '👩‍⚕️', color: '#7c3aed', bg: '#f5f3ff' },
-  { id: 6, category: 'team', label: 'Dr. Rahul Sharma', emoji: '🧑‍⚕️', color: '#059669', bg: '#ecfdf5' },
-  { id: 7, category: 'procedures', label: 'Laser Surgery Setup', emoji: '🔬', color: '#f59e0b', bg: '#fffbeb' },
-  { id: 8, category: 'procedures', label: 'Cystoscopy Suite', emoji: '💡', color: '#6366f1', bg: '#eef2ff' },
-  { id: 9, category: 'procedures', label: 'Laparoscopy Equipment', emoji: '🔭', color: '#0f4c5c', bg: '#f0f9ff' },
-  { id: 10, category: 'clinic', label: 'Waiting Lounge', emoji: '🪑', color: '#2563EB', bg: '#f0fdf4' },
-  { id: 11, category: 'team', label: 'Medical Staff', emoji: '👥', color: '#0f4c5c', bg: '#fef2f2' },
-  { id: 12, category: 'procedures', label: 'Dermatology Suite', emoji: '✨', color: '#7c3aed', bg: '#fdf4ff' },
-];
 
 const categories = ['All', 'Clinic', 'Team', 'Procedures'];
 
 export default function Gallery() {
+  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState('All');
   const [lightbox, setLightbox] = useState(null);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [imgs, sets] = await Promise.all([
+          api.gallery.getAll(),
+          api.settings.getAll()
+        ]);
+        if (sets['show_gallery'] !== 'true') {
+          navigate('/', { replace: true });
+          return;
+        }
+        setItems(imgs);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [navigate]);
 
   const filtered =
     activeFilter === 'All'
-      ? allItems
-      : allItems.filter((item) => item.category === activeFilter.toLowerCase());
+      ? items
+      : items.filter((item) => item.category.toLowerCase() === activeFilter.toLowerCase());
+
+  if (loading) return <div className="gallery-page" style={{minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Loading...</div>;
 
   return (
     <div className="gallery-page">
@@ -68,13 +81,11 @@ export default function Gallery() {
               <div
                 key={item.id}
                 className="gallery-item"
-                style={{ background: item.bg }}
+                style={{ background: '#f8fafc' }}
                 onClick={() => setLightbox(item)}
               >
                 <div className="gallery-item-inner">
-                  <div className="gallery-emoji" style={{ color: item.color }}>
-                    {item.emoji}
-                  </div>
+                  <img src={item.image} alt={item.label} className="gallery-real-img" />
                   <div className="gallery-overlay-info">
                     <span className="gallery-item-label">{item.label}</span>
                     <ZoomIn size={18} color="#fff" />
@@ -100,18 +111,13 @@ export default function Gallery() {
             <button className="gallery-lightbox-close" onClick={() => setLightbox(null)}>
               <X size={24} />
             </button>
-            <div
-              className="gallery-lightbox-img"
-              style={{ background: lightbox.bg }}
-            >
-              <div className="gallery-lightbox-emoji" style={{ color: lightbox.color }}>
-                {lightbox.emoji}
-              </div>
+            <div className="gallery-lightbox-img">
+              <img src={lightbox.image} alt={lightbox.label} style={{width: '100%', height: '100%', objectFit: 'contain'}} />
             </div>
             <div className="gallery-lightbox-caption">
               <span
                 className="gallery-lightbox-cat"
-                style={{ background: lightbox.color }}
+                style={{ background: 'var(--primary)' }}
               >
                 {lightbox.category}
               </span>

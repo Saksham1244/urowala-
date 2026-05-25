@@ -1,0 +1,120 @@
+.gallery-manager-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.gallery-upload-card {
+  padding: 24px;
+}
+
+.gallery-upload-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gallery-upload-form .form-row {
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .gallery-upload-form .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.gallery-preview {
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.gallery-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-grid-section {
+  padding: 24px;
+}
+
+.admin-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.admin-gallery-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.admin-gallery-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  background: var(--bg);
+}
+
+.admin-gallery-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-delete-img {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-delete-img:hover {
+  background: #dc2626;
+  transform: scale(1.1);
+}
+
+.admin-gallery-info {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-gallery-info strong {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-gallery-info .badge {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  background: var(--bg);
+  color: var(--text-muted);
+  border-radius: 100px;
+}
