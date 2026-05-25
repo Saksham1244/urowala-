@@ -11,6 +11,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
+  const [showBlog, setShowBlog] = useState(false);
   const location = useLocation();
   const dropRef = useRef(null);
 
@@ -20,8 +21,8 @@ const Navbar = () => {
     
     // Fetch settings on mount
     api.settings.getAll().then(res => {
-      setShowGallery(res.data?.gallery_visible === 'true');
-      setShowBlog(res.data?.blog_visible === 'true');
+      setShowGallery(res.show_gallery === 'true');
+      setShowBlog(res.blog_visible === 'true');
     }).catch(console.error);
 
     return () => window.removeEventListener('scroll', handleScroll);

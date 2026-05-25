@@ -78,7 +78,7 @@ const Home = () => {
 
   useEffect(() => {
     api.settings.getAll().then(res => {
-      const visible = res.data?.blog_visible === 'true';
+      const visible = res.blog_visible === 'true';
       setShowBlog(visible);
       if (visible) {
         setBlogs(getBlogsFromStorage().filter(b => b.published).slice(0, 3));
