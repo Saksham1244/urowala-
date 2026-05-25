@@ -47,11 +47,13 @@ app.use((err, req, res, next) => {
 });
 
 // ── Start server ──────────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`\n🚀 Urowala API running at http://localhost:${PORT}`);
-  console.log(`📋 Health: http://localhost:${PORT}/api/health`);
-  console.log(`📝 Blogs:  http://localhost:${PORT}/api/blogs`);
-  console.log(`👨‍⚕️ Doctors: http://localhost:${PORT}/api/doctors\n`);
-});
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`\n🚀 Urowala API running at http://localhost:${PORT}`);
+    console.log(`📋 Health: http://localhost:${PORT}/api/health`);
+    console.log(`📝 Blogs:  http://localhost:${PORT}/api/blogs`);
+    console.log(`👨‍⚕️ Doctors: http://localhost:${PORT}/api/doctors\n`);
+  });
+}
 
 export default app;

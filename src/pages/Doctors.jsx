@@ -58,27 +58,28 @@ Her empathetic approach and thorough consultations make every patient feel heard
   },
   {
     name: 'Dr. Rahul Sharma',
-    title: 'Urologist & General Surgeon',
-    qualifications: 'MBBS, MS (General Surgery), DNB (Urology)',
+    title: 'Chief Plastic Surgeon',
+    qualifications: 'MBBS, MS (General Surgery), MCh (Plastic Surgery)',
     photo: '/doctors/rahul.jpg',
     initials: 'RS',
-    color: '#2563EB',
-    experience: '8+ Years',
-    surgeries: '3,500+',
-    certifications: ['DNB Urology', 'Endourology', 'Laparoscopy'],
-    bio: `Dr. Rahul Sharma is a skilled urologist and general surgeon with a DNB in Urology and over 8 years of hands-on surgical experience. He brings a calm, methodical approach to complex urological cases and is particularly proficient in endourology, cystoscopy, and laparoscopic procedures.
+    color: '#8B5CF6',
+    experience: '10+ Years',
+    surgeries: '5,000+',
+    certifications: ['MCh Plastic Surgery', 'Aesthetic Surgery', 'Reconstructive Surgery'],
+    bio: `Dr. Rahul Sharma is a board-certified plastic and reconstructive surgeon with over 10 years of experience and over 5,000 successful surgeries. A graduate of SMS Medical College, Jaipur, he specializes in both reconstructive and aesthetic surgical procedures.
 
-Dr. Rahul is committed to delivering results-oriented care with minimal patient discomfort. He works closely with Dr. Mohit Sharma to provide comprehensive urological services at both Urowala Clinic locations in Jaipur.
+His artistic precision and surgical skill have made him one of Rajasthan's most respected plastic surgeons. He is committed to providing life-changing results with a focus on patient safety, minimal scarring, and natural-looking outcomes.
 
-His enthusiasm for innovation and patient welfare makes him a valued member of the Urowala team, and his patients consistently appreciate his thoroughness and accessibility.`,
+Whether it's reconstructive surgery post-trauma or elective cosmetic procedures, Dr. Rahul ensures every patient receives personalized care and realistic expectations.`,
     conditions: [
-      'Cystoscopy & Bladder Evaluation',
-      'Kidney & Ureteric Stones',
-      'Prostate Conditions',
-      'Urinary Incontinence',
-      'Male Reproductive Urology',
-      'General Surgical Procedures',
-      'Post-operative Urological Care',
+      'Reconstructive Surgery',
+      'Burn Scars & Trauma',
+      'Hair Transplantation',
+      'Liposuction & Body Contouring',
+      'Rhinoplasty (Nose Reshaping)',
+      'Breast Augmentation/Reduction',
+      'Facelift & Anti-Aging',
+      'Gynecomastia Treatment',
     ],
   },
 ];
