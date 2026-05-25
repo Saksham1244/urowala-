@@ -284,8 +284,8 @@
 
 .dm-input:focus,
 .dm-textarea:focus {
-  border-color: #41B8C9;
-  box-shadow: 0 0 0 3px rgba(65, 184, 201, 0.15);
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59,130,246, 0.15);
 }
 
 .dm-textarea {

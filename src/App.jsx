@@ -27,6 +27,8 @@ const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard.jsx'));
 const BlogManager = lazy(() => import('./pages/admin/BlogManager.jsx'));
 const DoctorManager = lazy(() => import('./pages/admin/DoctorManager.jsx'));
 const ServiceManager = lazy(() => import('./pages/admin/ServiceManager.jsx'));
+const AppointmentManager = lazy(() => import('./pages/admin/AppointmentManager.jsx'));
+const ContactManager = lazy(() => import('./pages/admin/ContactManager.jsx'));
 
 // Loading spinner
 const PageLoader = () => (
@@ -140,6 +142,8 @@ function App() {
             <Route path="blogs" element={<BlogManager />} />
             <Route path="doctors" element={<DoctorManager />} />
             <Route path="services" element={<ServiceManager />} />
+            <Route path="appointments" element={<AppointmentManager />} />
+            <Route path="contacts" element={<ContactManager />} />
           </Route>
 
           {/* 404 - redirect home */}

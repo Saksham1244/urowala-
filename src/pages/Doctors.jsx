@@ -11,10 +11,10 @@ const doctors = [
     photo: '/doctors/mohit.jpg',
     initials: 'MS',
     color: '#0f4c5c',
-    experience: '12+ Years',
+    experience: '5+ Years',
     surgeries: '8,000+',
     certifications: ['MCh Urology', 'Laser Urology', 'Laparoscopy'],
-    bio: `Dr. Mohit Sharma is a highly accomplished urologist with over 12 years of experience in managing complex urological conditions. He completed his MCh in Urology from a premier institution and has since dedicated himself to providing the highest standard of urological care to patients in Jaipur and beyond.
+    bio: `Dr. Mohit Sharma is a highly accomplished urologist with over 5 years of experience in managing complex urological conditions. He completed his MCh in Urology from a premier institution and has since dedicated himself to providing the highest standard of urological care to patients in Jaipur and beyond.
 
 Dr. Sharma specializes in minimally invasive and laser-based surgeries, including URS laser stone treatment, PCNL, TURP, laparoscopic urology, and reconstructive urological procedures. His patient-first approach, technical precision, and commitment to continuous learning have earned him the trust of thousands of patients.
 
@@ -62,7 +62,7 @@ Her empathetic approach and thorough consultations make every patient feel heard
     qualifications: 'MBBS, MS (General Surgery), DNB (Urology)',
     photo: '/doctors/rahul.jpg',
     initials: 'RS',
-    color: '#0d9488',
+    color: '#2563EB',
     experience: '8+ Years',
     surgeries: '3,500+',
     certifications: ['DNB Urology', 'Endourology', 'Laparoscopy'],

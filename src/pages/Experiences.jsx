@@ -74,7 +74,7 @@ export default function Experiences() {
                     </span>
                   </div>
                 </div>
-                <div className="exp-card__doctor-tag" style={{background:'rgba(65,184,201,0.1)',color:'var(--primary-dark)'}}>
+                <div className="exp-card__doctor-tag" style={{background:'rgba(59,130,246,0.1)',color:'var(--primary-dark)'}}>
                   Treated by {item.doctor} · {item.date}
                 </div>
               </div>

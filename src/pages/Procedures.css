@@ -23,7 +23,7 @@
 
 .proc-sidebar__cta {
   background: white; border-radius: var(--radius-xl); padding: 24px;
-  border: 2px solid rgba(65,184,201,0.15);
+  border: 2px solid rgba(59,130,246,0.15);
 }
 .proc-sidebar__cta h4 { margin-bottom: 8px; }
 .proc-sidebar__cta p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }

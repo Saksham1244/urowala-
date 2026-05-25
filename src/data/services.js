@@ -12,7 +12,7 @@ const services = [
     procedures: ['URS (Ureteroscopy) with Laser', 'PCNL (Percutaneous Nephrolithotomy)', 'ESWL (Shock Wave Therapy)', 'Mini PCNL'],
     recovery: '1–5 days (depending on procedure)',
     image: '/services/kidney-stones.jpg',
-    color: '#41B8C9',
+    color: '#3B82F6',
   },
   {
     id: 2,

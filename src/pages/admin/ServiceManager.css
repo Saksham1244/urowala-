@@ -83,7 +83,7 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
-  border-left: 4px solid #41B8C9;
+  border-left: 4px solid #3B82F6;
   border-bottom: 1px solid #f1f5f9;
 }
 
@@ -161,7 +161,7 @@
 /* Inline edit form */
 .sm-edit-form {
   padding: 1.25rem 1.5rem;
-  border-top: 3px solid #41B8C9;
+  border-top: 3px solid #3B82F6;
   background: #f8fafc;
   animation: formSlide 0.22s ease-out;
 }
@@ -242,8 +242,8 @@
 
 .sm-input:focus,
 .sm-textarea:focus {
-  border-color: #41B8C9;
-  box-shadow: 0 0 0 3px rgba(65, 184, 201, 0.15);
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59,130,246, 0.15);
 }
 
 .sm-textarea {

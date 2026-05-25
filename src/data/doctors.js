@@ -14,7 +14,7 @@ const doctors = [
     treatments: null,
     photo: '/doctors/mohit.jpg',
     photoFallback: 'MS',
-    color: '#41B8C9',
+    color: '#3B82F6',
     bio: 'Dr. Mohit Sharma is a highly skilled urological surgeon trained at AIIMS Bhopal, one of India\'s premier medical institutions. Specializing in kidney stones, prostate surgery, and advanced endourology, he has performed over 2,000 successful surgeries. His patient-first approach and technical expertise make him one of Jaipur\'s most sought-after urology specialists.',
     conditions: [
       'Kidney Stones (Urolithiasis)',
@@ -68,7 +68,7 @@ const doctors = [
     specialty: 'Plastic Surgery',
     specialtyIcon: '🏥',
     qualifications: 'M.B.B.S., MS, MCh Plastic Surgery (SMS Jaipur)',
-    certifications: ['Board Certified Plastic & Reconstructive Surgeon'],
+    certifications: ['Board Certified Skin and Hair Specialist'],
     experience: 10,
     surgeries: '5,000+',
     treatments: null,

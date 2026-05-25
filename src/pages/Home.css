@@ -3,7 +3,7 @@
 /* HERO */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0F172A 0%, #134E4A 40%, #0D9488 70%, #41B8C9 100%);
+  background: linear-gradient(135deg, #0F172A 0%, #134E4A 40%, #2563EB 70%, #3B82F6 100%);
   display: flex;
   align-items: center;
   position: relative;
@@ -18,7 +18,7 @@
 .particle {
   position: absolute;
   border-radius: 50%;
-  background: rgba(65,184,201,0.15);
+  background: rgba(59,130,246,0.15);
   animation: float 8s ease-in-out infinite;
 }
 .particle--1 { width:300px;height:300px; top:-80px;left:-80px; animation-delay:0s; }
@@ -76,7 +76,7 @@
   margin-bottom: 24px;
 }
 .hero__title-accent {
-  background: linear-gradient(90deg, #4ADE80, #41B8C9);
+  background: linear-gradient(90deg, #4ADE80, #3B82F6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -338,7 +338,7 @@
 .testimonial-author span { color:var(--text-muted); font-size:0.82rem; }
 .testimonial-tag {
   display:inline-block; padding:4px 14px;
-  background:rgba(65,184,201,0.12); color:var(--primary-dark);
+  background:rgba(59,130,246,0.12); color:var(--primary-dark);
   border-radius:var(--radius-pill); font-size:0.78rem; font-weight:600;
 }
 .testimonial-dots { display:flex; gap:8px; margin-top:24px; justify-content:center; }

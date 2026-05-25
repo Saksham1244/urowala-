@@ -56,14 +56,14 @@
 }
 
 .dash-action-btn--primary {
-  background: #41B8C9;
+  background: #3B82F6;
   color: #fff;
-  box-shadow: 0 3px 10px rgba(65, 184, 201, 0.4);
+  box-shadow: 0 3px 10px rgba(59,130,246, 0.4);
 }
 
 .dash-action-btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(65, 184, 201, 0.5);
+  box-shadow: 0 6px 16px rgba(59,130,246, 0.5);
 }
 
 .dash-action-btn--secondary {
@@ -165,7 +165,7 @@
   gap: 0.25rem;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #41B8C9;
+  color: #3B82F6;
   text-decoration: none;
   transition: gap 0.15s;
 }
@@ -189,27 +189,33 @@
 }
 
 .empty-state a {
-  color: #41B8C9;
+  color: #3B82F6;
 }
 
 /* Table */
-.recent-blogs-table-wrap {
+.recent-blogs-table-wrap,
+.dashboard-table-wrap {
   overflow-x: auto;
   border-radius: 10px;
   border: 1px solid #e2e8f0;
+  -webkit-overflow-scrolling: touch;
 }
 
-.recent-blogs-table {
+.recent-blogs-table,
+.dashboard-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.875rem;
+  min-width: 800px;
 }
 
-.recent-blogs-table thead {
+.recent-blogs-table thead,
+.dashboard-table thead {
   background: #f8fafc;
 }
 
-.recent-blogs-table th {
+.recent-blogs-table th,
+.dashboard-table th {
   padding: 0.75rem 1rem;
   text-align: left;
   font-size: 0.75rem;
@@ -221,18 +227,21 @@
   white-space: nowrap;
 }
 
-.recent-blogs-table td {
+.recent-blogs-table td,
+.dashboard-table td {
   padding: 0.875rem 1rem;
   border-bottom: 1px solid #f1f5f9;
   color: #374151;
   vertical-align: middle;
 }
 
-.recent-blogs-table tr:last-child td {
+.recent-blogs-table tr:last-child td,
+.dashboard-table tr:last-child td {
   border-bottom: none;
 }
 
-.recent-blogs-table tr:hover td {
+.recent-blogs-table tr:hover td,
+.dashboard-table tr:hover td {
   background: #f8fafc;
 }
 
@@ -259,7 +268,7 @@
   display: inline-block;
   padding: 0.25rem 0.625rem;
   background: #e0f7fa;
-  color: #0d6e7a;
+  color: #1e40af;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -291,7 +300,7 @@
   gap: 0.3rem;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #41B8C9;
+  color: #3B82F6;
   text-decoration: none;
   padding: 0.375rem 0.75rem;
   border-radius: 6px;
@@ -301,7 +310,7 @@
 
 .table-action-link:hover {
   background: #b2ebf2;
-  color: #0d6e7a;
+  color: #1e40af;
 }
 
 /* Quick actions */
@@ -328,7 +337,7 @@
   background: #e0f7fa;
   border-color: #b2ebf2;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(65, 184, 201, 0.15);
+  box-shadow: 0 4px 12px rgba(59,130,246, 0.15);
 }
 
 .quick-action-icon {

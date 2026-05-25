@@ -9,7 +9,7 @@ const testimonials = [
     treatment: 'Kidney Stone Surgery (URS)',
     text: 'I had a 12mm kidney stone that was causing unbearable pain. Dr. Mohit Sharma performed the laser surgery and I was completely stone-free within a day. His explanation before the procedure gave me full confidence. Absolutely brilliant doctor!',
     avatar: 'RK',
-    avatarColor: '#41B8C9',
+    avatarColor: '#3B82F6',
     date: 'March 2025',
   },
   {

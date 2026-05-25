@@ -11,7 +11,7 @@
 .contact-hero {
   position: relative;
   min-height: 360px;
-  background: linear-gradient(135deg, #0f4c5c 0%, #0d9488 50%, #134e4a 100%);
+  background: linear-gradient(135deg, #0f4c5c 0%, #2563EB 50%, #134e4a 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -257,7 +257,7 @@
 
 /* Form Section */
 .contact-form-section {
-  background: linear-gradient(180deg, #f0fdfa 0%, #f8fafc 100%);
+  background: linear-gradient(180deg, #EFF6FF 0%, #f8fafc 100%);
   border-top: 1px solid #ccfbf1;
   padding: 72px 0;
 }
@@ -351,7 +351,7 @@
 }
 
 .contact-submit-btn:hover {
-  background: #0d9488;
+  background: #2563EB;
   transform: translateY(-1px);
 }
 

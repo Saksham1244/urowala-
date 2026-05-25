@@ -242,7 +242,7 @@ const Home = () => {
           </div>
           <div className="specialties__grid">
             {[
-              { key:'urology', icon:'🫁', color:'#41B8C9', path:'/services', doctor: doctors[0] },
+              { key:'urology', icon:'🫁', color:'#3B82F6', path:'/services', doctor: doctors[0] },
               { key:'derm', icon:'✨', color:'#E879A0', path:'/doctors', doctor: doctors[1] },
               { key:'plastic', icon:'🏥', color:'#8B5CF6', path:'/doctors', doctor: doctors[2] },
             ].map(sp => (

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { MapPin, Phone, Clock, MessageCircle, CheckCircle } from 'lucide-react';
+import { api } from '../services/api';
 import './Contact.css';
 
 const locations = [
@@ -15,6 +16,8 @@ const locations = [
     color: '#0f4c5c',
     mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.5!2d75.7!3d26.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDU0JzAwLjAiTiA3NcKwNDInMDAuMCJF!5e0!3m2!1sen!2sin!4v1000000000000!5m2!1sen!2sin',
     mapLink: 'https://maps.app.goo.gl/eG3XoKtF89FdqCxt6',
+    doctor: null,
+    badge: 'Main Clinic',
   },
   {
     id: 2,
@@ -25,10 +28,26 @@ const locations = [
       { day: 'Mon – Sat', time: '9:00 AM – 10:00 AM & 3:00 PM – 5:00 PM' },
       { day: 'Sunday', time: 'Closed' },
     ],
-    color: '#0d9488',
+    color: '#2563EB',
     mapLink: 'https://maps.google.com/?q=Sanganer+Jaipur',
+    doctor: null,
+    badge: null,
+  },
+  {
+    id: 3,
+    name: 'Dr. Priyanka\'s Dermatology Clinic',
+    address: 'Jaipur, Rajasthan — exact location shared via Google Maps',
+    phones: [],
+    hours: [
+      { day: 'Appointment', time: 'Please call or WhatsApp to schedule' },
+    ],
+    color: '#7c3aed',
+    mapLink: 'https://share.google/ZvdsPdXEk8FBj45ul',
+    doctor: 'Dr. Priyanka Sharma — Chief Dermatologist',
+    badge: 'Dermatology',
   },
 ];
+
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', phone: '', message: '' });
@@ -39,15 +58,23 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.phone) return;
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await api.contacts.send({
+        name: form.name,
+        phone: form.phone,
+        message: form.message
+      });
       setSubmitted(true);
       setForm({ name: '', phone: '', message: '' });
-    }, 1200);
+    } catch (err) {
+      alert('Failed to send message: ' + err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -69,27 +96,33 @@ export default function Contact() {
       {/* Location Cards */}
       <section className="contact-locations-section">
         <div className="contact-container">
-          <div className="contact-locations-grid">
+          <div className="contact-locations-grid" style={{gridTemplateColumns: 'repeat(3, 1fr)'}}>
             {locations.map((loc) => (
               <div className="contact-location-card" key={loc.id} style={{ borderTop: `4px solid ${loc.color}` }}>
                 <div className="contact-loc-header">
                   <div className="contact-loc-icon" style={{ background: loc.color }}>
                     <MapPin size={20} color="#fff" />
                   </div>
-                  <h2 className="contact-loc-name" style={{ color: loc.color }}>{loc.name}</h2>
-                </div>
-                <p className="contact-loc-address">{loc.address}</p>
-
-                <div className="contact-loc-detail">
-                  <Phone size={16} color={loc.color} />
                   <div>
-                    {loc.phones.map((p, i) => (
-                      <a key={i} href={`tel:${p.replace(/\s/g, '')}`} className="contact-loc-phone">
-                        {p}
-                      </a>
-                    ))}
+                    <h2 className="contact-loc-name" style={{ color: loc.color }}>{loc.name}</h2>
+                    {loc.badge && <span style={{background: loc.color + '18', color: loc.color, fontSize:'0.72rem', fontWeight:700, padding:'2px 10px', borderRadius:'20px', display:'inline-block', marginTop:'4px'}}>{loc.badge}</span>}
                   </div>
                 </div>
+                {loc.doctor && <p style={{fontSize:'0.85rem', color:'var(--text-muted)', marginBottom:'8px', fontStyle:'italic'}}>👩‍⚕️ {loc.doctor}</p>}
+                <p className="contact-loc-address">{loc.address}</p>
+
+                {loc.phones.length > 0 && (
+                  <div className="contact-loc-detail">
+                    <Phone size={16} color={loc.color} />
+                    <div>
+                      {loc.phones.map((p, i) => (
+                        <a key={i} href={`tel:${p.replace(/\s/g, '')}`} className="contact-loc-phone">
+                          {p}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 <div className="contact-loc-hours">
                   <div className="contact-loc-hours-header">

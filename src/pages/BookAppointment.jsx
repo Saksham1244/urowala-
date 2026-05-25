@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, User, Phone, Clock, MessageCircle, CheckCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import doctors from '../data/doctors.js';
+import { api } from '../services/api';
 import './BookAppointment.css';
 
 const timeSlots = ['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM','5:00 PM','5:30 PM','6:00 PM','6:30 PM','7:00 PM','7:30 PM'];
@@ -12,11 +13,30 @@ export default function BookAppointment() {
   const [form, setForm] = useState({ name:'',phone:'',doctor:'',date:'',time:'',reason:'' });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const msg = `Hello Urowala Clinic! I would like to book an appointment.%0A%0AName: ${form.name}%0APhone: ${form.phone}%0ADoctor: ${form.doctor}%0ADate: ${form.date}%0ATime: ${form.time}%0AReason: ${form.reason}`;
-    window.open(`https://wa.me/9039570761?text=${msg}`, '_blank');
-    setSubmitted(true);
+    if (!form.name || !form.phone) return;
+    setLoading(true);
+    try {
+      await api.appointments.book({
+        name: form.name,
+        phone: form.phone,
+        doctor: form.doctor,
+        preferredDate: form.date,
+        preferredTime: form.time,
+        reason: form.reason
+      });
+      // Optionally still open WhatsApp for instant chat (uncomment below if desired)
+      // const msg = `Hello Urowala Clinic! I would like to book an appointment.%0A%0AName: ${form.name}%0APhone: ${form.phone}%0ADoctor: ${form.doctor}%0ADate: ${form.date}%0ATime: ${form.time}%0AReason: ${form.reason}`;
+      // window.open(`https://wa.me/9039570761?text=${msg}`, '_blank');
+      setSubmitted(true);
+    } catch (err) {
+      alert('Failed to send request: ' + err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -74,8 +94,8 @@ export default function BookAppointment() {
                     <label>{t('appointment.reason')}</label>
                     <textarea className="form-control" rows={4} placeholder={t('appointment.reasonPlaceholder')} value={form.reason} onChange={e=>setForm({...form,reason:e.target.value})}/>
                   </div>
-                  <button type="submit" className="btn btn-accent btn-lg" style={{width:'100%',justifyContent:'center'}}>
-                    <MessageCircle size={20}/> {t('appointment.submit')}
+                  <button type="submit" className="btn btn-accent btn-lg" style={{width:'100%',justifyContent:'center'}} disabled={loading}>
+                    {loading ? 'Sending...' : <><MessageCircle size={20}/> {t('appointment.submit')}</>}
                   </button>
                 </form>
               </>

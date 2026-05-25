@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import './About.css';
 
 const reasons = [
-  { icon: <Award size={28}/>, title: 'Board-Certified Specialists', desc: 'All our doctors hold advanced post-graduate degrees from AIIMS & SMS Jaipur — India\'s top medical institutions.', color: '#41B8C9' },
+  { icon: <Award size={28}/>, title: 'Board-Certified Specialists', desc: 'All our doctors hold advanced post-graduate degrees from AIIMS & SMS Jaipur — India\'s top medical institutions.', color: '#3B82F6' },
   { icon: <Zap size={28}/>, title: 'Advanced Technology', desc: 'Equipped with the latest laser, laparoscopic and diagnostic equipment for precise, minimally invasive procedures.', color: '#FF6C00' },
   { icon: <Heart size={28}/>, title: 'Patient-Centered Care', desc: 'We listen, we care, and we treat every patient as family. Your comfort and recovery are our top priorities.', color: '#E879A0' },
   { icon: <Star size={28}/>, title: '10+ Years Excellence', desc: '10 years of combined clinical experience with over 7,000 successful surgeries and 3,00,000+ treatments.', color: '#8B5CF6' },
@@ -68,21 +68,21 @@ export default function About() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="section section-alt">
+      <section className="about-why-section">
         <div className="container">
-          <div className="section-heading">
-            <div className="section-label">Why Choose Us</div>
-            <h2>{t('about.why')}</h2>
-            <p>We combine clinical excellence with genuine compassion to deliver outcomes that change lives.</p>
+          <div className="about-section-header">
+            <div className="about-section-badge">Why Choose Us</div>
+            <h2 className="about-section-title">{t('about.why')}</h2>
+            <p className="about-section-sub">We combine clinical excellence with genuine compassion to deliver outcomes that change lives.</p>
           </div>
-          <div className="reasons-grid">
+          <div className="about-why-grid">
             {reasons.map((r,i) => (
-              <div key={i} className="reason-card card">
-                <div className="reason-icon" style={{background: r.color + '18', color: r.color}}>
+              <div key={i} className="about-why-card">
+                <div className="about-why-icon" style={{background: r.color + '18', color: r.color}}>
                   {r.icon}
                 </div>
-                <h3>{r.title}</h3>
-                <p>{r.desc}</p>
+                <h3 className="about-why-title">{r.title}</h3>
+                <p className="about-why-desc">{r.desc}</p>
               </div>
             ))}
           </div>
@@ -90,18 +90,20 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="section">
+      <section className="about-values-section">
         <div className="container">
-          <div className="section-heading">
-            <div className="section-label">Our Values</div>
-            <h2>What We Stand For</h2>
+          <div className="about-section-header">
+            <div className="about-section-badge">Our Values</div>
+            <h2 className="about-section-title">What We Stand For</h2>
           </div>
-          <div className="values-grid">
+          <div className="about-values-grid">
             {values.map((v,i) => (
-              <div key={i} className="value-card">
-                <div className="value-icon">{v.icon}</div>
-                <h3>{v.title}</h3>
-                <p>{v.desc}</p>
+              <div key={i} className="about-value-card">
+                <div className="about-value-body">
+                  <div className="about-value-icon" style={{fontSize: '2rem', marginBottom: '16px'}}>{v.icon}</div>
+                  <h3 className="about-value-title">{v.title}</h3>
+                  <p className="about-value-desc">{v.desc}</p>
+                </div>
               </div>
             ))}
           </div>

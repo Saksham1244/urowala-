@@ -6,7 +6,7 @@
   border: 2px solid var(--border); border-radius: var(--radius-pill);
   font-size: 1rem; font-family: inherit; outline: none; transition: var(--transition);
 }
-.blog-search__input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(65,184,201,0.1); }
+.blog-search__input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(59,130,246,0.1); }
 .blog-categories { display: flex; flex-wrap: wrap; gap: 10px; }
 .filter-btn {
   padding: 9px 20px; border-radius: var(--radius-pill); font-size: 0.88rem; font-weight: 600;

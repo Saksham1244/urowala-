@@ -4,7 +4,7 @@ import './Gallery.css';
 
 const allItems = [
   { id: 1, category: 'clinic', label: 'Reception Area', emoji: '🏥', color: '#0f4c5c', bg: '#e0f2fe' },
-  { id: 2, category: 'clinic', label: 'Consultation Room', emoji: '🩺', color: '#0d9488', bg: '#f0fdfa' },
+  { id: 2, category: 'clinic', label: 'Consultation Room', emoji: '🩺', color: '#2563EB', bg: '#EFF6FF' },
   { id: 3, category: 'clinic', label: 'Operation Theatre', emoji: '⚕️', color: '#134e4a', bg: '#ccfbf1' },
   { id: 4, category: 'team', label: 'Dr. Mohit Sharma', emoji: '👨‍⚕️', color: '#0f4c5c', bg: '#eff6ff' },
   { id: 5, category: 'team', label: 'Dr. Priyanka Sharma', emoji: '👩‍⚕️', color: '#7c3aed', bg: '#f5f3ff' },
@@ -12,7 +12,7 @@ const allItems = [
   { id: 7, category: 'procedures', label: 'Laser Surgery Setup', emoji: '🔬', color: '#f59e0b', bg: '#fffbeb' },
   { id: 8, category: 'procedures', label: 'Cystoscopy Suite', emoji: '💡', color: '#6366f1', bg: '#eef2ff' },
   { id: 9, category: 'procedures', label: 'Laparoscopy Equipment', emoji: '🔭', color: '#0f4c5c', bg: '#f0f9ff' },
-  { id: 10, category: 'clinic', label: 'Waiting Lounge', emoji: '🪑', color: '#0d9488', bg: '#f0fdf4' },
+  { id: 10, category: 'clinic', label: 'Waiting Lounge', emoji: '🪑', color: '#2563EB', bg: '#f0fdf4' },
   { id: 11, category: 'team', label: 'Medical Staff', emoji: '👥', color: '#0f4c5c', bg: '#fef2f2' },
   { id: 12, category: 'procedures', label: 'Dermatology Suite', emoji: '✨', color: '#7c3aed', bg: '#fdf4ff' },
 ];

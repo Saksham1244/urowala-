@@ -11,7 +11,7 @@
 .doctors-hero {
   position: relative;
   min-height: 360px;
-  background: linear-gradient(135deg, #0f4c5c 0%, #0d9488 50%, #134e4a 100%);
+  background: linear-gradient(135deg, #0f4c5c 0%, #2563EB 50%, #134e4a 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -323,7 +323,7 @@
 
 /* CTA */
 .doctors-cta {
-  background: linear-gradient(135deg, #0f4c5c 0%, #0d9488 100%);
+  background: linear-gradient(135deg, #0f4c5c 0%, #2563EB 100%);
   padding: 80px 24px;
 }
 

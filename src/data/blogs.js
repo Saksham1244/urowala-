@@ -12,7 +12,7 @@ const defaultBlogs = [
     date: '2025-05-01',
     readTime: 6,
     coverImage: '/blog/kidney-stones.jpg',
-    coverFallbackColor: '#41B8C9',
+    coverFallbackColor: '#3B82F6',
     excerpt: 'Kidney stones are increasingly common in India, especially in hot climates like Rajasthan. Learn what causes them, how to prevent them, and when you urgently need surgery.',
     content: `
 ## What Are Kidney Stones?

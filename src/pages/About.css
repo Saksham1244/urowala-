@@ -11,7 +11,7 @@
 .about-hero {
   position: relative;
   min-height: 380px;
-  background: linear-gradient(135deg, #0f4c5c 0%, #0d9488 50%, #134e4a 100%);
+  background: linear-gradient(135deg, #0f4c5c 0%, #2563EB 50%, #134e4a 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -198,7 +198,7 @@
 /* Why Choose Us */
 .about-why-section {
   padding: 90px 0;
-  background: linear-gradient(180deg, #f0fdfa 0%, #f8fafc 100%);
+  background: linear-gradient(180deg, #EFF6FF 0%, #f8fafc 100%);
 }
 
 .about-why-grid {
@@ -261,7 +261,7 @@
 /* Team Section */
 .about-team-section {
   padding: 90px 0;
-  background: linear-gradient(135deg, #0f4c5c 0%, #0d9488 100%);
+  background: linear-gradient(135deg, #0f4c5c 0%, #2563EB 100%);
 }
 
 .about-team-inner {

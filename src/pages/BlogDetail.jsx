@@ -71,8 +71,8 @@ export default function BlogDetail() {
   return (
     <div className="blog-detail-page">
       {/* Hero */}
-      <section className="blog-detail__hero" style={{background: (blog.coverFallbackColor || '#41B8C9') + '22'}}>
-        <div className="blog-detail__hero-bg" style={{background: (blog.coverFallbackColor || '#41B8C9')}}/>
+      <section className="blog-detail__hero" style={{background: (blog.coverFallbackColor || '#3B82F6') + '22'}}>
+        <div className="blog-detail__hero-bg" style={{background: (blog.coverFallbackColor || '#3B82F6')}}/>
         {blog.coverImage && (
           <img src={blog.coverImage} alt={blog.title} className="blog-detail__hero-img"
             onError={e => { e.target.style.display = 'none'; }}/>

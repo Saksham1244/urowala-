@@ -71,7 +71,7 @@ export default function Blog() {
             <div className="blog-page-grid">
               {paginated.map(blog => (
                 <Link to={`/blog/${blog.slug}`} key={blog.id} className="blog-list-card card">
-                  <div className="blog-list-card__img" style={{background: (blog.coverFallbackColor || '#41B8C9') + '22'}}>
+                  <div className="blog-list-card__img" style={{background: (blog.coverFallbackColor || '#3B82F6') + '22'}}>
                     <img src={blog.coverImage} alt={blog.title}
                       onError={e => { e.target.style.display = 'none'; }}/>
                     <div className="blog-list-card__category">{blog.category}</div>
