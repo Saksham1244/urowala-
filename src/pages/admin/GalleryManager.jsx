@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import './GalleryManager.css';
 
 export default function GalleryManager() {
-  const [images, setImages] = setImagesState] = useState([]);
+  const [images, setImagesState] = useState([]);
   const [showGallery, setShowGallery] = useState(false);
   const [loading, setLoading] = useState(true);
 
