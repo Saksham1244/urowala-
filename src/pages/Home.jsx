@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, Phone, MessageCircle, Star, ArrowRight, CheckCircle, Users, Stethoscope, Heart, Award, MapPin, Calendar } from 'lucide-react';
 import doctors from '../data/doctors.js';
+import testimonials from '../data/testimonials.js';
 import services from '../data/services.js';
 import './Home.css';
 
