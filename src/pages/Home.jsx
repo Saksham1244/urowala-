@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { ChevronDown, Phone, MessageCircle, Star, ArrowRight, CheckCircle, Users, Stethoscope, Heart, Award, MapPin, Calendar } from 'lucide-react';
 import doctors from '../data/doctors.js';
 import testimonials from '../data/testimonials.js';
+import { getBlogsFromStorage } from '../data/blogs.js';
+import { api } from '../services/api';
 import services from '../data/services.js';
 import './Home.css';
 
@@ -71,6 +73,18 @@ const TestimonialCarousel = ({ items }) => {
 const Home = () => {
   const { t } = useTranslation();
   const [activeDoc, setActiveDoc] = useState(0);
+  const [showBlog, setShowBlog] = useState(false);
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    api.settings.getAll().then(res => {
+      const visible = res.data?.blog_visible === 'true';
+      setShowBlog(visible);
+      if (visible) {
+        setBlogs(getBlogsFromStorage().filter(b => b.published).slice(0, 3));
+      }
+    }).catch(() => {});
+  }, []);
 
   return (
     <div className="home">
@@ -408,7 +422,45 @@ const Home = () => {
       </section>
 
 
-      {/* ── APPOINTMENT CTA ── */}
+      {/* ── BLOG PREVIEW — only shown when admin enables it ── */}
+      {showBlog && blogs.length > 0 && (
+        <section className="section section-alt blog-preview">
+          <div className="container">
+            <div className="section-heading" style={{display:'flex',alignItems:'flex-end',justifyContent:'space-between',textAlign:'left',maxWidth:'100%'}}>
+              <div>
+                <div className="section-label">{t('blog.label')}</div>
+                <h2>{t('blog.title')}</h2>
+              </div>
+              <Link to="/blog" className="btn btn-primary">{t('blog.viewAll')} <ArrowRight size={16}/></Link>
+            </div>
+            <div className="blog-grid grid-3">
+              {blogs.map(blog => (
+                <Link to={`/blog/${blog.slug}`} key={blog.id} className="blog-card card">
+                  <div className="blog-card__img" style={{background: blog.coverFallbackColor + '22'}}>
+                    <img src={blog.coverImage} alt={blog.title}
+                      onError={(e) => { e.target.style.display='none'; }}/>
+                    <div className="blog-card__category">{blog.category}</div>
+                  </div>
+                  <div className="blog-card__body">
+                    <div className="blog-card__meta">
+                      <span>{blog.date}</span>
+                      <span>·</span>
+                      <span>{blog.readTime} {t('blog.minRead')}</span>
+                    </div>
+                    <h4>{blog.title}</h4>
+                    <p>{blog.excerpt}</p>
+                    <div className="blog-card__author">
+                      <div className="blog-author-dot"/>
+                      <span>{blog.author}</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="appt-cta">
         <div className="container appt-cta__inner">
           <div className="appt-cta__text">

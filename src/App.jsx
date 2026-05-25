@@ -117,9 +117,13 @@ function App() {
           <Route path="/gallery" element={
             <PublicLayout><Gallery /></PublicLayout>
           } />
-          {/* Blog - Hidden until real content is ready */}
-          <Route path="/blog" element={<Navigate to="/" replace />} />
-          <Route path="/blog/:slug" element={<Navigate to="/" replace />} />
+          {/* Blog - controlled by admin Blog Manager toggle */}
+          <Route path="/blog" element={
+            <PublicLayout><Blog /></PublicLayout>
+          } />
+          <Route path="/blog/:slug" element={
+            <PublicLayout><BlogDetail /></PublicLayout>
+          } />
           <Route path="/contact" element={
             <PublicLayout><Contact /></PublicLayout>
           } />

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getBlogsFromStorage, addBlog, updateBlog, deleteBlog } from '../../data/blogs.js';
+import { api } from '../../services/api';
 import './BlogManager.css';
 
 const CATEGORIES = ['Urology', 'Dermatology', 'General Health', 'Plastic Surgery'];
@@ -32,7 +33,9 @@ export default function BlogManager() {
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [errors, setErrors] = useState({});
-  const [message, setMessage] = useState(null); // { type: 'success'|'error', text }
+  const [message, setMessage] = useState(null);
+  const [blogVisible, setBlogVisible] = useState(false);
+  const [savingVisibility, setSavingVisibility] = useState(false);
 
   const loadBlogs = useCallback(() => {
     setBlogs(getBlogsFromStorage());
@@ -40,7 +43,25 @@ export default function BlogManager() {
 
   useEffect(() => {
     loadBlogs();
+    // Load blog visibility setting
+    api.settings.getAll().then(res => {
+      setBlogVisible(res.data?.blog_visible === 'true');
+    }).catch(() => {});
   }, [loadBlogs]);
+
+  const handleVisibilityToggle = async () => {
+    const newVal = !blogVisible;
+    setSavingVisibility(true);
+    try {
+      await api.settings.update('blog_visible', String(newVal));
+      setBlogVisible(newVal);
+      showMsg('success', `Blog section ${newVal ? 'enabled' : 'hidden'} on website!`);
+    } catch {
+      showMsg('error', 'Failed to update visibility. Please try again.');
+    } finally {
+      setSavingVisibility(false);
+    }
+  };
 
   const showMsg = (type, text) => {
     setMessage({ type, text });
@@ -143,6 +164,29 @@ export default function BlogManager() {
 
   return (
     <div className="blog-manager">
+      {/* Visibility Toggle Card */}
+      <div className="bm-visibility-card">
+        <div className="bm-visibility-info">
+          <div className="bm-visibility-icon">{blogVisible ? '🌐' : '🙈'}</div>
+          <div>
+            <h3 className="bm-visibility-title">Blog Section on Website</h3>
+            <p className="bm-visibility-desc">
+              {blogVisible
+                ? 'Blog is currently visible to visitors on the website.'
+                : 'Blog is hidden from public. Enable when real posts are ready.'}
+            </p>
+          </div>
+        </div>
+        <button
+          className={`bm-visibility-toggle ${blogVisible ? 'bm-visibility-toggle--on' : 'bm-visibility-toggle--off'}`}
+          onClick={handleVisibilityToggle}
+          disabled={savingVisibility}
+        >
+          <span className="bm-toggle-knob" />
+          <span className="bm-toggle-label-text">{savingVisibility ? 'Saving…' : blogVisible ? 'ON' : 'OFF'}</span>
+        </button>
+      </div>
+
       {/* Header */}
       <div className="bm-header">
         <div>
