@@ -108,9 +108,6 @@ const Navbar = () => {
                 {t('nav.gallery')}
               </Link>
             )}
-            <Link to="/blog" className={`navbar__link ${isActive('/blog') ? 'navbar__link--active' : ''}`}>
-              {t('nav.blog')}
-            </Link>
             <Link to="/contact" className={`navbar__link ${isActive('/contact') ? 'navbar__link--active' : ''}`}>
               {t('nav.contact')}
             </Link>
@@ -159,7 +156,6 @@ const Navbar = () => {
           </div>
           <Link to="/doctors" className="mobile-menu__link">{t('nav.doctors')}</Link>
           {showGallery && <Link to="/gallery" className="mobile-menu__link">{t('nav.gallery')}</Link>}
-          <Link to="/blog" className="mobile-menu__link">{t('nav.blog')}</Link>
           <Link to="/experiences" className="mobile-menu__link">{t('nav.experiences')}</Link>
           <Link to="/contact" className="mobile-menu__link">{t('nav.contact')}</Link>
         </nav>

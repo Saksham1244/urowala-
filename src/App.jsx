@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './i18n.js';
 import './index.css';
 import Navbar from './components/Navbar.jsx';
@@ -117,12 +117,9 @@ function App() {
           <Route path="/gallery" element={
             <PublicLayout><Gallery /></PublicLayout>
           } />
-          <Route path="/blog" element={
-            <PublicLayout><Blog /></PublicLayout>
-          } />
-          <Route path="/blog/:slug" element={
-            <PublicLayout><BlogDetail /></PublicLayout>
-          } />
+          {/* Blog - Hidden until real content is ready */}
+          <Route path="/blog" element={<Navigate to="/" replace />} />
+          <Route path="/blog/:slug" element={<Navigate to="/" replace />} />
           <Route path="/contact" element={
             <PublicLayout><Contact /></PublicLayout>
           } />
