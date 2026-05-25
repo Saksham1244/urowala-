@@ -21,7 +21,8 @@
   gap: 32px;
 }
 .navbar__logo { display: flex; align-items: center; flex-shrink: 0; }
-.navbar__logo-img { height: 48px; width: auto; object-fit: contain; }
+.navbar__logo-img { height: 48px; width: auto; object-fit: contain; transition: filter 0.3s ease; }
+.navbar:not(.navbar--scrolled) .navbar__logo-img { filter: brightness(0) invert(1); }
 
 .navbar__links {
   display: flex;

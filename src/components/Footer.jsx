@@ -140,6 +140,11 @@ const Footer = () => {
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
           <p>© {year} Urowala Clinic. {t('footer.rights')}</p>
+          <div className="footer__credit" style={{fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)', textAlign: 'center', lineHeight: 1.6}}>
+            Website Design & Development by <br />
+            <strong style={{color: 'var(--primary-light)'}}>Saksham Bhushan Asthana</strong><br />
+            <a href="tel:+919910898139" style={{color:'inherit', textDecoration:'none', transition:'color 0.2s'}} onMouseEnter={e=>e.target.style.color='var(--primary-light)'} onMouseLeave={e=>e.target.style.color='inherit'}>+91 9910898139</a> | <a href="mailto:asthanasaksham2003@gmail.com" style={{color:'inherit', textDecoration:'none', transition:'color 0.2s'}} onMouseEnter={e=>e.target.style.color='var(--primary-light)'} onMouseLeave={e=>e.target.style.color='inherit'}>asthanasaksham2003@gmail.com</a>
+          </div>
           <div className="footer__bottom-links">
             <Link to="/privacy">{t('footer.privacy')}</Link>
             <Link to="/terms">{t('footer.terms')}</Link>
