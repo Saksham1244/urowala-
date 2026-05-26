@@ -19,6 +19,8 @@ const Contact = lazy(() => import('./pages/Contact.jsx'));
 const BookAppointment = lazy(() => import('./pages/BookAppointment.jsx'));
 const Experiences = lazy(() => import('./pages/Experiences.jsx'));
 const Procedures = lazy(() => import('./pages/Procedures.jsx'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy.jsx'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService.jsx'));
 
 // Admin pages
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin.jsx'));
@@ -30,6 +32,7 @@ const ServiceManager = lazy(() => import('./pages/admin/ServiceManager.jsx'));
 const AppointmentManager = lazy(() => import('./pages/admin/AppointmentManager.jsx'));
 const ContactManager = lazy(() => import('./pages/admin/ContactManager.jsx'));
 const GalleryManager = lazy(() => import('./pages/admin/GalleryManager.jsx'));
+const PhotoSettings = lazy(() => import('./pages/admin/PhotoSettings.jsx'));
 
 // Loading spinner
 const PageLoader = () => (
@@ -136,6 +139,12 @@ function App() {
           <Route path="/procedures" element={
             <PublicLayout><Procedures /></PublicLayout>
           } />
+          <Route path="/privacy" element={
+            <PublicLayout><PrivacyPolicy /></PublicLayout>
+          } />
+          <Route path="/terms" element={
+            <PublicLayout><TermsOfService /></PublicLayout>
+          } />
 
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -147,6 +156,7 @@ function App() {
             <Route path="appointments" element={<AppointmentManager />} />
             <Route path="contacts" element={<ContactManager />} />
             <Route path="gallery" element={<GalleryManager />} />
+            <Route path="photo-settings" element={<PhotoSettings />} />
           </Route>
 
           {/* 404 - redirect home */}

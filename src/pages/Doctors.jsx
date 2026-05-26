@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageCircle, Star, Award, ChevronRight, CheckCircle } from 'lucide-react';
+import { getPhotoPosition } from '../utils/photoPosition';
 import './Doctors.css';
 
 const doctors = [
@@ -10,6 +11,8 @@ const doctors = [
     qualifications: 'MBBS, MS (General Surgery), MCh (Urology)',
     photo: '/doctors/mohit.jpg',
     initials: 'MS',
+    photoKey: 'mohit',
+    photoPosition: 'bottom left',
     color: '#0f4c5c',
     experience: '5+ Years',
     surgeries: '8,000+',
@@ -36,6 +39,8 @@ He is known for his ability to clearly explain complex conditions in simple term
     qualifications: 'MBBS, MD (Dermatology, Venereology & Leprosy)',
     photo: '/doctors/priyanka.jpg',
     initials: 'PS',
+    photoKey: 'priyanka',
+    photoPosition: 'top center',
     color: '#7c3aed',
     experience: '10+ Years',
     surgeries: '5,000+',
@@ -62,6 +67,8 @@ Her empathetic approach and thorough consultations make every patient feel heard
     qualifications: 'MBBS, MS (General Surgery), MCh (Plastic Surgery)',
     photo: '/doctors/rahul.jpg',
     initials: 'RS',
+    photoKey: 'rahul',
+    photoPosition: 'top center',
     color: '#8B5CF6',
     experience: '10+ Years',
     surgeries: '5,000+',
@@ -97,6 +104,7 @@ function DoctorCard({ doc }) {
               src={doc.photo}
               alt={doc.name}
               className="doctor-photo"
+              style={{ objectPosition: getPhotoPosition(doc.photoKey, doc.photoPosition) }}
               onError={() => setImgError(true)}
             />
           ) : (

@@ -116,15 +116,16 @@
   position: relative;
   overflow: hidden;
   background: #f1f5f9;
-  min-height: 400px;
+  min-height: 540px;
+  height: 100%;
 }
 
 .doctor-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  aspect-ratio: 3 / 4;
+  position: absolute;
+  inset: 0;
   display: block;
 }
 

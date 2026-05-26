@@ -95,27 +95,67 @@ const Home = () => {
         <div className="hero__particles">
           {[...Array(6)].map((_,i) => <div key={i} className={`particle particle--${i+1}`}/>)}
         </div>
-        <div className="container hero__inner">
-          <div className="hero__content">
-            <div className="hero__badge">
-              <div className="hero__badge-dot" />
-              {t('hero.badge')}
+        <div className="container hero__new-layout">
+
+          {/* ── Brand Block ── */}
+          <div className="hero__brand-block">
+            {/* Left: Logo */}
+            <div className="hero__brand-left">
+              <img src="/logo.png" alt="Urowala" className="hero__brand-logo"
+                onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} />
             </div>
-            <h1 className="hero__title">
-              <span>{t('hero.title1')}</span><br/>
-              <span className="hero__title-accent">{t('hero.title2')}</span>
+            {/* Centre: Name + tagline */}
+            <div className="hero__brand-center">
+              <span className="hero__brand-name">UROWALA</span>
+              <span className="hero__brand-tagline">Advanced Care. Trusted Specialists.</span>
+            </div>
+            {/* Right: spacer */}
+            <div className="hero__brand-right" />
+          </div>
+
+          {/* ── Main Headline ── */}
+          <div className="hero__headline-block">
+            <h1 className="hero__main-headline">
+              Advanced Urology, Dermatology<br/>
+              <span className="hero__headline-accent">&amp; Plastic Surgery Care</span>
             </h1>
-            <p className="hero__subtitle">{t('hero.subtitle')}</p>
-            <div className="hero__actions">
-              <a href="https://wa.me/9039570761" target="_blank" rel="noreferrer"
-                className="btn btn-accent btn-lg hero__btn-wa">
-                <MessageCircle size={20} /> {t('hero.cta1')}
-              </a>
-              <Link to="/doctors" className="btn btn-white btn-lg">
-                {t('hero.cta2')} <ArrowRight size={18}/>
-              </Link>
-            </div>
-            <div className="hero__mini-stats">
+            <p className="hero__main-sub">
+              Expert care by specialists trained from <strong>AIIMS &amp; SMS Medical College Jaipur</strong>
+            </p>
+          </div>
+
+          {/* ── Doctor Cards ── */}
+          <div className="hero__doctors-row">
+            {[
+              { doc: doctors[0], qual: 'MCh Urology – AIIMS', role: 'Consultant Urologist & Andrology Specialist' },
+              { doc: doctors[2], qual: 'MCh Plastic Surgery – SMS Jaipur', role: 'Consultant Plastic & Reconstructive Surgeon' },
+              { doc: doctors[1], qual: 'MD Dermatology – SMS Jaipur', role: 'Consultant Dermatologist & Skin Specialist' },
+            ].map(({ doc, qual, role }) => (
+              <div key={doc.id} className="hero__doc-card" style={{'--doc-color': doc.color}}>
+                <div className="hero__doc-card-photo" style={{borderColor: doc.color, background: doc.color + '22'}}>
+                  <img src={doc.photo} alt={doc.name}
+                    onError={(e) => { e.target.style.display='none'; e.target.nextElementSibling.style.display='flex'; }}/>
+                  <div className="hero__doc-card-fallback" style={{background: doc.color}}>{doc.photoFallback}</div>
+                </div>
+                <div className="hero__doc-card-info">
+                  <strong>{doc.name}</strong>
+                  <em style={{color: doc.color}}>{qual}</em>
+                  <span>{role}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* ── CTA Row ── */}
+          <div className="hero__cta-row">
+            <a href="https://wa.me/9039570761" target="_blank" rel="noreferrer"
+              className="btn btn-accent btn-lg hero__btn-wa">
+              <MessageCircle size={20} /> Book Appointment
+            </a>
+            <Link to="/doctors" className="btn btn-white btn-lg">
+              Meet Our Doctors <ArrowRight size={18}/>
+            </Link>
+            <div className="hero__inline-stats">
               <div><strong>2,000+</strong><span>Surgeries</span></div>
               <div className="stat-divider"/>
               <div><strong>3,00,000+</strong><span>Treatments</span></div>
@@ -123,54 +163,7 @@ const Home = () => {
               <div><strong>10+</strong><span>Years Exp.</span></div>
             </div>
           </div>
-          <div className="hero__visual">
-            <div className="hero__card hero__card--main">
-              <div className="hero__doctors-carousel">
-                {doctors.map((doc, i) => (
-                  <div key={doc.id} className={`hero__doc-item ${i === activeDoc ? 'hero__doc-item--active' : ''}`}>
-                    <div className="hero__doc-photo" style={{background: doc.color + '22', borderColor: doc.color}}>
-                      <img src={doc.photo} alt={doc.name}
-                        onError={(e) => {
-                          e.target.style.display='none';
-                          e.target.nextElementSibling.style.display='flex';
-                        }}/>
-                      <div className="hero__doc-fallback" style={{background: doc.color, display:'none'}}>
-                        {doc.photoFallback}
-                      </div>
-                    </div>
-                    <div className="hero__doc-info">
-                      <strong>{doc.name}</strong>
-                      <span>{doc.title}</span>
-                      <div className="hero__doc-badge" style={{background: doc.color + '22', color: doc.color}}>
-                        {doc.specialty}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="hero__doc-tabs">
-                {doctors.map((doc, i) => (
-                  <button key={doc.id} className={`hero__doc-tab ${i===activeDoc?'active':''}`}
-                    style={i===activeDoc?{background:doc.color,borderColor:doc.color}:{}}
-                    onClick={() => setActiveDoc(i)} />
-                ))}
-              </div>
-            </div>
-            <div className="hero__floating-card hero__floating-card--1">
-              <CheckCircle size={18} color="var(--primary)"/>
-              <div>
-                <strong>Board Certified</strong>
-                <span>All 3 Specialists</span>
-              </div>
-            </div>
-            <div className="hero__floating-card hero__floating-card--2">
-              <MapPin size={18} color="var(--accent)"/>
-              <div>
-                <strong>2 Locations</strong>
-                <span>Jaipur, Rajasthan</span>
-              </div>
-            </div>
-          </div>
+
         </div>
         <a href="#about" className="hero__scroll">
           <ChevronDown size={22}/>
