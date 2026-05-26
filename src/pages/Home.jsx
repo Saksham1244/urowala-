@@ -165,10 +165,6 @@ const Home = () => {
           </div>
 
         </div>
-        <a href="#about" className="hero__scroll">
-          <ChevronDown size={22}/>
-          <span>{t('hero.scroll')}</span>
-        </a>
       </section>
 
       {/* ── STATS BAR ── */}

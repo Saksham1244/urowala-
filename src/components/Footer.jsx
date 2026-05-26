@@ -27,23 +27,6 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      {/* CTA Strip */}
-      <div className="footer__cta">
-        <div className="container footer__cta-inner">
-          <div>
-            <h3>Ready for expert medical care?</h3>
-            <p>Book a consultation with our specialists today</p>
-          </div>
-          <div className="footer__cta-actions">
-            <a href="https://wa.me/9039570761" className="btn btn-white" target="_blank" rel="noreferrer">
-              Book via WhatsApp
-            </a>
-            <a href="tel:+91 90395 70761" className="btn btn-outline">
-              <Phone size={16} /> Call Now
-            </a>
-          </div>
-        </div>
-      </div>
 
       {/* Main Footer */}
       <div className="footer__main">
@@ -114,7 +97,13 @@ const Footer = () => {
                 <div className="footer__location-label">
                   <MapPin size={14} /> Mansarovar
                 </div>
-                <p>122, Mohan Nagar Gate No. 8, Mansarovar Link Road, near Mangalam Electronic Market, Ridhhi Sidhhi Circle, Jaipur 302018</p>
+                <a
+                  href="https://maps.google.com/?q=122+Mohan+Nagar+Gate+No+8+Mansarovar+Link+Road+Jaipur"
+                  target="_blank" rel="noreferrer"
+                  className="footer__address-link"
+                >
+                  122, Mohan Nagar Gate No. 8, Mansarovar Link Road, near Mangalam Electronic Market, Ridhhi Sidhhi Circle, Jaipur 302018
+                </a>
                 <a href="tel:+91 90395 70761" className="footer__phone"><Phone size={12} /> +91 90395 70761</a>
                 <a href="tel:+917976219661" className="footer__phone"><Phone size={12} /> +91 79762 19661</a>
                 <div className="footer__hours">
@@ -125,7 +114,13 @@ const Footer = () => {
                 <div className="footer__location-label">
                   <MapPin size={14} /> Sanganer
                 </div>
-                <p>21, G P Colony, New Sanganer Road, near Pradhan Vatika Marriage Garden, Mansarovar, Jaipur 302020</p>
+                <a
+                  href="https://maps.google.com/?q=21+GP+Colony+New+Sanganer+Road+Jaipur"
+                  target="_blank" rel="noreferrer"
+                  className="footer__address-link"
+                >
+                  21, G P Colony, New Sanganer Road, near Pradhan Vatika Marriage Garden, Mansarovar, Jaipur 302020
+                </a>
                 <a href="tel:+919414002993" className="footer__phone"><Phone size={12} /> +91 94140 02993</a>
                 <div className="footer__hours">
                   <Clock size={12} /> Mon–Sat: 9–10 AM & 3–5 PM &nbsp;|&nbsp; Sun: Closed
@@ -141,14 +136,13 @@ const Footer = () => {
         <div className="container footer__bottom-inner">
           <p>© {year} Urowala Clinic. {t('footer.rights')}</p>
           <div className="footer__credit" style={{fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)', textAlign: 'center', lineHeight: 1.6}}>
-            Website Design & Development by <br />
+            Website Design &amp; Development by <br />
             <strong style={{color: 'var(--primary-light)'}}>Saksham Bhushan Asthana</strong><br />
-            <a href="tel:+919910898139" style={{color:'inherit', textDecoration:'none', transition:'color 0.2s'}} onMouseEnter={e=>e.target.style.color='var(--primary-light)'} onMouseLeave={e=>e.target.style.color='inherit'}>+91 9910898139</a> | <a href="mailto:asthanasaksham2003@gmail.com" style={{color:'inherit', textDecoration:'none', transition:'color 0.2s'}} onMouseEnter={e=>e.target.style.color='var(--primary-light)'} onMouseLeave={e=>e.target.style.color='inherit'}>asthanasaksham2003@gmail.com</a>
+            <a href="mailto:asthanasaksham2003@gmail.com" style={{color:'inherit', textDecoration:'none', transition:'color 0.2s'}} onMouseEnter={e=>e.target.style.color='var(--primary-light)'} onMouseLeave={e=>e.target.style.color='inherit'}>asthanasaksham2003@gmail.com</a>
           </div>
           <div className="footer__bottom-links">
             <Link to="/privacy">{t('footer.privacy')}</Link>
             <Link to="/terms">{t('footer.terms')}</Link>
-            <Link to="/admin/login">Admin</Link>
           </div>
         </div>
       </div>
