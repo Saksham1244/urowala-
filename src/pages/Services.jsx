@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Clock } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import services from '../data/services.js';
+import { getServicesFromStorage } from '../data/services.js';
 import './Services.css';
 
 export default function Services() {
   const { t } = useTranslation();
+  const services = getServicesFromStorage();
   const [active, setActive] = useState('all');
   const filtered = active === 'all' ? services : services.filter(s => s.id === Number(active));
 

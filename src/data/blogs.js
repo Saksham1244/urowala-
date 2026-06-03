@@ -117,62 +117,65 @@ Book a consultation at Urowala Clinic today.
   },
   {
     id: 3,
-    slug: 'skin-care-tips-summer-jaipur',
-    title: 'Summer Skin Care in Jaipur: Expert Tips from Dr. Priyanka Sharma',
-    titleHi: 'जयपुर की गर्मी में त्वचा की देखभाल',
-    category: 'Dermatology',
-    author: 'Dr. Priyanka Sharma',
-    authorTitle: 'Chief Dermatologist',
+    slug: 'kidney-stones-prevention-treatment-jaipur',
+    title: 'Kidney Stones: Causes, Prevention & When to See a Urologist',
+    titleHi: 'किडनी स्टोन: कारण, बचाव और इलाज',
+    category: 'Urology',
+    author: 'Dr. Mohit Sharma',
+    authorTitle: 'Senior Urologist – MCh Urology (AIIMS)',
     date: '2025-05-10',
-    readTime: 4,
-    coverImage: '/blog/skincare.jpg',
-    coverFallbackColor: '#E879A0',
-    excerpt: 'Jaipur\'s harsh summer can wreak havoc on your skin. Dr. Priyanka Sharma shares evidence-based skincare tips to keep your skin healthy during the hottest months.',
+    readTime: 5,
+    coverImage: '/blog/kidney-stones.jpg',
+    coverFallbackColor: '#3B82F6',
+    excerpt: 'Kidney stones are one of the most painful conditions in urology. Dr. Mohit Sharma explains the causes, warning signs, and the latest minimally invasive treatments available.',
     content: `
-## Summer & Skin: The Jaipur Challenge
+## What Are Kidney Stones?
 
-Jaipur summers are intense — temperatures soar above 45°C and UV index reaches extreme levels. This causes:
-- Sun damage and tanning
-- Acne breakouts from sweat and oil
-- Dehydration of skin
-- Heat rashes and prickly heat
-- Worsening of conditions like melasma
+Kidney stones (urolithiasis) are hard mineral deposits that form inside the kidneys. They can affect any part of the urinary tract — from the kidneys to the bladder. Passing kidney stones can be extremely painful, but most do not cause permanent damage if treated promptly.
 
-## Dr. Priyanka's Summer Skincare Routine
+## Common Causes
 
-### Morning
-1. Gentle face wash (avoid harsh scrubs in summer)
-2. Vitamin C serum — protects against UV damage
-3. **Sunscreen SPF 50+ PA++++** — apply generously, reapply every 2-3 hours
-4. Light, oil-free moisturizer
+- **Dehydration** — the most common cause, especially in Jaipur's hot climate
+- **High-salt diet** — increases calcium in urine
+- **High-protein diet** — raises uric acid levels
+- **Family history** — genetic predisposition
+- **Certain medical conditions** — hyperparathyroidism, UTIs, gout
 
-### Evening
-1. Double cleanse — micellar water then face wash
-2. Retinol or niacinamide (only at night)
-3. Heavier moisturizer for overnight repair
+## Warning Signs You Need a Urologist
 
-## Common Summer Skin Problems
+- Severe, sudden pain in the side, back, or below the ribs
+- Pain that spreads to the lower abdomen and groin
+- Blood in urine (pink, red, or brown urine)
+- Nausea or vomiting
+- Frequent urination or burning sensation
+- Fever and chills (sign of infection — see a doctor immediately)
 
-**Acne Breakouts**: Hormonal + sweat-related. Use salicylic acid face wash. Avoid heavy creams.
+## Treatment Options at Urowala Clinic
 
-**Tanning**: Use broad-spectrum SPF religiously. Medical-grade lightening creams available at Urowala Clinic.
+**URS (Ureteroscopy) & Laser Stone Surgery**
+The gold standard for stones in the ureter. A thin scope is passed and a laser breaks the stone into tiny fragments. Day-care procedure — home the same day.
 
-**Heat Rash (Prickly Heat)**: Keep skin cool and dry. Calamine lotion provides relief.
+**PCNL (Percutaneous Nephrolithotomy)**
+For large kidney stones (>2cm). A small puncture in the back allows direct stone removal. Most effective for complex stones.
 
-**Melasma**: Worsens in summer. See Dr. Priyanka for prescription-strength treatment.
+**ESWL (Shock Wave Lithotripsy)**
+Non-invasive option for smaller stones — sound waves break stones without any incision.
 
-## Professional Treatments Available
+## Prevention Tips
 
-- **Chemical Peels** — lightens pigmentation, improves skin texture
-- **Laser Toning** — targets deep pigmentation
-- **HydraFacial** — intense hydration for dehydrated summer skin
+1. **Drink 3–4 litres of water daily** — especially important in Rajasthan's heat
+2. Reduce salt intake — aim for less than 6g per day
+3. Limit red meat and animal protein
+4. Eat more citrus fruits — citrate prevents stone formation
+5. Avoid excess vitamin C supplements
 
-Book a consultation with Dr. Priyanka Sharma at Urowala Clinic.
+Early treatment prevents complications. If you have recurring kidney stones, consult Dr. Mohit Sharma for a complete metabolic evaluation.
     `,
     published: true,
     featured: false,
-    tags: ['Dermatology', 'Summer', 'Skin Care'],
+    tags: ['Urology', 'Kidney Stones', 'Laser Surgery'],
   },
+
 ];
 
 // ── Blog Store (localStorage-backed) ──

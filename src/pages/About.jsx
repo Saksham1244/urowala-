@@ -2,16 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, ArrowRight, Award, Heart, Shield, Users, MapPin, Stethoscope, Star, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { getMergedDoctors } from '../data/doctors.js';
 import './About.css';
 
-const reasons = [
-  { icon: <Award size={28}/>, title: 'Board-Certified Specialists', desc: 'All our doctors hold advanced post-graduate degrees from AIIMS & SMS Jaipur — India\'s top medical institutions.', color: '#3B82F6' },
-  { icon: <Zap size={28}/>, title: 'Advanced Technology', desc: 'Equipped with the latest laser, laparoscopic and diagnostic equipment for precise, minimally invasive procedures.', color: '#FF6C00' },
-  { icon: <Heart size={28}/>, title: 'Patient-Centered Care', desc: 'We listen, we care, and we treat every patient as family. Your comfort and recovery are our top priorities.', color: '#E879A0' },
-  { icon: <Star size={28}/>, title: '10+ Years Excellence', desc: '10 years of combined clinical experience with over 7,000 successful surgeries and 3,00,000+ treatments.', color: '#8B5CF6' },
-  { icon: <MapPin size={28}/>, title: 'Two Convenient Locations', desc: 'Two fully equipped clinics in Jaipur — Mansarovar and Sanganer — for maximum accessibility.', color: '#10B981' },
-  { icon: <Shield size={28}/>, title: 'Safe & Affordable', desc: 'World-class medical care at transparent, affordable prices with flexible consultation timings.', color: '#F59E0B' },
-];
+
 
 const values = [
   { icon: '🎯', title: 'Excellence', desc: 'We uphold the highest standards in medical care and continuously advance our skills.' },
@@ -22,14 +16,25 @@ const values = [
 
 export default function About() {
   const { t } = useTranslation();
+  const doctors = getMergedDoctors();
+
+  const reasons = [
+    { icon: <Award size={28}/>, title: 'AIIMS-Trained Urologist', desc: 'Dr. Mohit Sharma holds an MCh in Urology from AIIMS, Bhopal — one of India\'s most prestigious medical institutions.', color: '#3B82F6' },
+    { icon: <Zap size={28}/>, title: 'Laser & Laparoscopic Surgery', desc: 'Equipped with the latest laser, PCNL, URS, and laparoscopic equipment for precise, minimally invasive procedures.', color: '#FF6C00' },
+    { icon: <Heart size={28}/>, title: 'Patient-Centered Care', desc: 'We listen, we care, and we treat every patient as family. Your comfort and recovery are our top priorities.', color: '#E879A0' },
+    { icon: <Star size={28}/>, title: `${doctors[0].surgeries} Procedures`, desc: `${doctors[0].experience}+ years of specialized urological experience with over ${doctors[0].surgeries} successful procedures and thousands of satisfied patients.`, color: '#8B5CF6' },
+    { icon: <MapPin size={28}/>, title: 'Two Convenient Locations', desc: 'Two fully equipped clinics in Jaipur — Mansarovar and Sanganer — for maximum accessibility.', color: '#10B981' },
+    { icon: <Shield size={28}/>, title: 'Safe & Affordable', desc: 'World-class urological care at transparent, affordable prices with flexible consultation timings.', color: '#F59E0B' },
+  ];
+
   return (
     <div className="about-page">
       {/* Hero */}
       <section className="page-hero">
         <div className="container">
           <div className="section-label" style={{background:'rgba(255,255,255,0.15)',color:'white',display:'inline-flex',margin:'0 auto 16px'}}>About Us</div>
-          <h1>About Urowala Clinic</h1>
-          <p>Jaipur's leading multi-specialty clinic — excellence in Urology, Dermatology & Plastic Surgery since 2015.</p>
+          <h1>Jaipur's Premier Urology Clinic</h1>
+          <p>Expert, compassionate urological care by Dr. Mohit Sharma — MCh Urology, AIIMS Bhopal.</p>
           <div className="page-hero__breadcrumb">
             <Link to="/">Home</Link> <span>/</span> <span>About</span>
           </div>
@@ -40,28 +45,25 @@ export default function About() {
       <section className="section">
         <div className="container about-mission">
           <div className="about-mission__text">
-            <div className="section-label">{t('about.label')}</div>
-            <h2>{t('about.title')}</h2>
+            <div className="section-label">Who We Are</div>
+            <h2>Urology Expertise You Can Trust</h2>
             <div className="divider divider-left"/>
-            <p style={{marginBottom:'20px'}}>{t('about.p1')}</p>
-            <p>{t('about.p2')}</p>
+            <p style={{marginBottom:'20px'}}>Urowala Clinic is Jaipur's dedicated urology centre, built around the expertise of <strong>Dr. Mohit Sharma</strong> — a Senior Urologist & Urological Surgeon trained at AIIMS, Bhopal. We combine cutting-edge surgical technology with compassionate, patient-centered care.</p>
+            <p>Located at two convenient clinics in Jaipur — Mansarovar and Sanganer — we are dedicated to delivering world-class urological outcomes using minimally invasive laser and laparoscopic techniques.</p>
             <div style={{display:'flex',gap:'32px',marginTop:'32px',flexWrap:'wrap'}}>
-              <div className="about-stat-block"><strong>10+</strong><span>Years Experience</span></div>
-              <div className="about-stat-block"><strong>3</strong><span>Specialist Doctors</span></div>
+              <div className="about-stat-block"><strong>{doctors[0].experience}+</strong><span>Years Experience</span></div>
+              <div className="about-stat-block"><strong>{doctors[0].surgeries}</strong><span>Procedures Done</span></div>
               <div className="about-stat-block"><strong>2</strong><span>Clinic Locations</span></div>
             </div>
           </div>
           <div className="about-mission__visual">
-            <div className="about-mission__img-card">
-              <div className="about-mission__img-placeholder">
-                <Stethoscope size={80} color="var(--primary)" strokeWidth={1.5}/>
-                <h3 style={{color:'var(--text-dark)',marginTop:'16px'}}>Urowala Clinic</h3>
-                <p>Jaipur, Rajasthan</p>
-                <div className="about-mission__stats-row">
-                  <div><strong style={{color:'var(--primary)',fontFamily:"'Rethink Sans',sans-serif",fontSize:'1.8rem'}}>3,00,000+</strong><span>Patients Treated</span></div>
-                  <div><strong style={{color:'var(--accent)',fontFamily:"'Rethink Sans',sans-serif",fontSize:'1.8rem'}}>7,000+</strong><span>Surgeries</span></div>
-                </div>
-              </div>
+            <div className="about-mission__img-card" style={{padding:0, overflow:'hidden', minHeight:'360px'}}>
+              <img src="/clinic/doctor-hero.png" alt="Dr. Mohit Sharma - Urologist at Urowala Clinic"
+                style={{width:'100%', height:'100%', objectFit:'cover', display:'block', minHeight:'360px'}}
+                onError={(e) => {
+                  e.target.style.display='none';
+                  e.target.parentNode.innerHTML = `<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;gap:16px;height:100%'><div style='color:#3B82F6;font-size:80px'>🏥</div><h3 style='margin:0'>Urowala Clinic</h3><p style='margin:0;color:#64748b'>Jaipur, Rajasthan</p><div style='display:flex;gap:24px;margin-top:16px'><div><strong style='color:#3B82F6;font-size:1.8rem'>${doctors[0].surgeries}</strong><br/><span style='color:#64748b'>Procedures</span></div><div><strong style='color:#FF6C00;font-size:1.8rem'>${doctors[0].experience}+</strong><br/><span style='color:#64748b'>Yrs Exp.</span></div></div></div>`;
+                }}/>
             </div>
           </div>
         </div>
@@ -111,17 +113,17 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="section about-cta">
-        <div className="container about-cta__inner">
-          <div>
-            <h2 style={{color:'white'}}>Ready to Experience Expert Care?</h2>
-            <p style={{color:'rgba(255,255,255,0.8)'}}>Book a consultation with our specialists today.</p>
-          </div>
-          <div style={{display:'flex',gap:'16px',flexWrap:'wrap'}}>
-            <Link to="/book-appointment" className="btn btn-white btn-lg">
-              Book Appointment <ArrowRight size={18}/>
+      <section className="about-cta-section">
+        <div className="about-cta-overlay"></div>
+        <div className="container about-cta-inner">
+          <h2 className="about-cta-title">Ready to Experience Expert Care?</h2>
+          <p className="about-cta-desc">Book a consultation with our specialists today.</p>
+          
+          <div className="about-cta-btns">
+            <Link to="/book-appointment" className="about-cta-btn-primary">
+              Book Appointment <ArrowRight size={18} />
             </Link>
-            <Link to="/doctors" className="btn btn-outline btn-lg">
+            <Link to="/doctors" className="about-cta-btn-secondary">
               Meet Our Doctors
             </Link>
           </div>

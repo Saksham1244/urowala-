@@ -4,92 +4,18 @@ import { MessageCircle, Star, Award, ChevronRight, CheckCircle } from 'lucide-re
 import { getPhotoPosition } from '../utils/photoPosition';
 import './Doctors.css';
 
-const doctors = [
-  {
-    name: 'Dr. Mohit Sharma',
-    title: 'Senior Urologist & Urological Surgeon',
-    qualifications: 'MBBS, MS (General Surgery), MCh (Urology)',
-    photo: '/doctors/mohit.jpg',
-    initials: 'MS',
-    photoKey: 'mohit',
-    photoPosition: 'bottom left',
-    color: '#0f4c5c',
-    experience: '5+ Years',
-    surgeries: '8,000+',
-    certifications: ['MCh Urology', 'Laser Urology', 'Laparoscopy'],
-    bio: `Dr. Mohit Sharma is a highly accomplished urologist with over 5 years of experience in managing complex urological conditions. He completed his MCh in Urology from a premier institution and has since dedicated himself to providing the highest standard of urological care to patients in Jaipur and beyond.
+const FacebookIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+  </svg>
+);
+const InstagramIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+  </svg>
+);
 
-Dr. Sharma specializes in minimally invasive and laser-based surgeries, including URS laser stone treatment, PCNL, TURP, laparoscopic urology, and reconstructive urological procedures. His patient-first approach, technical precision, and commitment to continuous learning have earned him the trust of thousands of patients.
-
-He is known for his ability to clearly explain complex conditions in simple terms, ensuring patients are well-informed and comfortable before any procedure.`,
-    conditions: [
-      'Kidney Stones (URS Laser, PCNL)',
-      'Prostate Enlargement (BPH / TURP)',
-      'Bladder & Urinary Issues',
-      'Laparoscopic Kidney Surgery',
-      'Circumcision & Male Urology',
-      'Varicocele & Hydrocele',
-      'Urinary Tract Infections',
-      'Ureteral Stricture & Reconstruction',
-    ],
-  },
-  {
-    name: 'Dr. Priyanka Sharma',
-    title: 'Dermatologist & Skin Specialist',
-    qualifications: 'MBBS, MD (Dermatology, Venereology & Leprosy)',
-    photo: '/doctors/priyanka.jpg',
-    initials: 'PS',
-    photoKey: 'priyanka',
-    photoPosition: 'top center',
-    color: '#7c3aed',
-    experience: '10+ Years',
-    surgeries: '5,000+',
-    certifications: ['MD Dermatology', 'Laser Skin', 'Aesthetic Medicine'],
-    bio: `Dr. Priyanka Sharma is a board-certified dermatologist with an MD in Dermatology, Venereology, and Leprosy. With over 10 years of clinical experience, she has treated thousands of patients suffering from a wide range of skin conditions — from common concerns like acne and pigmentation to complex chronic skin disorders.
-
-Dr. Priyanka is passionate about combining evidence-based medicine with the latest aesthetic procedures to help patients achieve healthy, confident skin. She specializes in medical dermatology, laser treatments, and cosmetic procedures.
-
-Her empathetic approach and thorough consultations make every patient feel heard and cared for. She regularly participates in national dermatology conferences and workshops to stay at the forefront of her field.`,
-    conditions: [
-      'Acne & Acne Scarring',
-      'Pigmentation & Melasma',
-      'Eczema & Psoriasis',
-      'Hair Loss (Alopecia)',
-      'Laser Skin Treatments',
-      'Anti-Ageing & Botox',
-      'Skin Allergies & Rashes',
-      'Vitiligo Management',
-    ],
-  },
-  {
-    name: 'Dr. Rahul Sharma',
-    title: 'Chief Plastic Surgeon',
-    qualifications: 'MBBS, MS (General Surgery), MCh (Plastic Surgery)',
-    photo: '/doctors/rahul.jpg',
-    initials: 'RS',
-    photoKey: 'rahul',
-    photoPosition: 'top center',
-    color: '#8B5CF6',
-    experience: '10+ Years',
-    surgeries: '5,000+',
-    certifications: ['MCh Plastic Surgery', 'Aesthetic Surgery', 'Reconstructive Surgery'],
-    bio: `Dr. Rahul Sharma is a board-certified plastic and reconstructive surgeon with over 10 years of experience and over 5,000 successful surgeries. A graduate of SMS Medical College, Jaipur, he specializes in both reconstructive and aesthetic surgical procedures.
-
-His artistic precision and surgical skill have made him one of Rajasthan's most respected plastic surgeons. He is committed to providing life-changing results with a focus on patient safety, minimal scarring, and natural-looking outcomes.
-
-Whether it's reconstructive surgery post-trauma or elective cosmetic procedures, Dr. Rahul ensures every patient receives personalized care and realistic expectations.`,
-    conditions: [
-      'Reconstructive Surgery',
-      'Burn Scars & Trauma',
-      'Hair Transplantation',
-      'Liposuction & Body Contouring',
-      'Rhinoplasty (Nose Reshaping)',
-      'Breast Augmentation/Reduction',
-      'Facelift & Anti-Aging',
-      'Gynecomastia Treatment',
-    ],
-  },
-];
+import { getMergedDoctors } from '../data/doctors.js';
 
 function DoctorCard({ doc }) {
   const [imgError, setImgError] = useState(false);
@@ -112,19 +38,19 @@ function DoctorCard({ doc }) {
               className="doctor-initials"
               style={{ background: doc.color }}
             >
-              {doc.initials}
+              {doc.photoFallback || doc.name.slice(0, 2)}
             </div>
           )}
           <div className="doctor-experience-badge">
             <Star size={14} fill="#f97316" color="#f97316" />
-            {doc.experience}
+            {doc.experience}+ Years
           </div>
         </div>
 
         {/* Info */}
         <div className="doctor-info">
           <div className="doctor-certs">
-            {doc.certifications.map((c, i) => (
+            {doc.certifications?.map((c, i) => (
               <span key={i} className="doctor-cert-badge">
                 <Award size={12} /> {c}
               </span>
@@ -137,8 +63,8 @@ function DoctorCard({ doc }) {
 
           <div className="doctor-stats">
             <div className="doctor-stat">
-              <span className="doctor-stat-num">{doc.experience}</span>
-              <span className="doctor-stat-lbl">Experience</span>
+              <span className="doctor-stat-num">{doc.experience}+</span>
+              <span className="doctor-stat-lbl">Years Exp.</span>
             </div>
             <div className="doctor-stat-divider" />
             <div className="doctor-stat">
@@ -148,7 +74,7 @@ function DoctorCard({ doc }) {
           </div>
 
           <div className="doctor-bio">
-            {doc.bio.split('\n\n').map((para, i) => (
+            {doc.bio?.split('\n\n').map((para, i) => (
               <p key={i}>{para.trim()}</p>
             ))}
           </div>
@@ -167,15 +93,35 @@ function DoctorCard({ doc }) {
             </div>
           )}
 
-          <a
-            href="https://wa.me/9039570761"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="doctor-book-btn"
-          >
-            <MessageCircle size={18} />
-            Book Appointment via WhatsApp
-          </a>
+          <div style={{ display: 'flex', gap: '12px', marginTop: 'auto', flexWrap: 'wrap' }}>
+            <a
+              href="https://wa.me/9039570761"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="doctor-book-btn"
+            >
+              <MessageCircle size={18} />
+              Book Appointment via WhatsApp
+            </a>
+            <a
+              href="https://www.instagram.com/dr.mohit_urowala/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="doctor-social-btn doctor-social-ig"
+            >
+              <InstagramIcon />
+              Instagram
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61584123434000&mibextid=wwXIfr&rdid=kukWtU9x4tlXyP08&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CqaHPv8uM%2F%3Fmibextid%3DwwXIfr#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="doctor-social-btn doctor-social-fb"
+            >
+              <FacebookIcon />
+              Facebook
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -183,6 +129,7 @@ function DoctorCard({ doc }) {
 }
 
 export default function Doctors() {
+  const doctors = getMergedDoctors();
   return (
     <div className="doctors-page">
       {/* Hero */}

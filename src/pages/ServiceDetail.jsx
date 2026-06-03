@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { CheckCircle, ArrowRight, Phone, MessageCircle, ChevronDown, Calendar } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
-import services from '../data/services.js';
+import { getServicesFromStorage } from '../data/services.js';
 import './ServiceDetail.css';
 
 const faqs = {
@@ -20,6 +20,7 @@ const faqs = {
 
 export default function ServiceDetail() {
   const { slug } = useParams();
+  const services = getServicesFromStorage();
   const service = services.find(s => s.slug === slug);
   const [openFaq, setOpenFaq] = useState(null);
   if (!service) return <Navigate to="/services" replace />;

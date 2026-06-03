@@ -135,6 +135,33 @@
   gap: 36px;
 }
 
+.about-stat-block {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg, #f8fafc);
+  padding: 16px 24px;
+  border-radius: 12px;
+  border-left: 4px solid var(--primary, #0f4c5c);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  flex: 1;
+  min-width: 120px;
+}
+
+.about-stat-block strong {
+  font-size: 1.8rem;
+  color: var(--primary, #0f4c5c);
+  line-height: 1.1;
+  margin-bottom: 4px;
+  font-family: 'Rethink Sans', sans-serif;
+}
+
+.about-stat-block span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted, #64748b);
+  letter-spacing: 0.5px;
+}
+
 @media (max-width: 768px) {
   .about-mission-grid {
     grid-template-columns: 1fr;

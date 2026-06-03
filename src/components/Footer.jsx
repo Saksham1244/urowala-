@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
+import { getServicesFromStorage } from '../data/services';
 
 // Social icons as inline SVGs (lucide-react doesn't export Facebook/Instagram/Youtube)
 const FacebookIcon = () => (
@@ -37,12 +38,11 @@ const Footer = () => {
               onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} />
             <p className="footer__tagline">{t('footer.tagline')}</p>
             <p className="footer__desc">
-              Providing world-class multi-specialty medical care with compassion and excellence since 2015.
+              Jaipur's dedicated urology centre, built around the expertise of Dr. Mohit Sharma, an AIIMS-trained Urologist providing cutting-edge laser and surgical care.
             </p>
             <div className="footer__social">
               <a href="https://www.facebook.com/share/1CqaHPv8uM/?mibextid=wwXIfr" target="_blank" rel="noreferrer" aria-label="Facebook" className="social-icon"><FacebookIcon /></a>
               <a href="https://www.instagram.com/dr.mohit_urowala?utm_source=qr" target="_blank" rel="noreferrer" aria-label="Instagram" className="social-icon"><InstagramIcon /></a>
-              <a href="#" aria-label="YouTube" className="social-icon"><YoutubeIcon /></a>
             </div>
           </div>
 
@@ -72,14 +72,9 @@ const Footer = () => {
           <div className="footer__col">
             <h4>Urology Services</h4>
             <ul>
-              {[
-                { label: 'Kidney Stones', path: '/services/kidney-stones' },
-                { label: 'Prostate Conditions', path: '/services/prostate-conditions' },
-                { label: 'Bladder Disorders', path: '/services/bladder-disorders' },
-                { label: 'Male Health', path: '/services/male-health' },
-                { label: 'Urological Cancers', path: '/services/kidney-cancer' },
-                { label: 'All Procedures', path: '/procedures' },
-              ].map(link => (
+              {getServicesFromStorage().slice(0, 5).map(s => ({ label: s.title, path: `/services/${s.slug}` }))
+                .concat([{ label: 'All Procedures', path: '/procedures' }])
+                .map(link => (
                 <li key={link.path}>
                   <Link to={link.path} className="footer__link">
                     <ArrowRight size={12} /> {link.label}

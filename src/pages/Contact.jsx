@@ -33,20 +33,8 @@ const locations = [
     doctor: null,
     badge: null,
   },
-  {
-    id: 3,
-    name: 'Dr. Priyanka\'s Dermatology Clinic',
-    address: 'Jaipur, Rajasthan — exact location shared via Google Maps',
-    phones: [],
-    hours: [
-      { day: 'Appointment', time: 'Please call or WhatsApp to schedule' },
-    ],
-    color: '#7c3aed',
-    mapLink: 'https://share.google/ZvdsPdXEk8FBj45ul',
-    doctor: 'Dr. Priyanka Sharma — Chief Dermatologist',
-    badge: 'Dermatology',
-  },
 ];
+
 
 
 export default function Contact() {

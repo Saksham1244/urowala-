@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, ChevronDown, Phone, Globe } from 'lucide-react';
 import { api } from '../services/api';
+import { getServicesFromStorage } from '../data/services';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -50,14 +51,7 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
-  const services = [
-    { name: 'Kidney Stones', path: '/services/kidney-stones' },
-    { name: 'Prostate Conditions', path: '/services/prostate-conditions' },
-    { name: 'Bladder Disorders', path: '/services/bladder-disorders' },
-    { name: 'Male Health & Fertility', path: '/services/male-health' },
-    { name: 'Urological Cancers', path: '/services/kidney-cancer' },
-    { name: 'Urinary Tract Infections', path: '/services/urinary-tract' },
-  ];
+  const services = getServicesFromStorage().map(s => ({ name: s.title, path: `/services/${s.slug}` }));
 
   return (
     <>
@@ -164,7 +158,6 @@ const Navbar = () => {
           <Link to="/doctors" className="mobile-menu__link">{t('nav.doctors')}</Link>
           {showGallery && <Link to="/gallery" className="mobile-menu__link">{t('nav.gallery')}</Link>}
           {showBlog && <Link to="/blog" className="mobile-menu__link">{t('nav.blog')}</Link>}
-          <Link to="/experiences" className="mobile-menu__link">{t('nav.experiences')}</Link>
           <Link to="/contact" className="mobile-menu__link">{t('nav.contact')}</Link>
         </nav>
         <div className="mobile-menu__footer">

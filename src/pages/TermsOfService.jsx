@@ -53,9 +53,9 @@ export default function TermsOfService() {
             <h2>2. Medical Services</h2>
             <p>Urowala Clinic provides specialised medical services in:</p>
             <ul>
-              <li>Urology & Andrology (Dr. Mohit Sharma, MCh Urology – AIIMS)</li>
-              <li>Dermatology & Skin Care (Dr. Priyanka Sharma, MD Dermatology – SMS Jaipur)</li>
-              <li>Plastic & Reconstructive Surgery (Dr. Rahul Sharma, MCh Plastic Surgery – SMS Jaipur)</li>
+            <li>Urology & Andrology (Dr. Mohit Sharma, MCh Urology – AIIMS)</li>
+            <li>Laser Urology — URS, PCNL, TURP procedures</li>
+            <li>Male Reproductive Health & Infertility</li>
             </ul>
             <p>
               All medical services are provided by qualified, board-certified specialists. Our services are

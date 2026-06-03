@@ -1,34 +1,45 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../../services/api';
+import { Eye, EyeOff, ShieldCheck } from 'lucide-react';
 import './AdminLogin.css';
+
+// ── Admin Credentials (for local testing) ──
+const ADMIN_USERNAME = 'urowala_admin';
+const ADMIN_PASSWORD = 'urowala@2025';
 
 export default function AdminLogin() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: '', password: '' });
+  const [showPwd, setShowPwd] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('urowala_token');
-    if (token) navigate('/admin', { replace: true });
+    if (localStorage.getItem('urowala_admin_auth') === 'true') {
+      navigate('/admin', { replace: true });
+    }
   }, [navigate]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
-    try {
-      const { token, username } = await api.auth.login(form.username, form.password);
-      localStorage.setItem('urowala_token', token);
-      localStorage.setItem('urowala_admin_auth', 'true');
-      localStorage.setItem('urowala_admin_user', username);
-      navigate('/admin', { replace: true });
-    } catch (err) {
-      setError(err.message || 'Invalid credentials');
-    } finally {
+
+    setTimeout(() => {
+      const usernameOk = form.username.trim() === ADMIN_USERNAME;
+      const passwordOk = form.password === ADMIN_PASSWORD;
+
+      if (usernameOk && passwordOk) {
+        localStorage.setItem('urowala_admin_auth', 'true');
+        localStorage.setItem('urowala_admin_user', 'Urowala Admin');
+        navigate('/admin', { replace: true });
+      } else if (!usernameOk) {
+        setError('Access Denied: Invalid username.');
+      } else {
+        setError('Incorrect password. Please try again.');
+      }
       setLoading(false);
-    }
+    }, 600);
   };
 
   return (
@@ -48,35 +59,55 @@ export default function AdminLogin() {
               type="text"
               value={form.username}
               onChange={(e) => setForm({ ...form, username: e.target.value })}
-              placeholder="Enter username"
+              placeholder="Enter admin username"
               required
               autoComplete="username"
             />
           </div>
+
           <div className="admin-login-field">
             <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-              placeholder="Enter password"
-              required
-              autoComplete="current-password"
-            />
+            <div style={{ position: 'relative' }}>
+              <input
+                id="password"
+                type={showPwd ? 'text' : 'password'}
+                value={form.password}
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
+                placeholder="Enter your password"
+                required
+                autoComplete="current-password"
+                style={{ paddingRight: '44px' }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPwd(!showPwd)}
+                style={{
+                  position: 'absolute', right: '12px', top: '50%',
+                  transform: 'translateY(-50%)', background: 'none',
+                  border: 'none', cursor: 'pointer', color: '#64748b',
+                  padding: 0, display: 'flex'
+                }}
+              >
+                {showPwd ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </div>
 
           {error && <div className="admin-login-error">⚠️ {error}</div>}
 
           <button type="submit" className="admin-login-btn" disabled={loading}>
-            {loading ? <span className="admin-login-spinner" /> : 'Sign In'}
+            {loading
+              ? <span className="admin-login-spinner" />
+              : <><ShieldCheck size={16} /> Sign In</>
+            }
           </button>
         </form>
 
-        <p className="admin-login-footer">
-          🔒 Secure admin access — Urowala Clinic
+        <p className="admin-login-footer" style={{ marginTop: '20px' }}>
+          🔒 Restricted access — Urowala Clinic
         </p>
       </div>
     </div>
   );
 }
+

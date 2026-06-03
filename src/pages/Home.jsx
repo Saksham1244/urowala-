@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, Phone, MessageCircle, Star, ArrowRight, CheckCircle, Users, Stethoscope, Heart, Award, MapPin, Calendar } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
-import doctors from '../data/doctors.js';
-import testimonials from '../data/testimonials.js';
+import { getMergedDoctors } from '../data/doctors.js';
+import InstagramBio from '../components/InstagramBio.jsx';
 import { getBlogsFromStorage } from '../data/blogs.js';
 import { api } from '../services/api';
-import services from '../data/services.js';
+import { getServicesFromStorage } from '../data/services.js';
 import './Home.css';
 
 /* ── Animated Counter ── */
@@ -35,49 +35,17 @@ const Counter = ({ target, suffix = '', prefix = '' }) => {
   return <span ref={ref}>{prefix}{count.toLocaleString('en-IN')}{suffix}</span>;
 };
 
-/* ── Testimonial Carousel ── */
-const TestimonialCarousel = ({ items }) => {
-  const [idx, setIdx] = useState(0);
-  useEffect(() => {
-    const timer = setInterval(() => setIdx(i => (i + 1) % items.length), 4500);
-    return () => clearInterval(timer);
-  }, [items.length]);
-  const item = items[idx];
-  return (
-    <div className="testimonial-carousel">
-      <div className="testimonial-card" key={idx}>
-        <div className="testimonial-stars">
-          {[...Array(item.rating)].map((_,i) => <Star key={i} size={16} fill="#F59E0B" color="#F59E0B"/>)}
-        </div>
-        <p className="testimonial-text">"{item.text}"</p>
-        <div className="testimonial-author">
-          <div className="testimonial-avatar" style={{background: item.avatarColor}}>
-            {item.avatar}
-          </div>
-          <div>
-            <strong>{item.name}</strong>
-            <span>{item.location} · {item.treatment}</span>
-          </div>
-        </div>
-        <div className="testimonial-tag">{item.doctor}</div>
-      </div>
-      <div className="testimonial-dots">
-        {items.map((_,i) => (
-          <button key={i} className={`dot ${i===idx?'dot--active':''}`} onClick={() => setIdx(i)} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
 /* ── Main Home Page ── */
 const Home = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const doctors = getMergedDoctors();
   const [activeDoc, setActiveDoc] = useState(0);
   const [showBlog, setShowBlog] = useState(false);
   const [blogs, setBlogs] = useState([]);
+  const [services, setServices] = useState([]);
 
   useEffect(() => {
+    setServices(getServicesFromStorage());
     api.settings.getAll().then(res => {
       const visible = res.blog_visible === 'true';
       setShowBlog(visible);
@@ -116,34 +84,28 @@ const Home = () => {
           {/* ── Main Headline ── */}
           <div className="hero__headline-block">
             <h1 className="hero__main-headline">
-              Advanced Urology, Dermatology<br/>
-              <span className="hero__headline-accent">&amp; Plastic Surgery Care</span>
+              Advanced Urology Care<br/>
+              <span className="hero__headline-accent">You Can Trust</span>
             </h1>
             <p className="hero__main-sub">
-              Expert care by specialists trained from <strong>AIIMS &amp; SMS Medical College Jaipur</strong>
+              Expert surgical care by a urologist trained from <strong>AIIMS, Bhopal</strong>. {doctors[0].surgeries} successful procedures.
             </p>
           </div>
 
-          {/* ── Doctor Cards ── */}
-          <div className="hero__doctors-row">
-            {[
-              { doc: doctors[0], qual: 'MCh Urology – AIIMS', role: 'Consultant Urologist & Andrology Specialist' },
-              { doc: doctors[2], qual: 'MCh Plastic Surgery – SMS Jaipur', role: 'Consultant Plastic & Reconstructive Surgeon' },
-              { doc: doctors[1], qual: 'MD Dermatology – SMS Jaipur', role: 'Consultant Dermatologist & Skin Specialist' },
-            ].map(({ doc, qual, role }) => (
-              <div key={doc.id} className="hero__doc-card" style={{'--doc-color': doc.color}}>
-                <div className="hero__doc-card-photo" style={{borderColor: doc.color, background: doc.color + '22'}}>
-                  <img src={doc.photo} alt={doc.name}
-                    onError={(e) => { e.target.style.display='none'; e.target.nextElementSibling.style.display='flex'; }}/>
-                  <div className="hero__doc-card-fallback" style={{background: doc.color}}>{doc.photoFallback}</div>
-                </div>
-                <div className="hero__doc-card-info">
-                  <strong>{doc.name}</strong>
-                  <em style={{color: doc.color}}>{qual}</em>
-                  <span>{role}</span>
-                </div>
+          {/* ── Single Doctor Card ── */}
+          <div className="hero__doctors-row hero__doctors-row--center">
+            <div className="hero__doc-card" style={{'--doc-color': doctors[0].color}}>
+              <div className="hero__doc-card-photo" style={{borderColor: doctors[0].color, background: doctors[0].color + '22'}}>
+                <img src={doctors[0].photo} alt={doctors[0].name}
+                  onError={(e) => { e.target.style.display='none'; e.target.nextElementSibling.style.display='flex'; }}/>
+                <div className="hero__doc-card-fallback" style={{background: doctors[0].color}}>{doctors[0].photoFallback}</div>
               </div>
-            ))}
+              <div className="hero__doc-card-info">
+                <strong>{doctors[0].name}</strong>
+                <em style={{color: doctors[0].color}}>MCh Urology – AIIMS, Bhopal</em>
+                <span>Senior Urologist & Urological Surgeon</span>
+              </div>
+            </div>
           </div>
 
           {/* ── CTA Row ── */}
@@ -156,11 +118,11 @@ const Home = () => {
               Meet Our Doctors <ArrowRight size={18}/>
             </Link>
             <div className="hero__inline-stats">
-              <div><strong>2,000+</strong><span>Surgeries</span></div>
+              <div><strong>{doctors[0].surgeries}</strong><span>Procedures</span></div>
               <div className="stat-divider"/>
-              <div><strong>3,00,000+</strong><span>Treatments</span></div>
+              <div><strong>{doctors[0].experience}+</strong><span>Years Exp.</span></div>
               <div className="stat-divider"/>
-              <div><strong>10+</strong><span>Years Exp.</span></div>
+              <div><strong>AIIMS</strong><span>Trained</span></div>
             </div>
           </div>
 
@@ -171,10 +133,8 @@ const Home = () => {
       <section className="stats-bar">
         <div className="container stats-bar__grid">
           {[
-            { icon: <Award size={28}/>, value: '10', suffix: '+', label: t('stats.years') },
-            { icon: <Users size={28}/>, value: '3', suffix: '', label: t('stats.doctors') },
-            { icon: <Heart size={28}/>, value: '300000', suffix: '+', label: t('stats.patients') },
-            { icon: <Stethoscope size={28}/>, value: '7000', suffix: '+', label: t('stats.surgeries') },
+            { icon: <Award size={28}/>, value: doctors[0].experience.toString(), suffix: '+', label: t('stats.years') },
+            { icon: <Stethoscope size={28}/>, value: doctors[0].surgeries.replace(/\D/g, ''), suffix: '+', label: 'Procedures' },
             { icon: <MapPin size={28}/>, value: '2', suffix: '', label: t('stats.locations') },
           ].map((stat, i) => (
             <div key={i} className="stat-item">
@@ -193,8 +153,9 @@ const Home = () => {
         <div className="container about__inner">
           <div className="about__image-col">
             <div className="about__img-wrap">
-              <div className="about__img-main">
-                <img src="/clinic/about.jpg" alt="Urowala Clinic"
+              <div className="about__img-main" style={{padding:0, overflow:'hidden'}}>
+                <img src="/clinic/doctor-hero.png" alt="Dr. Mohit Sharma"
+                  style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}
                   onError={(e) => { e.target.parentNode.classList.add('about__img-fallback'); e.target.style.display='none'; }}/>
                 <div className="about__img-placeholder">
                   <Stethoscope size={64} color="var(--primary)"/>
@@ -204,7 +165,7 @@ const Home = () => {
               <div className="about__img-badge">
                 <Award size={20} color="var(--accent)"/>
                 <div>
-                  <strong>10+</strong>
+                  <strong>5+</strong>
                   <span>Years of Excellence</span>
                 </div>
               </div>
@@ -234,47 +195,42 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ── SPECIALTIES ── */}
-      <section className="section section-alt specialties">
+      {/* ── WHAT WE TREAT ── */}
+      <section className="section section-alt">
         <div className="container">
           <div className="section-heading">
             <div className="section-label">{t('specialties.label')}</div>
-            <h2>{t('specialties.title')}</h2>
-            <p>{t('specialties.subtitle')}</p>
+            <h2>Conditions We Treat</h2>
+            <p>Dr. Mohit Sharma specializes in the full spectrum of urological conditions with minimally invasive techniques.</p>
           </div>
-          <div className="specialties__grid">
+          <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(200px, 1fr))', gap:'16px', marginTop:'40px'}}>
             {[
-              { key:'urology', icon: <LucideIcons.Activity size={32}/>, color:'#3B82F6', path:'/services', doctor: doctors[0] },
-              { key:'derm', icon: <LucideIcons.Sparkles size={32}/>, color:'#E879A0', path:'/doctors', doctor: doctors[1] },
-              { key:'plastic', icon: <LucideIcons.Scissors size={32}/>, color:'#8B5CF6', path:'/doctors', doctor: doctors[2] },
-            ].map(sp => (
-              <Link to={sp.path} key={sp.key} className="specialty-card card">
-                <div className="specialty-card__icon" style={{background: sp.color + '18', color: sp.color}}>
-                  {sp.icon}
-                </div>
-                <h3>{t(`specialties.${sp.key}.name`)}</h3>
-                <p>{t(`specialties.${sp.key}.desc`)}</p>
-                <div className="specialty-card__doctor">
-                  <div className="specialty-doc-avatar" style={{background: sp.color + '22', borderColor: sp.color}}>
-                    <img src={sp.doctor.photo} alt={sp.doctor.name}
-                      onError={(e) => {
-                        e.target.style.display='none';
-                        e.target.nextElementSibling.style.display='flex';
-                      }}/>
-                    <div style={{display:'none', background:sp.color}} className="doc-avatar-fallback">
-                      {sp.doctor.photoFallback}
-                    </div>
-                  </div>
-                  <div>
-                    <strong>{sp.doctor.name}</strong>
-                    <span>{sp.doctor.title}</span>
-                  </div>
-                </div>
-                <div className="specialty-card__arrow" style={{color: sp.color}}>
-                  Learn More <ArrowRight size={14}/>
-                </div>
+              { icon: '🫘', label: 'Kidney Stones', sub: 'URS Laser · PCNL', path: '/services/kidney-stones' },
+              { icon: '🔬', label: 'Prostate (BPH)', sub: 'TURP · Laser Surgery', path: '/services/prostate-conditions' },
+              { icon: '💧', label: 'Bladder Issues', sub: 'Cystoscopy · TURBT', path: '/services/bladder-disorders' },
+              { icon: '⚡', label: 'Kidney Cancer', sub: 'Laparoscopic Surgery', path: '/services/kidney-cancer' },
+              { icon: '♂️', label: 'Male Health', sub: 'Varicocele · Andrology', path: '/services/male-health' },
+              { icon: '🦠', label: 'Urinary Infections', sub: 'UTI · Stricture', path: '/services/urinary-tract' },
+              { icon: '✂️', label: 'Circumcision', sub: 'Minimally Invasive', path: '/procedures' },
+              { icon: '🔭', label: 'Laparoscopy', sub: 'Kidney · Adrenal', path: '/procedures' },
+            ].map((item, i) => (
+              <Link to={item.path} key={i} style={{
+                display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
+                background:'white', borderRadius:'16px', padding:'28px 16px', textAlign:'center',
+                textDecoration:'none', color:'inherit', border:'1.5px solid #e2e8f0',
+                transition:'all 0.25s ease', gap:'8px',
+                boxShadow:'0 2px 8px rgba(0,0,0,0.04)'
+              }}
+              onMouseEnter={e=>e.currentTarget.style.transform='translateY(-4px)'}
+              onMouseLeave={e=>e.currentTarget.style.transform='translateY(0)'}>
+                <span style={{fontSize:'2rem'}}>{item.icon}</span>
+                <strong style={{fontSize:'14px', color:'var(--text-dark)'}}>{item.label}</strong>
+                <span style={{fontSize:'12px', color:'var(--primary)', fontWeight:600}}>{item.sub}</span>
               </Link>
             ))}
+          </div>
+          <div style={{textAlign:'center', marginTop:'32px'}}>
+            <Link to="/services" className="btn btn-primary">View All Services <ArrowRight size={16}/></Link>
           </div>
         </div>
       </section>
@@ -311,7 +267,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ── DOCTORS ── */}
+      {/* ── DOCTOR ── */}
       <section className="section section-alt doctors-section">
         <div className="container">
           <div className="section-heading">
@@ -319,95 +275,72 @@ const Home = () => {
             <h2>{t('doctors.title')}</h2>
             <p>{t('doctors.subtitle')}</p>
           </div>
-          <div className="doctors-grid">
-            {doctors.map((doc) => (
-              <div key={doc.id} className="doctor-card card">
-                <div className="doctor-card__photo-wrap" style={{borderColor: doc.color + '44'}}>
-                  <img src={doc.photo} alt={doc.name} className="doctor-card__photo"
+          {doctors.map((doc) => (
+            <div key={doc.id} className="doctor-card-h" style={{borderTop: `4px solid ${doc.color}`}}>
+              <div className="doctor-card-h__photo-col">
+                <div className="doctor-card-h__photo-wrap" style={{borderColor: doc.color + '55'}}>
+                  <img src={doc.photo} alt={doc.name} className="doctor-card-h__photo"
                     onError={(e) => {
                       e.target.style.display='none';
                       e.target.nextElementSibling.style.display='flex';
                     }}/>
-                  <div className="doctor-card__photo-fallback" style={{background: doc.color, display:'none'}}>
-                    {doc.photoFallback}
+                  <div className="doctor-card-h__photo-fallback" style={{background: doc.color}}>{doc.photoFallback}</div>
+                </div>
+                <div className="doctor-card-h__badge" style={{background: doc.color}}>{doc.specialty}</div>
+              </div>
+              <div className="doctor-card-h__info">
+                <div className="doctor-card-h__top">
+                  <div>
+                    <h3 className="doctor-card-h__name">{doc.name}</h3>
+                    <p className="doctor-card-h__title" style={{color: doc.color}}>{doc.title}</p>
+                    <p className="doctor-card-h__qual">{doc.qualifications}</p>
                   </div>
-                  <div className="doctor-card__specialty-badge" style={{background: doc.color}}>
-                    {doc.specialty}
+                  <div className="doctor-card-h__stats">
+                    <div className="doc-stat-h"><strong>{doc.experience}+</strong><span>Yrs Exp.</span></div>
+                    {doc.surgeries && <div className="doc-stat-h"><strong>{doc.surgeries}</strong><span>Procedures</span></div>}
                   </div>
                 </div>
-                <div className="doctor-card__body">
-                  <h3 className="doctor-card__name">{doc.name}</h3>
-                  <p className="doctor-card__title">{doc.title}</p>
-                  <p className="doctor-card__qual">{doc.qualifications}</p>
-                  <div className="doctor-card__stats">
-                    <div className="doc-stat">
-                      <strong>{doc.experience}+</strong>
-                      <span>Yrs Exp.</span>
+                {doc.bio && <p className="doctor-card-h__bio">{doc.bio}</p>}
+                {doc.conditions && (
+                  <div className="doctor-card-h__conditions">
+                    <strong>Conditions Treated:</strong>
+                    <div className="doctor-card-h__cond-grid">
+                      {doc.conditions.slice(0, 6).map((c, i) => (
+                        <span key={i} className="cond-pill" style={{background: doc.color + '15', color: doc.color, border: `1px solid ${doc.color}33`}}>✓ {c}</span>
+                      ))}
                     </div>
-                    {doc.surgeries && (
-                      <div className="doc-stat">
-                        <strong>{doc.surgeries}</strong>
-                        <span>Surgeries</span>
-                      </div>
-                    )}
-                    {doc.treatments && (
-                      <div className="doc-stat">
-                        <strong>{doc.treatments}</strong>
-                        <span>Treatments</span>
-                      </div>
-                    )}
                   </div>
-                  <div className="doctor-card__certs">
-                    {doc.certifications.map((c,i) => (
-                      <span key={i} className="cert-badge" style={{background: doc.color + '18', color: doc.color}}>
-                        ✓ {c}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="doctor-card__actions">
-                    <a href={`https://wa.me/9039570761?text=I want to book an appointment with ${doc.name}`}
-                      target="_blank" rel="noreferrer"
-                      className="btn btn-primary btn-sm" style={{flex:1, justifyContent:'center', background: doc.color}}>
-                      <Calendar size={14}/> Book
-                    </a>
-                    <Link to={`/doctors`} className="btn btn-sm" style={{flex:1, justifyContent:'center', background: doc.color + '15', color: doc.color}}>
-                      Profile
-                    </Link>
-                  </div>
+                )}
+                <div className="doctor-card-h__certs">
+                  {doc.certifications.map((c,i) => (
+                    <span key={i} className="cert-badge" style={{background: doc.color + '18', color: doc.color}}>✓ {c}</span>
+                  ))}
+                </div>
+                <div className="doctor-card-h__actions">
+                  <a href={`https://wa.me/9039570761?text=I want to book an appointment with ${doc.name}`}
+                    target="_blank" rel="noreferrer"
+                    className="btn btn-primary" style={{background: doc.color}}>
+                    <Calendar size={16}/> Book Appointment
+                  </a>
+                  <Link to="/doctors" className="btn btn-sm" style={{background: doc.color + '15', color: doc.color, padding:'12px 24px'}}>
+                    Full Profile →
+                  </Link>
+                  <a href="https://www.instagram.com/dr.mohit_urowala" target="_blank" rel="noreferrer"
+                    className="btn btn-sm" style={{background:'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)', color:'white', padding:'12px 20px'}}>
+                    📸 Instagram
+                  </a>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ── */}
-      <section className="section testimonials-section">
+
+      {/* ── INSTAGRAM BIO SECTION ── */}
+      <section className="section" style={{background: 'var(--primary-bg)'}}>
         <div className="container">
-          <div className="testimonials__inner">
-            <div className="testimonials__left">
-              <div className="section-label">{t('testimonials.label')}</div>
-              <h2>{t('testimonials.title')}</h2>
-              <div className="divider divider-left"/>
-              <p>{t('testimonials.subtitle')}</p>
-              <div className="testimonials__trust">
-                <div className="trust-item">
-                  <Star size={20} fill="#F59E0B" color="#F59E0B"/>
-                  <span><strong>4.9/5</strong> Average Rating</span>
-                </div>
-                <div className="trust-item">
-                  <CheckCircle size={20} color="var(--primary)"/>
-                  <span><strong>300,000+</strong> Happy Patients</span>
-                </div>
-              </div>
-              <Link to="/experiences" className="btn btn-primary" style={{marginTop:'24px'}}>
-                View All Stories <ArrowRight size={16}/>
-              </Link>
-            </div>
-            <div className="testimonials__right">
-              <TestimonialCarousel items={testimonials} />
-            </div>
-          </div>
+          <InstagramBio />
         </div>
       </section>
 

@@ -3,9 +3,7 @@ import toast from 'react-hot-toast';
 import { savePhotoPositions, loadPhotoPositions } from '../../utils/photoPosition';
 
 const DOCTORS = [
-  { key: 'mohit',    name: 'Dr. Mohit Sharma',    photo: '/doctors/mohit.jpg',    initials: 'MS', color: '#0f4c5c' },
-  { key: 'priyanka', name: 'Dr. Priyanka Sharma', photo: '/doctors/priyanka.jpg', initials: 'PS', color: '#7c3aed' },
-  { key: 'rahul',   name: 'Dr. Rahul Sharma',    photo: '/doctors/rahul.jpg',    initials: 'RS', color: '#8B5CF6' },
+  { key: 'mohit', name: 'Dr. Mohit Sharma', photo: '/doctors/mohit.jpg', initials: 'MS', color: '#0f4c5c' },
 ];
 
 export default function PhotoSettings() {
@@ -41,14 +39,14 @@ export default function PhotoSettings() {
   };
 
   const handleReset = () => {
-    const defaults = { mohit: '20% 80%', priyanka: '50% 20%', rahul: '50% 20%' };
+    const defaults = { mohit: '20% 80%' };
     setPositions(prev => ({ ...prev, [active]: defaults[active] }));
     toast('Reset to default position');
   };
 
   const handleResetAll = () => {
     if (!window.confirm('Reset ALL doctors to default positions?')) return;
-    const defaults = { mohit: '20% 80%', priyanka: '50% 20%', rahul: '50% 20%' };
+    const defaults = { mohit: '20% 80%' };
     setPositions(defaults);
     savePhotoPositions(defaults);
     toast.success('All positions reset');

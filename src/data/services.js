@@ -1,5 +1,5 @@
 // ── Urowala Clinic — Urology Services Data ──
-const services = [
+const defaultServices = [
   {
     id: 1,
     slug: 'kidney-stones',
@@ -86,4 +86,59 @@ const services = [
   },
 ];
 
-export default services;
+// ── Services Store (localStorage-backed) ──
+export const getServicesFromStorage = () => {
+  try {
+    const stored = localStorage.getItem('urowala_services_v2');
+    if (stored) return JSON.parse(stored);
+    
+    // Check old overrides to migrate
+    const oldOverridesStr = localStorage.getItem('urowala_services_overrides');
+    let initialServices = [...defaultServices];
+    if (oldOverridesStr) {
+      try {
+        const oldOverrides = JSON.parse(oldOverridesStr);
+        initialServices = initialServices.map(s => ({ ...s, ...(oldOverrides[s.id] || {}) }));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    localStorage.setItem('urowala_services_v2', JSON.stringify(initialServices));
+    return initialServices;
+  } catch {
+    return [...defaultServices];
+  }
+};
+
+export const saveServicesToStorage = (services) => {
+  localStorage.setItem('urowala_services_v2', JSON.stringify(services));
+};
+
+export const addService = (service) => {
+  const services = getServicesFromStorage();
+  const newService = {
+    ...service,
+    id: Date.now(),
+    slug: service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+  };
+  const updated = [...services, newService];
+  saveServicesToStorage(updated);
+  return updated;
+};
+
+export const updateService = (id, updates) => {
+  const services = getServicesFromStorage();
+  const updated = services.map(s => s.id === id ? { ...s, ...updates } : s);
+  saveServicesToStorage(updated);
+  return updated;
+};
+
+export const deleteService = (id) => {
+  const services = getServicesFromStorage();
+  const updated = services.filter(s => s.id !== id);
+  saveServicesToStorage(updated);
+  return updated;
+};
+
+export default defaultServices;

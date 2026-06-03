@@ -4,82 +4,59 @@ const doctors = [
     id: 1,
     slug: 'dr-mohit-sharma',
     name: 'Dr. Mohit Sharma',
-    title: 'Chief Urology Surgeon',
-    specialty: 'Urology',
+    title: 'Senior Urologist & Urological Surgeon',
+    specialty: 'Urology & Andrology',
     specialtyIcon: 'Activity',
-    qualifications: 'M.B.B.S., MS, MCh Urology (AIIMS Bhopal)',
-    certifications: ['Board Certified Kidney and Stones Specialist'],
+    qualifications: 'M.B.B.S., MS (General Surgery), MCh Urology (AIIMS)',
+    certifications: ['MCh Urology – AIIMS', 'Laser Urology', 'Laparoscopy', 'Andrology'],
     experience: 5,
-    surgeries: '2,000+',
+    surgeries: '8,000+',
     treatments: null,
     photo: '/doctors/mohit.jpg',
     photoFallback: 'MS',
     color: '#3B82F6',
-    bio: 'Dr. Mohit Sharma is a highly skilled urological surgeon trained at AIIMS Bhopal, one of India\'s premier medical institutions. Specializing in kidney stones, prostate surgery, and advanced endourology, he has performed over 2,000 successful surgeries. His patient-first approach and technical expertise make him one of Jaipur\'s most sought-after urology specialists.',
+    bio: 'Dr. Mohit Sharma is a highly accomplished urologist with over 5 years of experience in managing complex urological conditions. He completed his MCh in Urology from AIIMS — one of India\'s premier medical institutions — and has since dedicated himself to providing the highest standard of urological care to patients in Jaipur and beyond. Dr. Sharma specializes in minimally invasive and laser-based surgeries, including URS laser stone treatment, PCNL, TURP, laparoscopic urology, and reconstructive urological procedures.',
     conditions: [
-      'Kidney Stones (Urolithiasis)',
-      'Prostate Enlargement (BPH)',
-      'Prostate Cancer',
-      'Bladder Cancer',
-      'Kidney Cancer',
+      'Kidney Stones (URS Laser, PCNL)',
+      'Prostate Enlargement (BPH / TURP)',
+      'Bladder & Urinary Issues',
+      'Laparoscopic Kidney Surgery',
+      'Circumcision & Male Urology',
+      'Varicocele & Hydrocele',
       'Urinary Tract Infections',
-      'Male Infertility',
-      'Haematuria (Blood in Urine)',
-      'Urethral Stricture',
-      'Hydrocele & Varicocele',
+      'Ureteral Stricture & Reconstruction',
+      'Male Infertility & Andrology',
+      'Urological Cancers',
     ],
     procedures: [
       'URS (Ureteroscopy) & Laser Stone Surgery',
       'PCNL (Kidney Stone Surgery)',
       'TURP (Prostate Surgery)',
       'Laparoscopic Urology',
-      'Robotic Surgery',
       'Cystoscopy',
       'Circumcision',
       'Vasectomy & Reversal',
+      'Varicocelectomy & Hydrocelectomy',
     ],
     availability: 'Mon–Sat: 10 AM – 8 PM (Mansarovar)\nMon–Sat: 9–10 AM & 3–5 PM (Sanganer)',
-  },
-  {
-    id: 2,
-    slug: 'dr-priyanka-sharma',
-    name: 'Dr. Priyanka Sharma',
-    title: 'Chief Dermatologist',
-    specialty: 'Dermatology',
-    specialtyIcon: 'Sparkles',
-    qualifications: 'M.B.B.S., MD Dermatology (SMS Jaipur)',
-    certifications: ['Board Certified Skin and Hair Specialist'],
-    experience: 11,
-    surgeries: null,
-    treatments: '3,00,000+',
-    photo: '/doctors/priyanka.jpg',
-    photoFallback: 'PS',
-    color: '#E879A0',
-    bio: 'Dr. Priyanka Sharma is a renowned dermatologist with over 11 years of clinical excellence. Trained at the prestigious SMS Medical College, Jaipur, she has successfully treated over 3,00,000 patients for a wide range of skin and hair conditions. Her expertise spans advanced laser therapies, anti-aging treatments, and cosmetic dermatology.',
-    conditions: [],
-    procedures: [],
-    availability: 'Mon–Sat: 10 AM – 8 PM (Mansarovar)',
-  },
-  {
-    id: 3,
-    slug: 'dr-rahul-sharma',
-    name: 'Dr. Rahul Sharma',
-    title: 'Chief Plastic Surgeon',
-    specialty: 'Plastic Surgery',
-    specialtyIcon: 'Scissors',
-    qualifications: 'M.B.B.S., MS, MCh Plastic Surgery (SMS Jaipur)',
-    certifications: ['Board Certified Skin and Hair Specialist'],
-    experience: 10,
-    surgeries: '5,000+',
-    treatments: null,
-    photo: '/doctors/rahul.jpg',
-    photoFallback: 'RS',
-    color: '#8B5CF6',
-    bio: 'Dr. Rahul Sharma is a board-certified plastic and reconstructive surgeon with 10 years of experience and over 5,000 successful surgeries. A graduate of SMS Medical College, Jaipur, he specializes in both reconstructive and aesthetic surgical procedures. His artistic precision and surgical skill have made him one of Rajasthan\'s most respected plastic surgeons.',
-    conditions: [],
-    procedures: [],
-    availability: 'Mon–Sat: 10 AM – 8 PM (Mansarovar)',
+    photoKey: 'mohit',
+    photoPosition: 'bottom left',
   },
 ];
+
+export function getMergedDoctors() {
+  let overrides = {};
+  try {
+    const raw = localStorage.getItem('urowala_doctors_overrides');
+    overrides = raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    // Ignore error
+  }
+
+  return doctors.map(doctor => {
+    const override = overrides[doctor.id] || {};
+    return { ...doctor, ...override };
+  });
+}
 
 export default doctors;
