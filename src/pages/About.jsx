@@ -51,8 +51,8 @@ const RESEARCH_AREAS = [
 
 const CONFERENCES = [
   { year: '2026', event: 'Japan Urology Association (JUA) Annual Meeting', location: 'Kyoto, Japan', type: 'international' },
-  { year: '2025', event: 'RECON 2025 — Andrology & Reconstructive Urology Workshop', location: 'AIIMS Bhubaneswar', type: 'award', award: '🏆 1st Prize — Best Poster Presentation' },
   { year: '2026', event: 'USICON — Urological Society of India Annual Conference', location: 'India', type: 'national' },
+  { year: '2025', event: 'RECON 2025 — Andrology & Reconstructive Urology Workshop', location: 'AIIMS Bhubaneswar', type: 'award', award: '🏆 1st Prize — Best Poster Presentation' },
   { year: '2025', event: 'NZUSICON 2025', location: 'Jaipur, India', type: 'national' },
   { year: '2024', event: 'SIU & International Urological Societies', location: 'International', type: 'international' },
   { year: '2024', event: 'Conferences at AIIMS Rishikesh & Premier Institutes', location: 'India', type: 'national' },
