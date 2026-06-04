@@ -93,6 +93,12 @@ export const api = {
     getAll: () => request('GET', '/settings'),
     update: (key, value) => request('PUT', '/settings', { key, value }),
   },
+
+  // ── Instagram ────────────────────────────────────────────────────────────────
+  instagram: {
+    getFeed: () => request('GET', '/instagram/feed'),
+    refresh: () => request('POST', '/instagram/refresh'),
+  },
 };
 
 export default api;

@@ -12,6 +12,7 @@ import doctorRoutes from './routes/doctors.js';
 import serviceRoutes from './routes/services.js';
 import galleryRoutes from './routes/gallery.js';
 import settingsRoutes from './routes/settings.js';
+import instagramRoutes from './routes/instagram.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -38,6 +39,7 @@ app.use('/api/doctors', doctorRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/gallery', galleryRoutes);
 app.use('/api/settings', settingsRoutes);
+app.use('/api/instagram', instagramRoutes);
 
 // ── 404 fallback ──────────────────────────────────────────────────────────────
 app.use((req, res) => {

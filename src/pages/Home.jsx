@@ -148,6 +148,13 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ── INSTAGRAM COMPACT ── */}
+      <section className="section" style={{padding:'32px 0', background:'#fafafa'}}>
+        <div className="container" style={{maxWidth:'860px'}}>
+          <InstagramBio compact />
+        </div>
+      </section>
+
       {/* ── ABOUT ── */}
       <section id="about" className="section about">
         <div className="container about__inner">
@@ -337,12 +344,7 @@ const Home = () => {
       </section>
 
 
-      {/* ── INSTAGRAM BIO SECTION ── */}
-      <section className="section" style={{background: 'var(--primary-bg)'}}>
-        <div className="container">
-          <InstagramBio />
-        </div>
-      </section>
+
 
 
       {/* ── BLOG PREVIEW — only shown when admin enables it ── */}

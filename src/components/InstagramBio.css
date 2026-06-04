@@ -241,3 +241,191 @@
   .ig-tab { flex: 1; justify-content: center; }
   .ig-grid { gap: 2px; padding: 0; }
 }
+
+/* ── Live Badge ── */
+.ig-live-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1e7e34;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 20px;
+  padding: 2px 8px;
+  letter-spacing: 0.3px;
+}
+
+/* ── Real Image Grid ── */
+.ig-grid-real {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.ig-grid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.ig-grid-real:hover .ig-grid-img {
+  transform: scale(1.06);
+}
+.ig-grid-real:hover .ig-grid-overlay {
+  opacity: 1;
+}
+
+/* ── Video / Carousel Badges ── */
+.ig-video-badge,
+.ig-carousel-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.55);
+  border-radius: 4px;
+  padding: 3px 5px;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+/* ── Hover Overlay ── */
+.ig-overlay-likes {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+.ig-overlay-caption {
+  font-size: 11px;
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  line-height: 1.4;
+  margin-top: 6px;
+  max-width: 90%;
+}
+.ig-grid-overlay {
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ── Skeleton Loading ── */
+.ig-skeleton-item {
+  background: #e9e9e9 !important;
+  cursor: default;
+}
+.ig-skeleton-shimmer {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #e9e9e9 0%,
+    #f5f5f5 50%,
+    #e9e9e9 100%
+  );
+  background-size: 200% 100%;
+  animation: igShimmer 1.4s infinite;
+}
+@keyframes igShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ── Compact Mode ─────────────────────────────────────────────────────────── */
+.ig-compact {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #dbdbdb;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 18px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.ig-compact-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.ig-compact-pic {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  padding: 2px;
+}
+.ig-compact-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.ig-compact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ig-compact-username-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+}
+
+.ig-compact-username {
+  font-weight: 700;
+  font-size: 14px;
+  color: #262626;
+}
+
+.ig-compact-stats {
+  display: flex;
+  gap: 14px;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 4px;
+}
+.ig-compact-stats strong {
+  color: #262626;
+}
+
+.ig-compact-bio {
+  font-size: 12px;
+  color: #666;
+}
+
+.ig-compact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ig-compact-item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #efefef;
+  display: block;
+  cursor: pointer;
+}
+.ig-compact-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.ig-compact-item:hover img {
+  transform: scale(1.05);
+}
+.ig-compact-item:hover .ig-grid-overlay {
+  opacity: 1;
+}
