@@ -8,8 +8,8 @@ const ACHIEVEMENT_PHOTOS = [
   {
     id: 1,
     src: '/achievements/jua-kyoto.jpg',
-    title: 'Japan Urology Association — JUA 2025, Kyoto',
-    caption: 'Presenting research at the Annual Meeting of the Japan Urological Association, Kyoto, Japan (April 2025)',
+    title: 'Japan Urology Association — JUA 2026, Kyoto',
+    caption: 'Presenting research at the Annual Meeting of the Japan Urological Association, Kyoto, Japan (April 2026)',
     badge: '🌏 International',
     type: 'conference',
   },
@@ -50,9 +50,9 @@ const RESEARCH_AREAS = [
 ];
 
 const CONFERENCES = [
-  { year: '2025', event: 'Japan Urology Association (JUA) Annual Meeting', location: 'Kyoto, Japan', type: 'international' },
+  { year: '2026', event: 'Japan Urology Association (JUA) Annual Meeting', location: 'Kyoto, Japan', type: 'international' },
   { year: '2025', event: 'RECON 2025 — Andrology & Reconstructive Urology Workshop', location: 'AIIMS Bhubaneswar', type: 'award', award: '🏆 1st Prize — Best Poster Presentation' },
-  { year: '2025', event: 'USICON — Urological Society of India Annual Conference', location: 'India', type: 'national' },
+  { year: '2026', event: 'USICON — Urological Society of India Annual Conference', location: 'India', type: 'national' },
   { year: '2025', event: 'NZUSICON 2025', location: 'Jaipur, India', type: 'national' },
   { year: '2024', event: 'SIU & International Urological Societies', location: 'International', type: 'international' },
   { year: '2024', event: 'Conferences at AIIMS Rishikesh & Premier Institutes', location: 'India', type: 'national' },
