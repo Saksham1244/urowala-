@@ -155,6 +155,46 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ── HIGHLIGHTED ACHIEVEMENTS ── */}
+      <section className="section" style={{background: '#fff'}}>
+        <div className="container">
+          <div className="section-heading" style={{textAlign: 'center', marginBottom: '40px'}}>
+            <div className="section-label">Achievements</div>
+            <h2 style={{fontSize: '2rem'}}>Global Recognition & Awards</h2>
+          </div>
+          <div style={{display: 'flex', gap: '32px', flexWrap: 'wrap', justifyContent: 'center'}}>
+            
+            {/* Japan Photo */}
+            <div style={{width: '320px', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 12px 32px rgba(0,0,0,0.06)', background: '#fff', transition: 'transform 0.3s'}}>
+              <div style={{height: '240px'}}>
+                <img src="/achievements/jua-kyoto.jpg" alt="Japan Urology Association" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+              </div>
+              <div style={{padding: '24px'}}>
+                <span style={{display: 'inline-block', padding: '4px 12px', background: 'var(--primary)', color: '#fff', fontSize: '12px', fontWeight: '600', borderRadius: '20px', marginBottom: '12px'}}>🌏 International</span>
+                <h4 style={{fontSize: '18px', marginBottom: '8px', color: '#111'}}>Japan Urology Association (JUA) 2026</h4>
+                <p style={{fontSize: '14px', color: '#666', lineHeight: '1.5'}}>Presenting research at the Annual Meeting of the Japan Urological Association in Kyoto, Japan.</p>
+              </div>
+            </div>
+
+            {/* Best Paper Photo */}
+            <div style={{width: '320px', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 12px 32px rgba(0,0,0,0.06)', background: '#fff', transition: 'transform 0.3s'}}>
+              <div style={{height: '240px'}}>
+                <img src="/achievements/recon-award.jpg" alt="RECON 2025 Award" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+              </div>
+              <div style={{padding: '24px'}}>
+                <span style={{display: 'inline-block', padding: '4px 12px', background: '#f59e0b', color: '#fff', fontSize: '12px', fontWeight: '600', borderRadius: '20px', marginBottom: '12px'}}>🏆 1st Prize</span>
+                <h4 style={{fontSize: '18px', marginBottom: '8px', color: '#111'}}>RECON 2025 — Best Paper Award</h4>
+                <p style={{fontSize: '14px', color: '#666', lineHeight: '1.5'}}>Receiving 1st Prize for Best Poster Presentation at RECON 2025, AIIMS Bhubaneswar.</p>
+              </div>
+            </div>
+
+          </div>
+          <div style={{textAlign: 'center', marginTop: '40px'}}>
+            <Link to="/about" className="btn btn-primary btn-lg">View All Achievements <ArrowRight size={18} style={{marginLeft: '8px'}}/></Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── ABOUT ── */}
       <section id="about" className="section about">
         <div className="container about__inner">
