@@ -267,4 +267,57 @@ router.get('/token-status', async (req, res) => {
   }
 });
 
+// ── GET /api/instagram/generate-permanent ─────────────────────────────────────
+// Helper to generate a permanent Page Access Token from a short-lived User Token
+router.get('/generate-permanent', async (req, res) => {
+  const userToken = req.query.user_token;
+  if (!userToken) return res.status(400).send('Missing user_token query parameter');
+  if (!APP_ID || !APP_SECRET) return res.status(500).send('Missing INSTAGRAM_APP_ID or INSTAGRAM_APP_SECRET in .env');
+
+  try {
+    // 1. Exchange short-lived user token for long-lived user token (60 days)
+    const exchangeRes = await fetch(
+      `${GRAPH}/oauth/access_token?grant_type=fb_exchange_token&client_id=${APP_ID}&client_secret=${APP_SECRET}&fb_exchange_token=${userToken}`
+    );
+    const exchangeData = await exchangeRes.json();
+    if (exchangeData.error) return res.status(400).json({ step: 'exchange', error: exchangeData.error });
+    
+    const longLivedUserToken = exchangeData.access_token;
+
+    // 2. Get Page Access Token using the long-lived user token (this will be permanent)
+    const pageRes = await fetch(
+      `${GRAPH}/${DR_MOHIT_PAGE_ID}?fields=access_token&access_token=${longLivedUserToken}`
+    );
+    const pageData = await pageRes.json();
+    if (pageData.error || !pageData.access_token) return res.status(400).json({ step: 'page_token', error: pageData.error });
+
+    const permanentToken = pageData.access_token;
+
+    // 3. Optional: Verify it is permanent
+    const debugRes = await fetch(
+      `https://graph.facebook.com/debug_token?input_token=${permanentToken}&access_token=${APP_ID}|${APP_SECRET}`
+    );
+    const debugData = await debugRes.json();
+
+    res.send(`
+      <html><body style="font-family: sans-serif; padding: 40px; background: #f0fdf4; color: #166534;">
+        <h2>✅ Success! Permanent Token Generated</h2>
+        <p><strong>Your Permanent Page Access Token:</strong></p>
+        <textarea rows="5" style="width: 100%; padding: 10px; font-family: monospace; font-size: 14px;" readonly>${permanentToken}</textarea>
+        <p>Expires At: <strong>${debugData.data?.expires_at === 0 ? 'NEVER (Permanent)' : new Date(debugData.data?.expires_at * 1000).toString()}</strong></p>
+        <hr />
+        <h3>Next Steps:</h3>
+        <ol>
+          <li>Copy the token above.</li>
+          <li>Go to your <b>Vercel Dashboard</b> &rarr; Settings &rarr; Environment Variables.</li>
+          <li>Edit <code>INSTAGRAM_ACCESS_TOKEN</code> and paste this new token.</li>
+          <li>Redeploy your Vercel project.</li>
+        </ol>
+      </body></html>
+    `);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 export default router;
