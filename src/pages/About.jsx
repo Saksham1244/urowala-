@@ -61,8 +61,8 @@ const CONFERENCES = [
 /* ── Lightbox Component ── */
 const Lightbox = ({ photo, onClose, onPrev, onNext }) => (
   <div className="about-lightbox" onClick={onClose}>
-    <button className="about-lightbox-close" onClick={onClose}><X size={24}/></button>
-    <button className="about-lightbox-prev" onClick={e => { e.stopPropagation(); onPrev(); }}><ChevronLeft size={32}/></button>
+    <button className="about-lightbox-close" onClick={onClose}><X size={24} /></button>
+    <button className="about-lightbox-prev" onClick={e => { e.stopPropagation(); onPrev(); }}><ChevronLeft size={32} /></button>
     <div className="about-lightbox-inner" onClick={e => e.stopPropagation()}>
       <img src={photo.src} alt={photo.title} />
       <div className="about-lightbox-caption">
@@ -71,7 +71,7 @@ const Lightbox = ({ photo, onClose, onPrev, onNext }) => (
         <p>{photo.caption}</p>
       </div>
     </div>
-    <button className="about-lightbox-next" onClick={e => { e.stopPropagation(); onNext(); }}><ChevronRight size={32}/></button>
+    <button className="about-lightbox-next" onClick={e => { e.stopPropagation(); onNext(); }}><ChevronRight size={32} /></button>
   </div>
 );
 
@@ -93,11 +93,11 @@ const About = () => {
         <div className="container about-hero__inner">
           <div className="about-hero__photo-wrap">
             <img src="/doctors/mohit.jpg" alt="Dr. Mohit Sharma"
-              onError={e => { e.target.style.display='none'; e.target.nextElementSibling.style.display='flex'; }} />
+              onError={e => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
             <div className="about-hero__photo-fallback">MS</div>
           </div>
           <div className="about-hero__text">
-            <div className="section-label" style={{color:'rgba(255,255,255,0.85)', background:'rgba(255,255,255,0.15)'}}>About the Doctor</div>
+            <div className="section-label" style={{ color: 'rgba(255,255,255,0.85)', background: 'rgba(255,255,255,0.15)' }}>About the Doctor</div>
             <h1>Dr. Mohit Sharma</h1>
             <p className="about-hero__credentials">MBBS · MS (General Surgery) · MCh (Urology)</p>
             <p className="about-hero__subtitle">Urologist · Researcher · Academician</p>
@@ -107,12 +107,12 @@ const About = () => {
               <span>🏆 Award Winner</span>
               <span>📚 Published Researcher</span>
             </div>
-            <div style={{display:'flex', gap:'12px', flexWrap:'wrap', marginTop:'24px'}}>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '24px' }}>
               <a href="https://wa.me/9039570761" target="_blank" rel="noreferrer" className="btn btn-accent btn-lg">
-                <MessageCircle size={18}/> Book Appointment
+                <MessageCircle size={18} /> Book Appointment
               </a>
               <a href="https://www.instagram.com/dr.mohit_urowala" target="_blank" rel="noreferrer" className="btn btn-white btn-lg">
-                <ExternalLink size={16}/> Follow on Instagram
+                <ExternalLink size={16} /> Follow on Instagram
               </a>
             </div>
           </div>
@@ -124,7 +124,7 @@ const About = () => {
         <div className="container about-stats-bar__grid">
           {[
             { icon: '🏥', value: '5+', label: 'Years Experience' },
-            { icon: '⚕️', value: '1000+', label: 'Surgeries Performed' },
+            { icon: '⚕️', value: '8000+', label: 'Surgeries Performed' },
             { icon: '📄', value: '10+', label: 'Research Publications' },
             { icon: '🌍', value: '3+', label: 'Countries Presented' },
             { icon: '🏆', value: '5+', label: 'Awards Won' },
@@ -140,7 +140,7 @@ const About = () => {
 
       {/* ── BIOGRAPHY ── */}
       <section className="section">
-        <div className="container" style={{maxWidth:'900px'}}>
+        <div className="container" style={{ maxWidth: '900px' }}>
           <div className="section-label">Biography</div>
           <h2>About Dr. Mohit Sharma</h2>
           <div className="divider divider-left" />
@@ -193,7 +193,7 @@ const About = () => {
 
       {/* ── CONFERENCE LIST ── */}
       <section className="section">
-        <div className="container" style={{maxWidth:'900px'}}>
+        <div className="container" style={{ maxWidth: '900px' }}>
           <div className="section-label">Conference Participation</div>
           <h2>Academic Achievements</h2>
           <div className="divider divider-left" />
@@ -235,7 +235,7 @@ const About = () => {
 
       {/* ── PHILOSOPHY ── */}
       <section className="section">
-        <div className="container" style={{maxWidth:'900px'}}>
+        <div className="container" style={{ maxWidth: '900px' }}>
           <div className="section-label">Philosophy of Care</div>
           <h2>Patient-First Approach</h2>
           <div className="divider divider-left" />
@@ -248,7 +248,7 @@ const About = () => {
             <p>
               Dr. Mohit Sharma believes in continuous participation in global scientific meetings, research activities, and professional education programs to remain updated with the latest developments in urology. He applies this knowledge to provide comprehensive, ethical, and compassionate care.
             </p>
-            <p style={{marginTop:'16px'}}>
+            <p style={{ marginTop: '16px' }}>
               His mission is not only to treat disease but also to educate patients, promote awareness, and help individuals make informed decisions regarding their health.
             </p>
           </div>
@@ -257,19 +257,19 @@ const About = () => {
 
       {/* ── UROWALA MISSION ── */}
       <section className="section section-alt">
-        <div className="container" style={{maxWidth:'900px'}}>
+        <div className="container" style={{ maxWidth: '900px' }}>
           <div className="about-mission-card">
             <div className="about-mission-logo">
-              <img src="/logo.png" alt="UroWala" style={{height:'48px'}} onError={e => e.target.style.display='none'} />
+              <img src="/logo.png" alt="UroWala" style={{ height: '48px' }} onError={e => e.target.style.display = 'none'} />
             </div>
             <h3>The UroWala Mission</h3>
             <p>
               Through <strong>UroWala</strong>, Dr. Mohit Sharma aims to make reliable, scientifically accurate, and easy-to-understand urological information accessible to everyone. The platform serves as a bridge between modern medical science and the general public, empowering people with knowledge for better health and early disease detection.
             </p>
-            <div style={{display:'flex', gap:'12px', flexWrap:'wrap', justifyContent:'center', marginTop:'24px'}}>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '24px' }}>
               <Link to="/services" className="btn btn-primary">Explore Services</Link>
               <a href="https://wa.me/9039570761" target="_blank" rel="noreferrer" className="btn btn-accent">
-                <MessageCircle size={16}/> Book Consultation
+                <MessageCircle size={16} /> Book Consultation
               </a>
             </div>
           </div>
