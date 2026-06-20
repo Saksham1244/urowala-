@@ -28,6 +28,7 @@ export default function DoctorManager() {
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState({});
   const [message, setMessage] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     const stored = getOverrides();
@@ -37,7 +38,7 @@ export default function DoctorManager() {
 
   const showMsg = (type, text) => {
     setMessage({ type, text });
-    setTimeout(() => setMessage(null), 3500);
+    setTimeout(() => setMessage(null), 4000);
   };
 
   const openEdit = (doctor) => {
@@ -51,6 +52,7 @@ export default function DoctorManager() {
       treatments: doctor.treatments || '',
       bio: doctor.bio || '',
       photo: doctor.photo || '',
+      color: doctor.color || '#3B82F6',
     });
     setTimeout(() => {
       document.getElementById(`doctor-form-${doctor.id}`)?.scrollIntoView({
@@ -69,18 +71,102 @@ export default function DoctorManager() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = (doctorId) => {
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('photo', file);
+
+    try {
+      const res = await fetch('http://localhost:3001/api/admin/upload-doctor', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.photoUrl) {
+        setForm(prev => ({ ...prev, photo: data.photoUrl }));
+        showMsg('success', 'Photo uploaded successfully!');
+      } else {
+        throw new Error(data.error || 'Upload failed');
+      }
+    } catch (err) {
+      showMsg('error', err.message);
+    }
+  };
+
+  const handleSaveLocal = (doctorId) => {
     const updates = {
       ...form,
       experience: form.experience !== '' ? Number(form.experience) : form.experience,
     };
-    const newOverrides = { ...overrides, [doctorId]: updates };
-    saveOverrides(newOverrides);
-    setOverrides(newOverrides);
-    setDoctors(defaultDoctors.map((d) => mergeDoctor(d, newOverrides)));
+    
+    // If it's a new doctor (id 'new')
+    if (doctorId === 'new') {
+      const newId = doctors.length ? Math.max(...doctors.map(d => d.id)) + 1 : 1;
+      const newDoctor = {
+        id: newId,
+        slug: (form.name || 'new-doctor').toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+        ...updates
+      };
+      
+      const newDocs = [...doctors, newDoctor];
+      setDoctors(newDocs);
+      
+      // Update overrides
+      const newOverrides = { ...overrides, [newId]: newDoctor };
+      saveOverrides(newOverrides);
+      setOverrides(newOverrides);
+    } else {
+      const newOverrides = { ...overrides, [doctorId]: updates };
+      saveOverrides(newOverrides);
+      setOverrides(newOverrides);
+      
+      // We manually build the list to preserve new doctors added locally
+      setDoctors(doctors.map(d => d.id === doctorId ? { ...d, ...updates } : d));
+    }
+    
     setEditingId(null);
     setForm({});
-    showMsg('success', `Dr. ${updates.name || ''}'s profile saved successfully!`);
+    showMsg('success', `Saved locally. Click "Save to Source Code" to make it permanent!`);
+  };
+
+  const addNewDoctor = () => {
+    setEditingId('new');
+    setForm({
+      name: '',
+      title: '',
+      qualifications: '',
+      experience: '',
+      surgeries: '',
+      treatments: '',
+      bio: '',
+      photo: '',
+      color: '#0f4c5c',
+    });
+  };
+
+  const saveToSourceCode = async () => {
+    setIsSaving(true);
+    try {
+      const res = await fetch('http://localhost:3001/api/admin/save-doctors', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ doctors })
+      });
+      const data = await res.json();
+      if (data.success) {
+        // Clear local storage since it's now in source code
+        localStorage.removeItem(STORAGE_KEY);
+        setOverrides({});
+        showMsg('success', '✅ Doctors permanently saved to source code! You can now commit to GitHub.');
+      } else {
+        throw new Error(data.error || 'Failed to save');
+      }
+    } catch (err) {
+      showMsg('error', err.message);
+    }
+    setIsSaving(false);
   };
 
   return (
@@ -89,19 +175,80 @@ export default function DoctorManager() {
       <div className="dm-header">
         <div>
           <h1 className="dm-title">Doctor Manager</h1>
-          <p className="dm-subtitle">Edit doctor profiles. Changes are saved to browser storage.</p>
+          <p className="dm-subtitle">Add new doctors and edit profiles.</p>
+        </div>
+        <div style={{ display: 'flex', gap: '12px' }}>
+          <button className="btn btn-outline" onClick={addNewDoctor} style={{borderColor: '#10B981', color: '#10B981'}}>
+            + Add New Doctor
+          </button>
+          <button className="btn btn-primary" onClick={saveToSourceCode} disabled={isSaving}>
+            {isSaving ? 'Saving...' : '💾 Save to Source Code'}
+          </button>
         </div>
       </div>
 
       {/* Message */}
       {message && (
         <div className={`dm-message dm-message--${message.type}`} role="alert">
-          {message.type === 'success' ? '✅' : '❌'} {message.text}
+          {message.text}
         </div>
       )}
 
       {/* Doctor cards */}
       <div className="dm-cards-grid">
+        {/* Render 'new' form if active */}
+        {editingId === 'new' && (
+          <div className="dm-doctor-card dm-doctor-card--new" id="doctor-form-new" style={{ border: '2px dashed #10B981' }}>
+            <div className="dm-edit-form">
+                <div className="dm-edit-form-header">
+                  <h4 className="dm-form-title" style={{color: '#10B981'}}>✨ Adding New Doctor</h4>
+                  <button className="dm-cancel-btn" onClick={cancelEdit}>✕ Cancel</button>
+                </div>
+                
+                <div className="dm-form-grid">
+                  <div className="dm-field">
+                    <label className="dm-label">Full Name</label>
+                    <input type="text" name="name" className="dm-input" value={form.name} onChange={handleChange} placeholder="Dr. Full Name" />
+                  </div>
+                  <div className="dm-field">
+                    <label className="dm-label">Title / Specialty</label>
+                    <input type="text" name="title" className="dm-input" value={form.title} onChange={handleChange} placeholder="e.g. Chief Urology Surgeon" />
+                  </div>
+                  <div className="dm-field dm-field--full">
+                    <label className="dm-label">Qualifications</label>
+                    <input type="text" name="qualifications" className="dm-input" value={form.qualifications} onChange={handleChange} placeholder="e.g. M.B.B.S., MS" />
+                  </div>
+                  <div className="dm-field">
+                    <label className="dm-label">Experience (years)</label>
+                    <input type="number" name="experience" className="dm-input" value={form.experience} onChange={handleChange} />
+                  </div>
+                  <div className="dm-field">
+                    <label className="dm-label">Surgeries Performed</label>
+                    <input type="text" name="surgeries" className="dm-input" value={form.surgeries} onChange={handleChange} />
+                  </div>
+                  
+                  <div className="dm-field dm-field--full">
+                    <label className="dm-label">Upload Photo</label>
+                    <input type="file" accept="image/*" onChange={handleFileUpload} className="dm-input" style={{padding: '8px'}} />
+                    {form.photo && <p style={{fontSize: '12px', color: '#10B981', marginTop: '4px'}}>Current Photo URL: {form.photo}</p>}
+                  </div>
+
+                  <div className="dm-field dm-field--full">
+                    <label className="dm-label">Bio</label>
+                    <textarea name="bio" className="dm-textarea" rows={4} value={form.bio} onChange={handleChange} />
+                  </div>
+                </div>
+
+                <div className="dm-form-actions">
+                  <button className="dm-save-btn" onClick={() => handleSaveLocal('new')} style={{ background: '#10B981' }}>
+                    Save Doctor
+                  </button>
+                  <button className="dm-discard-btn" onClick={cancelEdit}>Discard</button>
+                </div>
+            </div>
+          </div>
+        )}
+
         {doctors.map((doctor) => (
           <div key={doctor.id} className="dm-doctor-card">
             {/* Card header */}
@@ -118,11 +265,8 @@ export default function DoctorManager() {
                     }}
                   />
                 ) : null}
-                <div
-                  className="dm-photo-fallback"
-                  style={{ background: doctor.color, display: doctor.photo ? 'none' : 'flex' }}
-                >
-                  {doctor.photoFallback || doctor.name.slice(0, 2)}
+                <div className="dm-photo-fallback" style={{ background: doctor.color, display: doctor.photo ? 'none' : 'flex' }}>
+                  {doctor.photoFallback || (doctor.name ? doctor.name.slice(0, 2) : 'DR')}
                 </div>
               </div>
               <div className="dm-card-info">
@@ -130,43 +274,14 @@ export default function DoctorManager() {
                 <p className="dm-doctor-title">{doctor.title}</p>
                 <p className="dm-doctor-quals">{doctor.qualifications}</p>
                 <div className="dm-doctor-stats">
-                  {doctor.experience && (
-                    <span className="dm-stat-chip">{doctor.experience}+ yrs exp</span>
-                  )}
-                  {doctor.surgeries && (
-                    <span className="dm-stat-chip">{doctor.surgeries} surgeries</span>
-                  )}
-                  {doctor.treatments && (
-                    <span className="dm-stat-chip">{doctor.treatments} treatments</span>
-                  )}
+                  {doctor.experience && <span className="dm-stat-chip">{doctor.experience}+ yrs exp</span>}
+                  {doctor.surgeries && <span className="dm-stat-chip">{doctor.surgeries} surgeries</span>}
                 </div>
               </div>
             </div>
 
-            {/* Bio preview */}
-            <div className="dm-bio-preview">
-              <p>{doctor.bio?.slice(0, 180)}{doctor.bio?.length > 180 ? '…' : ''}</p>
-            </div>
-
-            {/* Edit button */}
-            {editingId !== doctor.id && (
-              <div className="dm-card-actions">
-                <button
-                  className="dm-edit-btn"
-                  onClick={() => openEdit(doctor)}
-                  style={{ background: doctor.color }}
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                  </svg>
-                  Edit Profile
-                </button>
-              </div>
-            )}
-
             {/* Inline edit form */}
-            {editingId === doctor.id && (
+            {editingId === doctor.id ? (
               <div className="dm-edit-form" id={`doctor-form-${doctor.id}`}>
                 <div className="dm-edit-form-header">
                   <h4 className="dm-form-title">✏️ Editing: {doctor.name}</h4>
@@ -176,129 +291,54 @@ export default function DoctorManager() {
                 <div className="dm-form-grid">
                   <div className="dm-field">
                     <label className="dm-label">Full Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      className="dm-input"
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="Dr. Full Name"
-                    />
+                    <input type="text" name="name" className="dm-input" value={form.name} onChange={handleChange} />
                   </div>
-
                   <div className="dm-field">
                     <label className="dm-label">Title / Specialty</label>
-                    <input
-                      type="text"
-                      name="title"
-                      className="dm-input"
-                      value={form.title}
-                      onChange={handleChange}
-                      placeholder="e.g. Chief Urology Surgeon"
-                    />
+                    <input type="text" name="title" className="dm-input" value={form.title} onChange={handleChange} />
                   </div>
-
                   <div className="dm-field dm-field--full">
                     <label className="dm-label">Qualifications</label>
-                    <input
-                      type="text"
-                      name="qualifications"
-                      className="dm-input"
-                      value={form.qualifications}
-                      onChange={handleChange}
-                      placeholder="e.g. M.B.B.S., MS, MCh (AIIMS)"
-                    />
+                    <input type="text" name="qualifications" className="dm-input" value={form.qualifications} onChange={handleChange} />
                   </div>
-
-                  <div className="dm-field">
-                    <label className="dm-label">Experience (years)</label>
-                    <input
-                      type="number"
-                      name="experience"
-                      className="dm-input"
-                      value={form.experience}
-                      onChange={handleChange}
-                      min="0"
-                      placeholder="e.g. 10"
-                    />
-                  </div>
-
-                  <div className="dm-field">
-                    <label className="dm-label">Surgeries Performed</label>
-                    <input
-                      type="text"
-                      name="surgeries"
-                      className="dm-input"
-                      value={form.surgeries}
-                      onChange={handleChange}
-                      placeholder="e.g. 2,000+"
-                    />
-                  </div>
-
-                  <div className="dm-field">
-                    <label className="dm-label">Treatments (if applicable)</label>
-                    <input
-                      type="text"
-                      name="treatments"
-                      className="dm-input"
-                      value={form.treatments}
-                      onChange={handleChange}
-                      placeholder="e.g. 3,00,000+"
-                    />
-                  </div>
-
-                  <div className="dm-field">
-                    <label className="dm-label">Photo URL</label>
-                    <input
-                      type="text"
-                      name="photo"
-                      className="dm-input"
-                      value={form.photo}
-                      onChange={handleChange}
-                      placeholder="/doctors/photo.jpg"
-                    />
+                  
+                  <div className="dm-field dm-field--full">
+                    <label className="dm-label">Upload New Photo</label>
+                    <div style={{display: 'flex', gap: '10px', alignItems: 'center'}}>
+                      <input type="file" accept="image/*" onChange={handleFileUpload} className="dm-input" style={{padding: '8px', flex: 1}} />
+                    </div>
+                    {form.photo && <p style={{fontSize: '12px', color: '#64748b', marginTop: '4px'}}>Current: {form.photo}</p>}
                   </div>
 
                   <div className="dm-field dm-field--full">
                     <label className="dm-label">Bio</label>
-                    <textarea
-                      name="bio"
-                      className="dm-textarea"
-                      rows={5}
-                      value={form.bio}
-                      onChange={handleChange}
-                      placeholder="Doctor biography…"
-                    />
+                    <textarea name="bio" className="dm-textarea" rows={5} value={form.bio} onChange={handleChange} />
                   </div>
                 </div>
 
                 <div className="dm-form-actions">
-                  <button className="dm-save-btn" onClick={() => handleSave(doctor.id)} style={{ background: doctor.color }}>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-                      <polyline points="17 21 17 13 7 13 7 21"/>
-                      <polyline points="7 3 7 8 15 8"/>
-                    </svg>
-                    Save Changes
+                  <button className="dm-save-btn" onClick={() => handleSaveLocal(doctor.id)} style={{ background: doctor.color }}>
+                    Save Locally
                   </button>
-                  <button className="dm-discard-btn" onClick={cancelEdit}>
-                    Discard
-                  </button>
+                  <button className="dm-discard-btn" onClick={cancelEdit}>Discard</button>
                 </div>
+              </div>
+            ) : (
+              <div className="dm-card-actions" style={{padding: '16px'}}>
+                <button className="dm-edit-btn" onClick={() => openEdit(doctor)} style={{ background: doctor.color }}>
+                  Edit Profile
+                </button>
               </div>
             )}
           </div>
         ))}
       </div>
 
-      {/* Info note */}
       <div className="dm-info-note">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <line x1="12" y1="8" x2="12" y2="12"/>
-          <line x1="12" y1="16" x2="12.01" y2="16"/>
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
         </svg>
-        Changes are stored in this browser's local storage under <code>urowala_doctors_overrides</code>. They persist across page refreshes on the same device/browser.
+        Edits are saved locally. You MUST click "Save to Source Code" for them to become permanent.
       </div>
     </div>
   );

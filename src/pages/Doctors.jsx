@@ -149,9 +149,23 @@ export default function Doctors() {
       {/* Doctors */}
       <section className="doctors-section">
         <div className="doctors-container">
-          {doctors.map((doc, i) => (
-            <DoctorCard key={i} doc={doc} />
-          ))}
+          {/* Main Doctor */}
+          <DoctorCard doc={doctors[0]} />
+
+          {/* Additional Team Members */}
+          {doctors.length > 1 && (
+            <div className="doctors-team-section" style={{ marginTop: '60px' }}>
+              <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+                <h2 style={{ fontSize: '32px', color: 'var(--text-dark)', marginBottom: '16px' }}>Our Team</h2>
+                <div className="doctors-hero-divider" style={{ margin: '0 auto' }} />
+              </div>
+              <div className="doctors-team-grid" style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+                {doctors.slice(1).map((doc, i) => (
+                  <DoctorCard key={i + 1} doc={doc} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
