@@ -7,6 +7,8 @@ import './AdminLogin.css';
 const ADMIN_USERNAME = 'urowala_admin';
 const ADMIN_PASSWORD = 'urowala@2025';
 
+import { api } from '../../services/api';
+
 export default function AdminLogin() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: '', password: '' });
@@ -15,31 +17,29 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem('urowala_admin_auth') === 'true') {
+    if (localStorage.getItem('urowala_admin_auth') === 'true' && localStorage.getItem('urowala_token')) {
       navigate('/admin', { replace: true });
     }
   }, [navigate]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    setTimeout(() => {
-      const usernameOk = form.username.trim() === ADMIN_USERNAME;
-      const passwordOk = form.password === ADMIN_PASSWORD;
-
-      if (usernameOk && passwordOk) {
+    try {
+      const data = await api.auth.login(form.username, form.password);
+      if (data.token) {
+        localStorage.setItem('urowala_token', data.token);
         localStorage.setItem('urowala_admin_auth', 'true');
-        localStorage.setItem('urowala_admin_user', 'Urowala Admin');
+        localStorage.setItem('urowala_admin_user', data.username || 'Urowala Admin');
         navigate('/admin', { replace: true });
-      } else if (!usernameOk) {
-        setError('Access Denied: Invalid username.');
-      } else {
-        setError('Incorrect password. Please try again.');
       }
+    } catch (err) {
+      setError(err.message || 'Login failed. Please check credentials.');
+    } finally {
       setLoading(false);
-    }, 600);
+    }
   };
 
   return (

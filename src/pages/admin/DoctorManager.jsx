@@ -149,7 +149,7 @@ export default function DoctorManager() {
   const saveToSourceCode = async () => {
     setIsSaving(true);
     try {
-      const res = await fetch('http://localhost:3001/api/admin/save-doctors', {
+      const res = await fetch('/api/admin/save-doctors', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ doctors })

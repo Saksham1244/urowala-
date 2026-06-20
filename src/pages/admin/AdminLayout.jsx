@@ -9,7 +9,8 @@ export default function AdminLayout() {
 
   useEffect(() => {
     const isAuth = localStorage.getItem('urowala_admin_auth');
-    if (isAuth !== 'true') {
+    const token = localStorage.getItem('urowala_token');
+    if (isAuth !== 'true' || !token) {
       navigate('/admin/login', { replace: true });
     }
   }, [navigate]);
