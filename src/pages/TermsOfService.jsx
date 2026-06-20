@@ -156,7 +156,7 @@ export default function TermsOfService() {
             <div className="legal-contact-box">
               <div><strong>Urowala Clinic</strong></div>
               <div>122, Mohan Nagar Gate No. 8, Mansarovar Link Road, Jaipur – 302018</div>
-              <div>📞 <a href="tel:+919183570761">+91 91835 70761</a></div>
+              <div>📞 <a href="tel:+918005693060">+91 80056 93060</a></div>
               <div>📧 <a href="mailto:urowala@gmail.com">urowala@gmail.com</a></div>
             </div>
           </section>

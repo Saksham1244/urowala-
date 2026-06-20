@@ -181,7 +181,7 @@ export default function Doctors() {
           </p>
           <div className="doctors-cta-btns">
             <a
-              href="https://wa.me/9183570761"
+              href="https://wa.me/918005693060"
               target="_blank"
               rel="noopener noreferrer"
               className="doctors-cta-btn-primary"

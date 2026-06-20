@@ -120,9 +120,9 @@ const Navbar = () => {
               <Globe size={16} />
               <span>{i18n.language === 'en' ? 'हिन्दी' : 'EN'}</span>
             </button>
-            <a href="tel:+91 90395 70761" className="navbar__phone">
-              <Phone size={14} />
-              <span>+91 90395 70761</span>
+            <a href="tel:+918005693060" className="navbar__phone">
+              <Phone size={16} />
+              <span>+91 80056 93060</span>
             </a>
             <Link to="/book-appointment" className="btn btn-primary btn-sm">
               {t('nav.bookAppointment')}
@@ -168,8 +168,8 @@ const Navbar = () => {
           <Link to="/book-appointment" className="btn btn-primary" style={{width:'100%',justifyContent:'center'}}>
             {t('nav.bookAppointment')}
           </Link>
-          <a href="tel:+91 90395 70761" className="btn btn-accent" style={{width:'100%',justifyContent:'center'}}>
-            <Phone size={16} /> +91 90395 70761
+          <a href="tel:+918005693060" className="btn btn-accent" style={{width:'100%',justifyContent:'center'}}>
+            <Phone size={16} /> +91 80056 93060
           </a>
         </div>
       </div>
