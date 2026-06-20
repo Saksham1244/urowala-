@@ -30,7 +30,7 @@ export default function BookAppointment() {
       });
       // Optionally still open WhatsApp for instant chat (uncomment below if desired)
       // const msg = `Hello Urowala Clinic! I would like to book an appointment.%0A%0AName: ${form.name}%0APhone: ${form.phone}%0ADoctor: ${form.doctor}%0ADate: ${form.date}%0ATime: ${form.time}%0AReason: ${form.reason}`;
-      // window.open(`https://wa.me/918005693060?text=${msg}`, '_blank');
+      // window.open(`https://wa.me/9183570761?text=${msg}`, '_blank');
       setSubmitted(true);
     } catch (err) {
       alert('Failed to send request: ' + err.message);
@@ -115,7 +115,7 @@ export default function BookAppointment() {
               <div className="appt-contacts">
                 <div className="appt-contact-item">
                   <strong>Mansarovar Clinic</strong>
-                  <a href="tel:+918005693060"><Phone size={14}/> +91 80056 93060</a>
+                  <a href="tel:+919183570761"><Phone size={14}/> +91 91835 70761</a>
                   <a href="tel:+917976219661"><Phone size={14}/> +91 79762 19661</a>
                   <div className="appt-hours"><Clock size={12}/> Mon–Sat: 10 AM–8 PM | Sun: 10 AM–2 PM</div>
                 </div>
@@ -125,7 +125,7 @@ export default function BookAppointment() {
                   <div className="appt-hours"><Clock size={12}/> Mon–Sat: 9–10 AM &amp; 3–5 PM | Sun: Closed</div>
                 </div>
               </div>
-              <a href="https://wa.me/918005693060" target="_blank" rel="noreferrer"
+              <a href="https://wa.me/9183570761" target="_blank" rel="noreferrer"
                 className="btn btn-accent" style={{width:'100%',justifyContent:'center',marginTop:'20px'}}>
                 <MessageCircle size={16}/> WhatsApp Us Directly
               </a>

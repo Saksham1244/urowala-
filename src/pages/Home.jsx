@@ -110,7 +110,7 @@ const Home = () => {
 
           {/* ── CTA Row ── */}
           <div className="hero__cta-row">
-            <a href="https://wa.me/918005693060" target="_blank" rel="noreferrer"
+            <a href="https://wa.me/9183570761" target="_blank" rel="noreferrer"
               className="btn btn-accent btn-lg hero__btn-wa">
               <MessageCircle size={20} /> Book Appointment
             </a>
@@ -364,7 +364,7 @@ const Home = () => {
                   ))}
                 </div>
                 <div className="doctor-card-h__actions">
-                  <a href={`https://wa.me/918005693060?text=I want to book an appointment with ${doc.name}`}
+                  <a href={`https://wa.me/9183570761?text=I want to book an appointment with ${doc.name}`}
                     target="_blank" rel="noreferrer"
                     className="btn btn-primary" style={{background: doc.color}}>
                     <Calendar size={16}/> Book Appointment
@@ -436,12 +436,12 @@ const Home = () => {
             <p style={{color:'rgba(255,255,255,0.8)'}}>{t('appointment.subtitle')}</p>
           </div>
           <div className="appt-cta__actions">
-            <a href="https://wa.me/918005693060" target="_blank" rel="noreferrer"
+            <a href="https://wa.me/9183570761" target="_blank" rel="noreferrer"
               className="btn btn-white btn-lg">
               <MessageCircle size={20}/> {t('appointment.cta')}
             </a>
-            <a href="tel:+918005693060" className="btn btn-outline btn-lg">
-              <Phone size={20}/> +91 80056 93060
+            <a href="tel:+919183570761" className="btn btn-outline btn-lg">
+              <Phone size={20}/> +91 91835 70761
             </a>
           </div>
         </div>

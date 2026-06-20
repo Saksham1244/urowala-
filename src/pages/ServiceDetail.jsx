@@ -12,7 +12,7 @@ const faqs = {
     { q: 'How can I prevent kidney stones from coming back?', a: 'Drink 2.5-3 litres of water daily, reduce salt intake, limit oxalate-rich foods, and follow Dr. Sharma\'s dietary recommendations.' },
   ],
   default: [
-    { q: 'How do I book a consultation?', a: 'You can book via WhatsApp at +91 80056 93060 or call our clinic directly. We offer consultations 7 days a week.' },
+    { q: 'How do I book a consultation?', a: 'You can book via WhatsApp at +91 91835 70761 or call our clinic directly. We offer consultations 7 days a week.' },
     { q: 'What should I bring to my first appointment?', a: 'Please bring any previous test reports, medication lists, and your ID. Arriving 10 minutes early is recommended.' },
     { q: 'Are the procedures covered by insurance?', a: 'Many procedures are covered by health insurance. Our team can help you with pre-authorization. Please call us for details.' },
   ],
@@ -91,11 +91,11 @@ export default function ServiceDetail() {
                   <span>MBBS, MS, MCh Urology (AIIMS Bhopal)</span>
                 </div>
               </div>
-              <a href="https://wa.me/918005693060?text=I need a consultation for " className="btn btn-accent" style={{width:'100%',justifyContent:'center',marginTop:'16px'}} target="_blank" rel="noreferrer">
+              <a href="https://wa.me/9183570761?text=I need a consultation for " className="btn btn-accent" style={{width:'100%',justifyContent:'center',marginTop:'16px'}} target="_blank" rel="noreferrer">
                 <MessageCircle size={16}/> Chat on WhatsApp
               </a>
-              <a href="tel:+918005693060" className="btn" style={{width:'100%',justifyContent:'center',marginTop:'10px',background:'var(--primary-bg)',color:'var(--primary)'}}>
-                <Phone size={16}/> +91 80056 93060
+              <a href="tel:+919183570761" className="btn" style={{width:'100%',justifyContent:'center',marginTop:'10px',background:'var(--primary-bg)',color:'var(--primary)'}}>
+                <Phone size={16}/> +91 91835 70761
               </a>
             </div>
             <div className="sd-cta-card">

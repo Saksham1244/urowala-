@@ -136,7 +136,7 @@ const About = () => {
               <span>📚 Published Researcher</span>
             </div>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '24px' }}>
-              <a href="https://wa.me/918005693060" target="_blank" rel="noreferrer" className="btn btn-accent btn-lg">
+              <a href="https://wa.me/9183570761" target="_blank" rel="noreferrer" className="btn btn-accent btn-lg">
                 <MessageCircle size={18} /> Book Appointment
               </a>
               <a href="https://www.instagram.com/dr.mohit_urowala" target="_blank" rel="noreferrer" className="btn btn-white btn-lg">
@@ -308,7 +308,7 @@ const About = () => {
             </p>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '24px' }}>
               <Link to="/services" className="btn btn-primary">Explore Services</Link>
-              <a href="https://wa.me/918005693060" target="_blank" rel="noreferrer" className="btn btn-accent">
+              <a href="https://wa.me/9183570761" target="_blank" rel="noreferrer" className="btn btn-accent">
                 <MessageCircle size={16} /> Book Consultation
               </a>
             </div>

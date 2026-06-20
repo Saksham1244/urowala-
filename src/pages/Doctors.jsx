@@ -94,7 +94,7 @@ function DoctorCard({ doc }) {
 
           <div style={{ display: 'flex', gap: '12px', marginTop: 'auto', flexWrap: 'wrap' }}>
             <a
-              href={`https://wa.me/918005693060?text=Hi, I would like to book an appointment with ${doc.name}`}
+              href={`https://wa.me/9183570761?text=Hi, I would like to book an appointment with ${doc.name}`}
               target="_blank"
               rel="noopener noreferrer"
               className="doctor-book-btn"
@@ -181,7 +181,7 @@ export default function Doctors() {
           </p>
           <div className="doctors-cta-btns">
             <a
-              href="https://wa.me/918005693060"
+              href="https://wa.me/9183570761"
               target="_blank"
               rel="noopener noreferrer"
               className="doctors-cta-btn-primary"

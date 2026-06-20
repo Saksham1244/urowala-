@@ -137,7 +137,7 @@ export default function BlogDetail() {
             <div className="blog-sidebar-cta">
               <h4>Need a Consultation?</h4>
               <p>Book an appointment with our specialists today.</p>
-              <a href="https://wa.me/918005693060" target="_blank" rel="noreferrer"
+              <a href="https://wa.me/9183570761" target="_blank" rel="noreferrer"
                 className="btn btn-accent" style={{width:'100%',justifyContent:'center'}}>
                 <MessageCircle size={16}/> Book via WhatsApp
               </a>
