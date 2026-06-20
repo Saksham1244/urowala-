@@ -254,9 +254,10 @@ export default function Contact() {
 
               <div className="contact-quick-phones">
                 <div className="contact-quick-col">
-                <a href="tel:+919183570761" className="contact-quick-phone">
-                  <Phone size={15} /> +91 91835 70761
-                </a>
+                  <a href="tel:+919183570761" className="contact-quick-phone">
+                    <Phone size={15} /> +91 91835 70761
+                  </a>
+                </div>
               </div>
             </div>
           </div>
