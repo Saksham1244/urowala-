@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../services/api';
+import { getMergedDoctors } from '../data/doctors.js';
+import './InstagramBio.css';
 import './InstagramBio.css';
 
 // ── Fallback static posts (shown if API fails) ────────────────────────────────
@@ -32,7 +34,8 @@ function formatCount(n) {
 }
 
 // ── Main Component ────────────────────────────────────────────────────────────
-const InstagramBio = ({ compact = false }) => {
+export default function InstagramBio({ compact = false }) {
+  const doctors = getMergedDoctors();
   const [posts, setPosts] = useState([]);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -291,8 +294,6 @@ const InstagramBio = ({ compact = false }) => {
       </div>
     </div>
   );
-};
-
-export default InstagramBio;
+}
 
 
