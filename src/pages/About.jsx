@@ -117,7 +117,7 @@ const About = () => {
         <div className="about-hero__overlay" />
         <div className="container about-hero__inner">
           <div className="about-hero__photo-wrap">
-            <img src="/doctors/mohit.jpg" alt="Dr. Mohit Sharma"
+            <img src="/doctors/mohit-circle.jpg" alt="Dr. Mohit Sharma"
               onError={e => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
             <div className="about-hero__photo-fallback">MS</div>
           </div>
@@ -327,4 +327,5 @@ const About = () => {
 };
 
 export default About;
+
 

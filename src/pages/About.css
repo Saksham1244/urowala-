@@ -10,7 +10,7 @@
 .about-hero__overlay {
   position: absolute;
   inset: 0;
-  background: url('/clinic/doctor-hero.png') center/cover no-repeat;
+  background: url('/doctors/mohit-main.jpg') center/cover no-repeat;
   opacity: 0.08;
 }
 .about-hero__inner {
@@ -477,3 +477,4 @@
   .about-lightbox-prev { left: 4px; }
   .about-lightbox-next { right: 4px; }
 }
+

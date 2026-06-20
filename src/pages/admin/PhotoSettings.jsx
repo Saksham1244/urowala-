@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { savePhotoPositions, loadPhotoPositions } from '../../utils/photoPosition';
 
 const DOCTORS = [
-  { key: 'mohit', name: 'Dr. Mohit Sharma', photo: '/doctors/mohit.jpg', initials: 'MS', color: '#0f4c5c' },
+  { key: 'mohit', name: 'Dr. Mohit Sharma', photo: '/doctors/mohit-circle.jpg', initials: 'MS', color: '#0f4c5c' },
 ];
 
 export default function PhotoSettings() {
@@ -174,3 +174,4 @@ export default function PhotoSettings() {
     </div>
   );
 }
+

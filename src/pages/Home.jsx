@@ -201,7 +201,7 @@ const Home = () => {
           <div className="about__image-col">
             <div className="about__img-wrap">
               <div className="about__img-main" style={{padding:0, overflow:'hidden'}}>
-                <img src="/clinic/doctor-hero.png" alt="Dr. Mohit Sharma"
+                <img src="/doctors/mohit-main.jpg" alt="Dr. Mohit Sharma"
                   style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}
                   onError={(e) => { e.target.parentNode.classList.add('about__img-fallback'); e.target.style.display='none'; }}/>
                 <div className="about__img-placeholder">
@@ -454,4 +454,5 @@ const Home = () => {
 };
 
 export default Home;
+
 
