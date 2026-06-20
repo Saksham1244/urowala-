@@ -131,6 +131,20 @@ export default function DoctorManager() {
     showMsg('success', `Saved locally. Click "Save to Source Code" to make it permanent!`);
   };
 
+  const deleteDoctor = (id) => {
+    if (!window.confirm("Are you sure you want to delete this doctor?")) return;
+    
+    const newDocs = doctors.filter(d => d.id !== id);
+    setDoctors(newDocs);
+    
+    const newOverrides = { ...overrides };
+    delete newOverrides[id];
+    setOverrides(newOverrides);
+    saveOverrides(newOverrides);
+    
+    showMsg('success', 'Doctor deleted locally. Click "Save to Source Code" to make it permanent.');
+  };
+
   const addNewDoctor = () => {
     setEditingId('new');
     setForm({
@@ -335,9 +349,12 @@ export default function DoctorManager() {
                 </div>
               </div>
             ) : (
-              <div className="dm-card-actions" style={{padding: '16px'}}>
+              <div className="dm-card-actions" style={{padding: '16px', display: 'flex', gap: '8px'}}>
                 <button className="dm-edit-btn" onClick={() => openEdit(doctor)} style={{ background: doctor.color }}>
                   Edit Profile
+                </button>
+                <button className="dm-discard-btn" onClick={() => deleteDoctor(doctor.id)} style={{ color: '#ef4444', borderColor: '#ef4444', backgroundColor: 'transparent' }}>
+                  Delete
                 </button>
               </div>
             )}
