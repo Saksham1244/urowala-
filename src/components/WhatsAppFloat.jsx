@@ -22,7 +22,7 @@ export default function WhatsAppFloat() {
         }
       `}</style>
       <a
-        href="https://wa.me/9039570761"
+        href="https://wa.me/9183570761"
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-float-btn"
@@ -73,3 +73,4 @@ export default function WhatsAppFloat() {
     </>
   );
 }
+

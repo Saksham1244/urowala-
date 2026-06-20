@@ -12,7 +12,7 @@ const faqs = {
     { q: 'How can I prevent kidney stones from coming back?', a: 'Drink 2.5-3 litres of water daily, reduce salt intake, limit oxalate-rich foods, and follow Dr. Sharma\'s dietary recommendations.' },
   ],
   default: [
-    { q: 'How do I book a consultation?', a: 'You can book via WhatsApp at +91 9039570761 or call our clinic directly. We offer consultations 7 days a week.' },
+    { q: 'How do I book a consultation?', a: 'You can book via WhatsApp at +91 9183570761 or call our clinic directly. We offer consultations 7 days a week.' },
     { q: 'What should I bring to my first appointment?', a: 'Please bring any previous test reports, medication lists, and your ID. Arriving 10 minutes early is recommended.' },
     { q: 'Are the procedures covered by insurance?', a: 'Many procedures are covered by health insurance. Our team can help you with pre-authorization. Please call us for details.' },
   ],
@@ -91,7 +91,7 @@ export default function ServiceDetail() {
                   <span>MBBS, MS, MCh Urology (AIIMS Bhopal)</span>
                 </div>
               </div>
-              <a href="https://wa.me/9039570761?text=I need a consultation for " className="btn btn-accent" style={{width:'100%',justifyContent:'center',marginTop:'16px'}} target="_blank" rel="noreferrer">
+              <a href="https://wa.me/9183570761?text=I need a consultation for " className="btn btn-accent" style={{width:'100%',justifyContent:'center',marginTop:'16px'}} target="_blank" rel="noreferrer">
                 <MessageCircle size={16}/> Book Consultation
               </a>
               <a href="tel:+91 90395 70761" className="btn" style={{width:'100%',justifyContent:'center',marginTop:'10px',background:'var(--primary-bg)',color:'var(--primary)'}}>
@@ -112,3 +112,4 @@ export default function ServiceDetail() {
     </div>
   );
 }
+

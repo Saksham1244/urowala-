@@ -8,7 +8,7 @@ const locations = [
     id: 1,
     name: 'Mansarovar Clinic',
     address: '122, Mohan Nagar Gate No. 8, Mansarovar Link Road, near Mangalam Electronic Market, Ridhhi Sidhhi Circle, Jaipur 302018',
-    phones: ['+91 90395 70761', '+91 7976219661'],
+    phones: ['+91 91835 70761', '+91 7976219661'],
     hours: [
       { day: 'Mon – Sat', time: '10:00 AM – 8:00 PM' },
       { day: 'Sunday', time: '10:00 AM – 2:00 PM' },
@@ -244,7 +244,7 @@ export default function Contact() {
                 response within minutes.
               </p>
               <a
-                href="https://wa.me/9039570761"
+                href="https://wa.me/9183570761"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-wa-btn"
@@ -254,11 +254,11 @@ export default function Contact() {
 
               <div className="contact-quick-phones">
                 <p className="contact-quick-phones-label">Or call us directly:</p>
-                <a href="tel:+91 90395 70761" className="contact-quick-phone">
-                  <Phone size={15} /> +91 90395 70761
+                <a href="tel:+91 91835 70761" className="contact-quick-phone">
+                  <Phone size={15} /> +91 91835 70761
                 </a>
-                <a href="tel:+919039570761" className="contact-quick-phone">
-                  <Phone size={15} /> +91 9039570761
+                <a href="tel:+919183570761" className="contact-quick-phone">
+                  <Phone size={15} /> +91 9183570761
                 </a>
               </div>
             </div>
@@ -268,3 +268,4 @@ export default function Contact() {
     </div>
   );
 }
+

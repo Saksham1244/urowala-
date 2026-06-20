@@ -178,8 +178,8 @@ const InstagramBio = ({ compact = false }) => {
             <p className="ig-bio-text">
               {profile?.bio || <>Helping you understand Kidney &amp; Urology health<br/>Stones | Prostate | UTIs | Men's health | Transplant<br/>AIIMS Bhopal</>}
             </p>
-            <a href="https://wa.me/9039570761" target="_blank" rel="noreferrer" className="ig-link">
-              🔗 wa.me/9039570761
+            <a href="https://wa.me/9183570761" target="_blank" rel="noreferrer" className="ig-link">
+              🔗 wa.me/9183570761
             </a>
           </div>
         </div>
@@ -192,8 +192,8 @@ const InstagramBio = ({ compact = false }) => {
         <p className="ig-bio-text">
           {profile?.bio || <>Helping you understand Kidney &amp; Urology health<br/>Stones | Prostate | UTIs | Men's health | Transplant<br/>AIIMS Bhopal</>}
         </p>
-        <a href="https://wa.me/9039570761" target="_blank" rel="noreferrer" className="ig-link">
-          🔗 wa.me/9039570761
+        <a href="https://wa.me/9183570761" target="_blank" rel="noreferrer" className="ig-link">
+          🔗 wa.me/9183570761
         </a>
       </div>
 
@@ -294,3 +294,4 @@ const InstagramBio = ({ compact = false }) => {
 };
 
 export default InstagramBio;
+

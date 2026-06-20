@@ -147,7 +147,7 @@ export default function Procedures() {
             <div className="proc-sidebar__cta">
               <h4>Have Questions?</h4>
               <p>Our team is happy to explain any procedure in detail.</p>
-              <a href="https://wa.me/9039570761" target="_blank" rel="noreferrer"
+              <a href="https://wa.me/9183570761" target="_blank" rel="noreferrer"
                 className="btn btn-accent" style={{width:'100%',justifyContent:'center'}}>
                 <MessageCircle size={16}/> Ask on WhatsApp
               </a>
@@ -203,7 +203,7 @@ export default function Procedures() {
                           </ul>
                         </div>
                       </div>
-                      <a href={`https://wa.me/9039570761?text=I want to know more about ${proc.name}`}
+                      <a href={`https://wa.me/9183570761?text=I want to know more about ${proc.name}`}
                         target="_blank" rel="noreferrer"
                         className="btn btn-primary btn-sm">
                         <MessageCircle size={14}/> Book Consultation for {proc.name}
@@ -219,3 +219,4 @@ export default function Procedures() {
     </div>
   );
 }
+
