@@ -94,7 +94,7 @@ function DoctorCard({ doc }) {
 
           <div style={{ display: 'flex', gap: '12px', marginTop: 'auto', flexWrap: 'wrap' }}>
             <a
-              href="https://wa.me/9183570761"
+              href={`https://wa.me/918005693060?text=Hi, I would like to book an appointment with ${doc.name}`}
               target="_blank"
               rel="noopener noreferrer"
               className="doctor-book-btn"
@@ -102,24 +102,28 @@ function DoctorCard({ doc }) {
               <MessageCircle size={18} />
               Book Appointment via WhatsApp
             </a>
-            <a
-              href="https://www.instagram.com/dr.mohit_urowala/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="doctor-social-btn doctor-social-ig"
-            >
-              <InstagramIcon />
-              Instagram
-            </a>
-            <a
-              href="https://www.facebook.com/profile.php?id=61584123434000&mibextid=wwXIfr&rdid=kukWtU9x4tlXyP08&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CqaHPv8uM%2F%3Fmibextid%3DwwXIfr#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="doctor-social-btn doctor-social-fb"
-            >
-              <FacebookIcon />
-              Facebook
-            </a>
+            {doc.instagram && (
+              <a
+                href={doc.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="doctor-social-btn doctor-social-ig"
+              >
+                <InstagramIcon />
+                Instagram
+              </a>
+            )}
+            {doc.facebook && (
+              <a
+                href={doc.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="doctor-social-btn doctor-social-fb"
+              >
+                <FacebookIcon />
+                Facebook
+              </a>
+            )}
           </div>
         </div>
       </div>

@@ -143,6 +143,8 @@ export default function DoctorManager() {
       bio: '',
       photo: '',
       color: '#0f4c5c',
+      instagram: '',
+      facebook: '',
     });
   };
 
@@ -227,6 +229,15 @@ export default function DoctorManager() {
                     <input type="text" name="surgeries" className="dm-input" value={form.surgeries} onChange={handleChange} />
                   </div>
                   
+                  <div className="dm-field">
+                    <label className="dm-label">Instagram Link</label>
+                    <input type="text" name="instagram" className="dm-input" value={form.instagram || ''} onChange={handleChange} placeholder="https://instagram.com/..." />
+                  </div>
+                  <div className="dm-field">
+                    <label className="dm-label">Facebook Link</label>
+                    <input type="text" name="facebook" className="dm-input" value={form.facebook || ''} onChange={handleChange} placeholder="https://facebook.com/..." />
+                  </div>
+
                   <div className="dm-field dm-field--full">
                     <label className="dm-label">Upload Photo</label>
                     <input type="file" accept="image/*" onChange={handleFileUpload} className="dm-input" style={{padding: '8px'}} />

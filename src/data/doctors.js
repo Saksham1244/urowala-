@@ -19,9 +19,11 @@ const doctors = [
     "treatments": null,
     "photo": "/doctors/mohit-main.jpg",
     "photoCircle": "/doctors/mohit-circle.jpg",
-    "photoPosition": "bottom left",
+    "photoPosition": "54% 10%",
     "photoFallback": "MS",
     "color": "#3B82F6",
+    "instagram": "https://www.instagram.com/dr.mohit_urowala/",
+    "facebook": "https://www.facebook.com/profile.php?id=61584123434000&mibextid=wwXIfr&rdid=kukWtU9x4tlXyP08&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CqaHPv8uM%2F%3Fmibextid%3DwwXIfr#",
     "bio": "Dr. Mohit Sharma is a highly accomplished urologist with over 5 years of experience in managing complex urological conditions. He completed his MCh in Urology from AIIMS — one of India's premier medical institutions — and has since dedicated himself to providing the highest standard of urological care to patients in Jaipur and beyond. Dr. Sharma specializes in minimally invasive and laser-based surgeries, including URS laser stone treatment, PCNL, TURP, laparoscopic urology, and reconstructive urological procedures.",
     "conditions": [
       "Kidney Stones (URS Laser, PCNL)",
@@ -47,6 +49,19 @@ const doctors = [
     ],
     "availability": "Mon–Sat: 10 AM – 8 PM (Mansarovar)\nMon–Sat: 9–10 AM & 3–5 PM (Sanganer)",
     "photoKey": "mohit"
+  },
+  {
+    "id": 2,
+    "slug": "sadas",
+    "name": "sadas",
+    "title": "sadas",
+    "qualifications": "dasd",
+    "experience": 33,
+    "surgeries": "44444",
+    "treatments": "",
+    "bio": "asdasdas",
+    "photo": "/doctors/nzusicon-1781985395236.jpeg",
+    "color": "#0f4c5c"
   }
 ];
 
