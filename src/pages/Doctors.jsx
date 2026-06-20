@@ -30,7 +30,6 @@ function DoctorCard({ doc }) {
               src={doc.photo}
               alt={doc.name}
               className="doctor-photo"
-              style={{ objectPosition: doc.photoPosition || 'center top' }}
               onError={() => setImgError(true)}
             />
           ) : (
