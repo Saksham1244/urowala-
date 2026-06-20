@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Award, BookOpen, Globe, Stethoscope, Heart, CheckCircle, MessageCircle, ExternalLink, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { getMergedDoctors } from '../data/doctors.js';
 import './About.css';
 
 /* ── Achievement Photos ── */
@@ -102,6 +103,7 @@ const Lightbox = ({ photo, onClose, onPrev, onNext }) => (
 
 /* ── Main About Page ── */
 const About = () => {
+  const doctors = getMergedDoctors();
   const [lightbox, setLightbox] = useState(null);
 
   const openLightbox = (idx) => setLightbox(idx);
@@ -117,15 +119,15 @@ const About = () => {
         <div className="about-hero__overlay" />
         <div className="container about-hero__inner">
           <div className="about-hero__photo-wrap">
-            <img src="/doctors/mohit-circle.jpg" alt="Dr. Mohit Sharma"
+            <img src={doctors[0].photo} alt={doctors[0].name}
               onError={e => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
             <div className="about-hero__photo-fallback">MS</div>
           </div>
           <div className="about-hero__text">
             <div className="section-label" style={{ color: 'rgba(255,255,255,0.85)', background: 'rgba(255,255,255,0.15)' }}>About the Doctor</div>
-            <h1>Dr. Mohit Sharma</h1>
-            <p className="about-hero__credentials">MBBS · MS (General Surgery) · MCh (Urology)</p>
-            <p className="about-hero__subtitle">Urologist · Researcher · Academician</p>
+            <h1>{doctors[0].name}</h1>
+            <p className="about-hero__credentials">{doctors[0].qualifications}</p>
+            <p className="about-hero__subtitle">{doctors[0].title}</p>
             <div className="about-hero__tags">
               <span>🏥 AIIMS Bhopal</span>
               <span>🌏 International Speaker</span>

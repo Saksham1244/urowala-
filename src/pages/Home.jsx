@@ -96,7 +96,7 @@ const Home = () => {
           <div className="hero__doctors-row hero__doctors-row--center">
             <div className="hero__doc-card" style={{'--doc-color': doctors[0].color}}>
               <div className="hero__doc-card-photo" style={{borderColor: doctors[0].color, background: doctors[0].color + '22'}}>
-                <img src={doctors[0].photo} alt={doctors[0].name}
+                <img src={doctors[0].photoCircle || doctors[0].photo} alt={doctors[0].name}
                   onError={(e) => { e.target.style.display='none'; e.target.nextElementSibling.style.display='flex'; }}/>
                 <div className="hero__doc-card-fallback" style={{background: doctors[0].color}}>{doctors[0].photoFallback}</div>
               </div>

@@ -1,56 +1,64 @@
 // ── Urowala Clinic — Doctor Data ──
 const doctors = [
   {
-    id: 1,
-    slug: 'dr-mohit-sharma',
-    name: 'Dr. Mohit Sharma',
-    title: 'Senior Urologist & Urological Surgeon',
-    specialty: 'Urology & Andrology',
-    specialtyIcon: 'Activity',
-    qualifications: 'M.B.B.S., MS (General Surgery), MCh Urology (AIIMS)',
-    certifications: ['MCh Urology – AIIMS', 'Laser Urology', 'Laparoscopy', 'Andrology'],
-    experience: 5,
-    surgeries: '8,000+',
-    treatments: null,
-    photo: '/doctors/mohit-circle.jpg',
-    photoFallback: 'MS',
-    color: '#3B82F6',
-    bio: 'Dr. Mohit Sharma is a highly accomplished urologist with over 5 years of experience in managing complex urological conditions. He completed his MCh in Urology from AIIMS — one of India\'s premier medical institutions — and has since dedicated himself to providing the highest standard of urological care to patients in Jaipur and beyond. Dr. Sharma specializes in minimally invasive and laser-based surgeries, including URS laser stone treatment, PCNL, TURP, laparoscopic urology, and reconstructive urological procedures.',
-    conditions: [
-      'Kidney Stones (URS Laser, PCNL)',
-      'Prostate Enlargement (BPH / TURP)',
-      'Bladder & Urinary Issues',
-      'Laparoscopic Kidney Surgery',
-      'Circumcision & Male Urology',
-      'Varicocele & Hydrocele',
-      'Urinary Tract Infections',
-      'Ureteral Stricture & Reconstruction',
-      'Male Infertility & Andrology',
-      'Urological Cancers',
+    "id": 1,
+    "slug": "dr-mohit-sharma",
+    "name": "Dr. Mohit Sharma",
+    "title": "Senior Urologist & Urological Surgeon",
+    "specialty": "Urology & Andrology",
+    "specialtyIcon": "Activity",
+    "qualifications": "M.B.B.S., MS (General Surgery), MCh Urology (AIIMS)",
+    "certifications": [
+      "MCh Urology – AIIMS",
+      "Laser Urology",
+      "Laparoscopy",
+      "Andrology"
     ],
-    procedures: [
-      'URS (Ureteroscopy) & Laser Stone Surgery',
-      'PCNL (Kidney Stone Surgery)',
-      'TURP (Prostate Surgery)',
-      'Laparoscopic Urology',
-      'Cystoscopy',
-      'Circumcision',
-      'Vasectomy & Reversal',
-      'Varicocelectomy & Hydrocelectomy',
+    "experience": 5,
+    "surgeries": "8,000+",
+    "treatments": null,
+    "photo": "/doctors/mohit-main.jpg",
+    "photoCircle": "/doctors/mohit-circle.jpg",
+    "photoFallback": "MS",
+    "color": "#3B82F6",
+    "bio": "Dr. Mohit Sharma is a highly accomplished urologist with over 5 years of experience in managing complex urological conditions. He completed his MCh in Urology from AIIMS — one of India's premier medical institutions — and has since dedicated himself to providing the highest standard of urological care to patients in Jaipur and beyond. Dr. Sharma specializes in minimally invasive and laser-based surgeries, including URS laser stone treatment, PCNL, TURP, laparoscopic urology, and reconstructive urological procedures.",
+    "conditions": [
+      "Kidney Stones (URS Laser, PCNL)",
+      "Prostate Enlargement (BPH / TURP)",
+      "Bladder & Urinary Issues",
+      "Laparoscopic Kidney Surgery",
+      "Circumcision & Male Urology",
+      "Varicocele & Hydrocele",
+      "Urinary Tract Infections",
+      "Ureteral Stricture & Reconstruction",
+      "Male Infertility & Andrology",
+      "Urological Cancers"
     ],
-    availability: 'Mon–Sat: 10 AM – 8 PM (Mansarovar)\nMon–Sat: 9–10 AM & 3–5 PM (Sanganer)',
-    photoKey: 'mohit',
-    photoPosition: 'bottom left',
-  },
+    "procedures": [
+      "URS (Ureteroscopy) & Laser Stone Surgery",
+      "PCNL (Kidney Stone Surgery)",
+      "TURP (Prostate Surgery)",
+      "Laparoscopic Urology",
+      "Cystoscopy",
+      "Circumcision",
+      "Vasectomy & Reversal",
+      "Varicocelectomy & Hydrocelectomy"
+    ],
+    "availability": "Mon–Sat: 10 AM – 8 PM (Mansarovar)\nMon–Sat: 9–10 AM & 3–5 PM (Sanganer)",
+    "photoKey": "mohit",
+    "photoPosition": "bottom left"
+  }
 ];
 
 export function getMergedDoctors() {
   let overrides = {};
-  try {
-    const raw = localStorage.getItem('urowala_doctors_overrides');
-    overrides = raw ? JSON.parse(raw) : {};
-  } catch (e) {
-    // Ignore error
+  if (typeof window !== 'undefined') {
+    try {
+      const raw = localStorage.getItem('urowala_doctors_overrides');
+      overrides = raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      // Ignore error
+    }
   }
 
   return doctors.map(doctor => {
@@ -60,4 +68,3 @@ export function getMergedDoctors() {
 }
 
 export default doctors;
-

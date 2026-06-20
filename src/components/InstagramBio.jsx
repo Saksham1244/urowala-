@@ -66,7 +66,7 @@ const InstagramBio = ({ compact = false }) => {
             {profilePic ? (
               <img src={profilePic} alt="Dr. Mohit Sharma" onError={(e) => { e.target.style.display='none'; }} />
             ) : (
-              <img src="/doctors/mohit-circle.jpg" alt="Dr. Mohit Sharma" onError={(e) => { e.target.src=''; }} />
+              <img src={doctors[0]?.photoCircle || doctors[0]?.photo || "/doctors/mohit-circle.jpg"} alt={doctors[0]?.name || "Dr. Mohit Sharma"} onError={(e) => { e.target.src=''; }} />
             )}
           </div>
           <div className="ig-compact-info">
@@ -143,7 +143,7 @@ const InstagramBio = ({ compact = false }) => {
                 e.target.nextElementSibling.style.display = 'flex';
               }} />
           ) : (
-            <img src="/doctors/mohit-circle.jpg" alt="Dr. Mohit Sharma"
+            <img src={doctors[0]?.photoCircle || doctors[0]?.photo || "/doctors/mohit-circle.jpg"} alt={doctors[0]?.name || "Dr. Mohit Sharma"}
               onError={(e) => { e.target.src = ''; e.target.parentNode.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#3B82F6,#1e40af);color:white;font-size:2rem;font-weight:800">MS</div>'; }} />
           )}
           <div style={{display:'none', width:'100%', height:'100%', alignItems:'center', justifyContent:'center', background:'linear-gradient(135deg,#3B82F6,#1e40af)', color:'white', fontSize:'2rem', fontWeight:800, borderRadius:'50%'}}>MS</div>
