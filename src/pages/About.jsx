@@ -51,7 +51,16 @@ const RESEARCH_AREAS = [
 
 const CONFERENCES = [
   { year: '2026', event: 'Japan Urology Association (JUA) Annual Meeting', location: 'Kyoto, Japan', type: 'international' },
-  { year: '2026', event: 'USICON — Urological Society of India Annual Conference', location: 'India', type: 'national' },
+  { 
+    year: '2026', 
+    event: 'USICON — Urological Society of India Annual Conference', 
+    location: 'Indore, Madhya Pradesh', 
+    type: 'national',
+    presentations: [
+      'Moderated Poster: "Impact of empirical antibiotics on Prostate biopsy rates in patients with elevated PSA: A prospective randomized controlled study"',
+      'Presentation: "A prospective observational study comparing semen parameters in standard (WHO) vs short abstinence (<3 HR) ejaculates"'
+    ]
+  },
   { year: '2025', event: 'RECON 2025 — Andrology & Reconstructive Urology Workshop', location: 'AIIMS Bhubaneswar', type: 'award', award: '🏆 1st Prize — Best Poster Presentation' },
   { year: '2025', event: 'NZUSICON 2025', location: 'Jaipur, India', type: 'national' },
   { year: '2024', event: 'SIU & International Urological Societies', location: 'International', type: 'international' },
@@ -207,6 +216,18 @@ const About = () => {
                   <h4>{conf.event}</h4>
                   <span className="about-timeline-location">📍 {conf.location}</span>
                   {conf.award && <div className="about-timeline-award">{conf.award}</div>}
+                  {conf.presentations && (
+                    <div className="about-timeline-presentations" style={{marginTop: '12px', paddingTop: '12px', borderTop: '1px solid #e2e8f0'}}>
+                      <h5 style={{fontSize: '13px', color: 'var(--text-dark)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px'}}>
+                        <BookOpen size={14} /> Presentations:
+                      </h5>
+                      <ul style={{margin: 0, paddingLeft: '20px', fontSize: '13px', color: 'var(--text-muted)'}}>
+                        {conf.presentations.map((p, idx) => (
+                          <li key={idx} style={{marginBottom: '6px', lineHeight: '1.4'}}>{p}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
