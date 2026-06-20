@@ -118,9 +118,9 @@ const Home = () => {
               Meet Our Doctors <ArrowRight size={18}/>
             </Link>
             <div className="hero__inline-stats">
-              <div><strong>{doctors[0].surgeries}</strong><span>Procedures</span></div>
+              <div><strong>{doctors[0]?.surgeries || '5,000+'}</strong><span>Procedures</span></div>
               <div className="stat-divider"/>
-              <div><strong>{doctors[0].experience}+</strong><span>Years Exp.</span></div>
+              <div><strong>{doctors[0]?.experience || '5'}+</strong><span>Years Exp.</span></div>
               <div className="stat-divider"/>
               <div><strong>AIIMS</strong><span>Trained</span></div>
             </div>
@@ -133,8 +133,8 @@ const Home = () => {
       <section className="stats-bar">
         <div className="container stats-bar__grid">
           {[
-            { icon: <Award size={28}/>, value: doctors[0].experience.toString(), suffix: '+', label: t('stats.years') },
-            { icon: <Stethoscope size={28}/>, value: doctors[0].surgeries.replace(/\D/g, ''), suffix: '+', label: 'Procedures' },
+            { icon: <Award size={28}/>, value: (doctors[0]?.experience || 5).toString(), suffix: '+', label: t('stats.years') },
+            { icon: <Stethoscope size={28}/>, value: (doctors[0]?.surgeries || '5000').toString().replace(/\D/g, ''), suffix: '+', label: 'Procedures' },
             { icon: <MapPin size={28}/>, value: '2', suffix: '', label: t('stats.locations') },
           ].map((stat, i) => (
             <div key={i} className="stat-item">

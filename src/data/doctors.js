@@ -49,19 +49,6 @@ const doctors = [
     ],
     "availability": "Mon–Sat: 10 AM – 8 PM (Mansarovar)\nMon–Sat: 9–10 AM & 3–5 PM (Sanganer)",
     "photoKey": "mohit"
-  },
-  {
-    "id": 2,
-    "slug": "sadas",
-    "name": "sadas",
-    "title": "sadas",
-    "qualifications": "dasd",
-    "experience": 33,
-    "surgeries": "44444",
-    "treatments": "",
-    "bio": "asdasdas",
-    "photo": "/doctors/nzusicon-1781985395236.jpeg",
-    "color": "#0f4c5c"
   }
 ];
 
