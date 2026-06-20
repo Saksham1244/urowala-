@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageCircle, Star, Award, ChevronRight, CheckCircle } from 'lucide-react';
-import { getPhotoPosition } from '../utils/photoPosition';
+
 import './Doctors.css';
 
 const FacebookIcon = () => (
@@ -30,7 +30,7 @@ function DoctorCard({ doc }) {
               src={doc.photo}
               alt={doc.name}
               className="doctor-photo"
-              style={{ objectPosition: getPhotoPosition(doc.photoKey, doc.photoPosition) }}
+              style={{ objectPosition: doc.photoPosition || 'center top' }}
               onError={() => setImgError(true)}
             />
           ) : (

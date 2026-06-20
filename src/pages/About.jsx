@@ -119,7 +119,7 @@ const About = () => {
         <div className="about-hero__overlay" />
         <div className="container about-hero__inner">
           <div className="about-hero__photo-wrap">
-            <img src={doctors[0].photo} alt={doctors[0].name}
+            <img src={doctors[0].photo} alt={doctors[0].name} style={{ objectPosition: doctors[0].photoPosition || 'center top' }}
               onError={e => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }} />
             <div className="about-hero__photo-fallback">MS</div>
           </div>

@@ -19,7 +19,7 @@ const doctors = [
     "treatments": null,
     "photo": "/doctors/mohit-main.jpg",
     "photoCircle": "/doctors/mohit-circle.jpg",
-    "photoPosition": "center 10%",
+    "photoPosition": "right top",
     "photoFallback": "MS",
     "color": "#3B82F6",
     "bio": "Dr. Mohit Sharma is a highly accomplished urologist with over 5 years of experience in managing complex urological conditions. He completed his MCh in Urology from AIIMS — one of India's premier medical institutions — and has since dedicated himself to providing the highest standard of urological care to patients in Jaipur and beyond. Dr. Sharma specializes in minimally invasive and laser-based surgeries, including URS laser stone treatment, PCNL, TURP, laparoscopic urology, and reconstructive urological procedures.",
