@@ -6,6 +6,22 @@ import './About.css';
 /* ── Achievement Photos ── */
 const ACHIEVEMENT_PHOTOS = [
   {
+    id: 5,
+    src: '/achievements/usicon-speech.jpg',
+    title: 'USICON 2026 — Presentation',
+    caption: 'Presenting research at the 59th Annual Conference of the Urological Society of India, Indore (2026)',
+    badge: '🎤 Presentation',
+    type: 'conference',
+  },
+  {
+    id: 6,
+    src: '/achievements/usicon-cert.png',
+    title: 'USICON 2026 — Certificate',
+    caption: 'Certificate of Presentation at USICON 2026 for research on Prostate biopsy rates',
+    badge: '📜 Certificate',
+    type: 'conference',
+  },
+  {
     id: 1,
     src: '/achievements/jua-kyoto.jpg',
     title: 'Japan Urology Association — JUA 2026, Kyoto',
