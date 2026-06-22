@@ -34,8 +34,12 @@ const Footer = () => {
         <div className="container footer__grid">
           {/* Brand */}
           <div className="footer__brand">
-            <img src="/logo.png" alt="Urowala Clinic" className="footer__logo"
-              onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} />
+            <picture>
+              <source srcSet="/logo-footer.webp" type="image/webp" />
+              <img src="/logo.png" alt="Urowala Clinic" className="footer__logo"
+                width="56" height="56"
+                onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} />
+            </picture>
             <p className="footer__tagline">{t('footer.tagline')}</p>
             <p className="footer__desc">
               Jaipur's dedicated urology centre, built around the expertise of Dr. Mohit Sharma, an AIIMS-trained Urologist providing cutting-edge laser and surgical care.
@@ -129,10 +133,10 @@ const Footer = () => {
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
           <p>© {year} Urowala Clinic. {t('footer.rights')}</p>
-          <div className="footer__credit" style={{fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)', textAlign: 'center', lineHeight: 1.6}}>
+          <div className="footer__credit" style={{fontSize: '0.8rem', color: 'rgba(255,255,255,0.78)', textAlign: 'center', lineHeight: 1.6}}>
             Website Design &amp; Development by <br />
             <strong style={{color: 'var(--primary-light)'}}>Saksham Bhushan Asthana</strong><br />
-            <a href="mailto:asthanasaksham2003@gmail.com" style={{color:'inherit', textDecoration:'none', transition:'color 0.2s'}} onMouseEnter={e=>e.target.style.color='var(--primary-light)'} onMouseLeave={e=>e.target.style.color='inherit'}>asthanasaksham2003@gmail.com</a>
+            <a href="mailto:asthanasaksham2003@gmail.com" style={{color:'rgba(255,255,255,0.78)', textDecoration:'none', transition:'color 0.2s'}} onMouseEnter={e=>e.target.style.color='var(--primary-light)'} onMouseLeave={e=>e.target.style.color='rgba(255,255,255,0.78)'}> asthanasaksham2003@gmail.com</a>
           </div>
           <div className="footer__bottom-links">
             <Link to="/privacy">{t('footer.privacy')}</Link>

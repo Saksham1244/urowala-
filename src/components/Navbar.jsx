@@ -142,7 +142,7 @@ const Navbar = () => {
         <div className="mobile-menu__header">
           <img src="/logo.png" alt="Urowala" className="navbar__logo-img"
             onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} />
-          <button onClick={() => setMobileOpen(false)}><X size={24} /></button>
+          <button onClick={() => setMobileOpen(false)} aria-label="Close menu"><X size={24} /></button>
         </div>
         <nav className="mobile-menu__nav">
           <Link to="/" className="mobile-menu__link">{t('nav.home')}</Link>
