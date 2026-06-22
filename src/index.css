@@ -3,7 +3,6 @@
    Inspired by theurologypractice.com.au
    ============================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;600;700&display=swap');
 
 /* ── CSS Variables ── */
 :root {
@@ -12,13 +11,13 @@
   --primary-deeper: #2d3d6e;
   --primary-light:  #8fa3d9;
   --primary-bg:     #eef1fb;
-  --accent:         #FF6C00;
+  --accent:         #c2410c;
   --accent-light:   #FFBC7D;
   --accent-bg:      #FFF5ED;
   --white:          #FFFFFF;
   --bg-section:     #F8FFFE;
   --text-dark:      #1E293B;
-  --text-muted:     #64748B;
+  --text-muted:     #475569;
   --text-light:     #94A3B8;
   --border:         #E2E8F0;
   --shadow-sm:      0 2px 8px rgba(59,130,246,0.12);

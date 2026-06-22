@@ -246,7 +246,7 @@
 }
 
 .contact-map-note a {
-  color: #1d4ed8;
+  color: #1e40af;
   font-weight: 600;
   text-decoration: none;
 }
@@ -335,7 +335,7 @@
 }
 
 .contact-submit-btn {
-  background: #4b60a3;
+  background: var(--primary-dark, #3a4d88);
   color: #fff;
   border: none;
   border-radius: 100px;
@@ -451,7 +451,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #25D366;
+  background: #075e54;
   color: #fff;
   text-decoration: none;
   padding: 13px 24px;

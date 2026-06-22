@@ -61,7 +61,7 @@ export default function BlogManager() {
   useEffect(() => {
     loadBlogs();
     api.settings.getAll().then(res => {
-      setBlogVisible(res.data?.blog_visible === 'true');
+      setBlogVisible(res.blog_visible === 'true');
     }).catch(() => {});
   }, [loadBlogs]);
 

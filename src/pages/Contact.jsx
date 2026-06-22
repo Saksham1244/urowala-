@@ -28,7 +28,7 @@ const locations = [
       { day: 'Mon – Sat', time: '9:00 AM – 10:00 AM & 3:00 PM – 5:00 PM' },
       { day: 'Sunday', time: 'Closed' },
     ],
-    color: '#2563EB',
+    color: '#1D4ED8',
     mapLink: 'https://maps.google.com/?q=Sanganer+Jaipur',
     doctor: null,
     badge: null,

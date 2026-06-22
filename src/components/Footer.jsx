@@ -133,10 +133,10 @@ const Footer = () => {
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
           <p>© {year} Urowala Clinic. {t('footer.rights')}</p>
-          <div className="footer__credit" style={{fontSize: '0.8rem', color: 'rgba(255,255,255,0.78)', textAlign: 'center', lineHeight: 1.6}}>
+          <div className="footer__credit" style={{fontSize: '0.8rem', color: '#cbd5e1', textAlign: 'center', lineHeight: 1.6}}>
             Website Design &amp; Development by <br />
             <strong style={{color: 'var(--primary-light)'}}>Saksham Bhushan Asthana</strong><br />
-            <a href="mailto:asthanasaksham2003@gmail.com" style={{color:'rgba(255,255,255,0.78)', textDecoration:'none', transition:'color 0.2s'}} onMouseEnter={e=>e.target.style.color='var(--primary-light)'} onMouseLeave={e=>e.target.style.color='rgba(255,255,255,0.78)'}> asthanasaksham2003@gmail.com</a>
+            <a href="mailto:asthanasaksham2003@gmail.com" style={{color:'#cbd5e1', textDecoration:'none', transition:'color 0.2s'}} onMouseEnter={e=>e.target.style.color='var(--primary-light)'} onMouseLeave={e=>e.target.style.color='#cbd5e1'}> asthanasaksham2003@gmail.com</a>
           </div>
           <div className="footer__bottom-links">
             <Link to="/privacy">{t('footer.privacy')}</Link>
