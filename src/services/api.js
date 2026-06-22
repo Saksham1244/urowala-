@@ -24,6 +24,13 @@ async function request(method, path, body = null) {
   const data = await res.json().catch(() => ({}));
 
   if (!res.ok) {
+    if (res.status === 401) {
+      localStorage.removeItem('urowala_token');
+      localStorage.removeItem('urowala_admin_auth');
+      if (window.location.pathname.startsWith('/admin')) {
+        window.location.href = '/admin/login?expired=true';
+      }
+    }
     throw new Error(data.error || `HTTP ${res.status}`);
   }
   return data;

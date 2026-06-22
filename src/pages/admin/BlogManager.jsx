@@ -72,8 +72,9 @@ export default function BlogManager() {
       await api.settings.update('blog_visible', String(newVal));
       setBlogVisible(newVal);
       showMsg('success', `Blog section ${newVal ? 'enabled' : 'hidden'} on website!`);
-    } catch {
-      showMsg('error', 'Failed to update visibility. Please try again.');
+    } catch (err) {
+      console.error('Failed to update visibility:', err);
+      showMsg('error', err.message || 'Failed to update visibility. Please try again.');
     } finally {
       setSavingVisibility(false);
     }
