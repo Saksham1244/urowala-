@@ -56,8 +56,11 @@ export function getMergedDoctors() {
   let overrides = {};
   if (typeof window !== 'undefined') {
     try {
-      const raw = localStorage.getItem('urowala_doctors_overrides');
-      overrides = raw ? JSON.parse(raw) : {};
+      const isAuth = localStorage.getItem('urowala_admin_auth') === 'true';
+      if (isAuth) {
+        const raw = localStorage.getItem('urowala_doctors_overrides');
+        overrides = raw ? JSON.parse(raw) : {};
+      }
     } catch (e) {
       // Ignore error
     }

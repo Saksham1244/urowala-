@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../../services/api';
+import { getMergedDoctors } from '../../data/doctors.js';
+import { getServicesFromStorage } from '../../data/services.js';
 import './AdminDashboard.css';
 
 const QUICK_LINKS = [
@@ -18,6 +20,9 @@ export default function AdminDashboard() {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const user = localStorage.getItem('urowala_admin_user') || 'Admin';
+  
+  const docCount = getMergedDoctors().length;
+  const serviceCount = getServicesFromStorage().length;
 
   useEffect(() => {
     async function loadStats() {
@@ -41,8 +46,8 @@ export default function AdminDashboard() {
     { label: 'Total Blogs',    value: blogs.length,         color: '#3B82F6', bg: '#EFF6FF', icon: '📝', sub: `${blogs.filter(b => b.published).length} published` },
     { label: 'Appointments',   value: appointments.length,  color: '#FF6C00', bg: '#FFF7ED', icon: '📅', sub: `${appointments.filter(a => a.status === 'pending').length} pending` },
     { label: 'Messages',       value: contacts.length,      color: '#8B5CF6', bg: '#F5F3FF', icon: '💬', sub: `${contacts.filter(c => !c.read).length} unread` },
-    { label: 'Active Doctors', value: 3,                    color: '#10B981', bg: '#ECFDF5', icon: '👨‍⚕️', sub: 'All active' },
-    { label: 'Services',       value: 6,                    color: '#F59E0B', bg: '#FFFBEB', icon: '🏥', sub: 'All active' },
+    { label: 'Active Doctors', value: docCount,             color: '#10B981', bg: '#ECFDF5', icon: '👨‍⚕️', sub: 'All active' },
+    { label: 'Services',       value: serviceCount,         color: '#F59E0B', bg: '#FFFBEB', icon: '🏥', sub: 'All active' },
   ];
 
   return (
