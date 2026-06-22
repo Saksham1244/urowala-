@@ -7,10 +7,10 @@
 
 /* ── CSS Variables ── */
 :root {
-  --primary:        #7c91db;
-  --primary-dark:   #6277c0;
-  --primary-deeper: #4b60a3;
-  --primary-light:  #c1ccf0;
+  --primary:        #4b60a3;
+  --primary-dark:   #3a4d88;
+  --primary-deeper: #2d3d6e;
+  --primary-light:  #8fa3d9;
   --primary-bg:     #eef1fb;
   --accent:         #FF6C00;
   --accent-light:   #FFBC7D;

@@ -45,7 +45,7 @@
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.92);
   margin-bottom: 12px;
 }
 
@@ -59,7 +59,7 @@
 
 .contact-hero-desc {
   font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.95);
   line-height: 1.7;
 }
 
@@ -246,7 +246,7 @@
 }
 
 .contact-map-note a {
-  color: var(--primary, #0f4c5c);
+  color: #1d4ed8;
   font-weight: 600;
   text-decoration: none;
 }
@@ -335,7 +335,7 @@
 }
 
 .contact-submit-btn {
-  background: var(--primary, #0f4c5c);
+  background: #4b60a3;
   color: #fff;
   border: none;
   border-radius: 100px;
@@ -351,7 +351,7 @@
 }
 
 .contact-submit-btn:hover {
-  background: #2563EB;
+  background: #1d4ed8;
   transform: translateY(-1px);
 }
 
