@@ -116,12 +116,11 @@ export default function BookAppointment() {
                 <div className="appt-contact-item">
                   <strong>Mansarovar Clinic</strong>
                   <a href="tel:+919183570761"><Phone size={14}/> +91 91835 70761</a>
-                  <a href="tel:+917976219661"><Phone size={14}/> +91 79762 19661</a>
                   <div className="appt-hours"><Clock size={12}/> Mon–Sat: 10 AM–8 PM | Sun: 10 AM–2 PM</div>
                 </div>
                 <div className="appt-contact-item">
                   <strong>Sanganer Clinic</strong>
-                  <a href="tel:+919414002993"><Phone size={14}/> +91 94140 02993</a>
+                  <a href="tel:+919183570761"><Phone size={14}/> +91 91835 70761</a>
                   <div className="appt-hours"><Clock size={12}/> Mon–Sat: 9–10 AM &amp; 3–5 PM | Sun: Closed</div>
                 </div>
               </div>

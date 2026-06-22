@@ -3,7 +3,7 @@ import { getBlogsFromStorage, addBlog, updateBlog, deleteBlog } from '../../data
 import { api } from '../../services/api';
 import './BlogManager.css';
 
-const CATEGORIES = ['Urology', 'Dermatology', 'General Health', 'Plastic Surgery'];
+const CATEGORIES = ['Urology'];
 
 const emptyForm = {
   title: '',
@@ -316,7 +316,7 @@ export default function BlogManager() {
               <div className={`bm-field bm-field--full ${errors.content ? 'bm-field--error' : ''}`}>
                 <label className="bm-label">
                   Content <span className="req">*</span>
-                  <span className="bm-label-hint">(Markdown supported: ## H2, **bold**, - lists)</span>
+                  <span className="bm-label-hint">(Markdown supported: ## H2, **bold**, - lists, ![Alt Text](image-url) to insert images)</span>
                 </label>
                 <textarea
                   name="content"

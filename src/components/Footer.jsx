@@ -100,7 +100,6 @@ const Footer = () => {
                   122, Mohan Nagar Gate No. 8, Mansarovar Link Road, near Mangalam Electronic Market, Ridhhi Sidhhi Circle, Jaipur 302018
                 </a>
                 <a href="tel:+919183570761" className="footer__phone"><Phone size={12} /> +91 91835 70761</a>
-                <a href="tel:+917976219661" className="footer__phone"><Phone size={12} /> +91 79762 19661</a>
                 <div className="footer__hours">
                   <Clock size={12} /> Mon–Sat: 10 AM – 8 PM &nbsp;|&nbsp; Sun: 10 AM – 2 PM
                 </div>
@@ -116,7 +115,7 @@ const Footer = () => {
                 >
                   21, G P Colony, New Sanganer Road, near Pradhan Vatika Marriage Garden, Mansarovar, Jaipur 302020
                 </a>
-                <a href="tel:+919414002993" className="footer__phone"><Phone size={12} /> +91 94140 02993</a>
+                <a href="tel:+919183570761" className="footer__phone"><Phone size={12} /> +91 91835 70761</a>
                 <div className="footer__hours">
                   <Clock size={12} /> Mon–Sat: 9–10 AM & 3–5 PM &nbsp;|&nbsp; Sun: Closed
                 </div>

@@ -125,3 +125,12 @@
 .related-arrow { position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--primary); }
 
 @media (max-width: 900px) { .blog-detail__layout { grid-template-columns: 1fr; } }
+
+.blog-content__img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  margin: 24px auto;
+  display: block;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}

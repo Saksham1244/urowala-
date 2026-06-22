@@ -34,6 +34,15 @@ const renderContent = (content) => {
     } else if (trimmed.startsWith('### ')) {
       flushList();
       elements.push(<h3 key={idx} className="blog-content__h3">{trimmed.slice(4)}</h3>);
+    } else if (trimmed.startsWith('![') && trimmed.endsWith(')')) {
+      flushList();
+      const match = trimmed.match(/^!\[(.*?)\]\((.*?)\)$/);
+      if (match) {
+        elements.push(<img key={idx} src={match[2]} alt={match[1]} className="blog-content__img" />);
+      } else {
+        const html = trimmed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        elements.push(<p key={idx} className="blog-content__p" dangerouslySetInnerHTML={{__html: html}}/>);
+      }
     } else if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
       // Render bold inside list items
       const text = trimmed.slice(2).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');

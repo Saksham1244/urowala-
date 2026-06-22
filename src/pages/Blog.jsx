@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { getBlogsFromStorage } from '../data/blogs.js';
 import './Blog.css';
 
-const CATEGORIES = ['All', 'Urology', 'Dermatology', 'Plastic Surgery', 'General Health'];
+const CATEGORIES = ['All', 'Urology'];
 const PER_PAGE = 6;
 
 export default function Blog() {
