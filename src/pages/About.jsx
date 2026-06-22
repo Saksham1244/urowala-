@@ -151,8 +151,8 @@ const About = () => {
       <section className="about-stats-bar">
         <div className="container about-stats-bar__grid">
           {[
-            { icon: '🏥', value: '5+', label: 'Years Experience' },
-            { icon: '⚕️', value: '8000+', label: 'Surgeries Performed' },
+            { icon: '🏥', value: `${doctors[0]?.experience || 5}+`, label: 'Years Experience' },
+            { icon: '⚕️', value: doctors[0]?.surgeries || '8,000+', label: 'Surgeries Performed' },
             { icon: '📄', value: '10+', label: 'Research Publications' },
             { icon: '🌍', value: '3+', label: 'Countries Presented' },
             { icon: '🏆', value: '5+', label: 'Awards Won' },
