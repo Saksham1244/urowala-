@@ -87,7 +87,6 @@ export default function Blog() {
                   <div className="blog-list-card__img" style={{background: (blog.coverFallbackColor || '#3B82F6') + '22'}}>
                     <img src={blog.coverImage} alt={blog.title}
                       onError={e => { e.target.style.display = 'none'; }}/>
-                    <div className="blog-list-card__category">{blog.category}</div>
                   </div>
                   <div className="blog-list-card__body">
                     <div className="blog-list-card__meta">

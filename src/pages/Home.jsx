@@ -405,7 +405,6 @@ const Home = () => {
                   <div className="blog-card__img" style={{background: blog.coverFallbackColor + '22'}}>
                     <img src={blog.coverImage} alt={blog.title}
                       onError={(e) => { e.target.style.display='none'; }}/>
-                    <div className="blog-card__category">{blog.category}</div>
                   </div>
                   <div className="blog-card__body">
                     <div className="blog-card__meta">

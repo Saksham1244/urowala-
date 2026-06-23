@@ -23,7 +23,7 @@
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   display: flex; align-items: center; justify-content: center; min-height: 180px;
 }
-.blog-list-card__img img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+.blog-list-card__img img { width: 100%; height: 100%; object-fit: contain; background: white; position: absolute; top: 0; left: 0; }
 .blog-list-card__category {
   position: absolute; top: 12px; left: 12px;
   background: var(--accent); color: white; padding: 4px 12px;
