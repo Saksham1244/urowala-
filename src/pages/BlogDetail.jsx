@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { Clock, User, ArrowLeft, Share2, MessageCircle, ArrowRight } from 'lucide-react';
-import { getBlogsFromStorage } from '../data/blogs.js';
+import { api } from '../services/api';
 import './BlogDetail.css';
 
 // Simple markdown-like renderer
@@ -59,12 +59,35 @@ const renderContent = (content) => {
 
 export default function BlogDetail() {
   const { slug } = useParams();
-  const allBlogs = getBlogsFromStorage();
-  const blog = allBlogs.find(b => b.slug === slug);
+  const [blog, setBlog] = useState(null);
+  const [related, setRelated] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
-  if (!blog) return <Navigate to="/blog" replace />;
+  useEffect(() => {
+    setLoading(true);
+    setNotFound(false);
+    api.blogs.getBySlug(slug)
+      .then(data => {
+        setBlog(data);
+        // Fetch related blogs
+        return api.blogs.getAll();
+      })
+      .then(all => {
+        setRelated(Array.isArray(all) ? all.filter(b => b.slug !== slug).slice(0, 3) : []);
+      })
+      .catch(() => setNotFound(true))
+      .finally(() => setLoading(false));
+  }, [slug]);
 
-  const related = allBlogs.filter(b => b.slug !== slug && b.published).slice(0, 3);
+  if (loading) return (
+    <div style={{textAlign:'center', padding:'80px 20px'}}>
+      <div style={{fontSize:'2rem'}}>⏳</div>
+      <p>Loading article…</p>
+    </div>
+  );
+
+  if (notFound || !blog) return <Navigate to="/blog" replace />;
 
   const shareWA = () => {
     const url = encodeURIComponent(window.location.href);

@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { getBlogsFromStorage, addBlog, updateBlog, deleteBlog } from '../../data/blogs.js';
 import { api } from '../../services/api';
 import './BlogManager.css';
 
@@ -55,7 +54,9 @@ export default function BlogManager() {
   const contentTextareaRef = useRef(null);
 
   const loadBlogs = useCallback(() => {
-    setBlogs(getBlogsFromStorage());
+    api.blogs.getAllAdmin()
+      .then(data => setBlogs(Array.isArray(data) ? data : []))
+      .catch(() => setBlogs([]));
   }, []);
 
   useEffect(() => {
@@ -200,34 +201,33 @@ export default function BlogManager() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     try {
       if (editingId !== null) {
-        const updated = updateBlog(editingId, { ...form, readTime: Number(form.readTime) });
-        setBlogs(updated);
+        await api.blogs.update(editingId, { ...form, readTime: Number(form.readTime) });
         showMsg('success', 'Blog updated successfully!');
       } else {
-        const updated = addBlog({ ...form, readTime: Number(form.readTime) });
-        setBlogs(updated);
+        await api.blogs.create({ ...form, readTime: Number(form.readTime) });
         showMsg('success', 'Blog added successfully!');
       }
+      loadBlogs();
       closeForm();
-    } catch {
-      showMsg('error', 'Something went wrong. Please try again.');
+    } catch (err) {
+      showMsg('error', err.message || 'Something went wrong. Please try again.');
     }
   };
 
-  const handleDelete = (blog) => {
+  const handleDelete = async (blog) => {
     if (!window.confirm(`Delete "${blog.title}"? This cannot be undone.`)) return;
     try {
-      const updated = deleteBlog(blog.id);
-      setBlogs(updated);
+      await api.blogs.delete(blog.id);
       showMsg('success', `"${blog.title}" deleted.`);
-    } catch {
-      showMsg('error', 'Failed to delete blog.');
+      loadBlogs();
+    } catch (err) {
+      showMsg('error', err.message || 'Failed to delete blog.');
     }
   };
 

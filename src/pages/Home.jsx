@@ -5,7 +5,6 @@ import { ChevronDown, Phone, MessageCircle, Star, ArrowRight, CheckCircle, Users
 import * as LucideIcons from 'lucide-react';
 import { getMergedDoctors } from '../data/doctors.js';
 import InstagramBio from '../components/InstagramBio.jsx';
-import { getBlogsFromStorage } from '../data/blogs.js';
 import { api } from '../services/api';
 import { getServicesFromStorage } from '../data/services.js';
 import './Home.css';
@@ -50,7 +49,9 @@ const Home = () => {
       const visible = res.blog_visible === 'true';
       setShowBlog(visible);
       if (visible) {
-        setBlogs(getBlogsFromStorage().filter(b => b.published).slice(0, 3));
+        api.blogs.getAll()
+          .then(data => setBlogs(Array.isArray(data) ? data.slice(0, 3) : []))
+          .catch(() => setBlogs([]));
       }
     }).catch(() => {});
   }, []);

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ArrowRight, Clock, User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { getBlogsFromStorage } from '../data/blogs.js';
+import { api } from '../services/api';
 import './Blog.css';
 
 const CATEGORIES = ['All', 'Urology'];
@@ -10,10 +10,18 @@ const PER_PAGE = 6;
 
 export default function Blog() {
   const { t } = useTranslation();
-  const allBlogs = getBlogsFromStorage().filter(b => b.published);
+  const [allBlogs, setAllBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('All');
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    api.blogs.getAll()
+      .then(data => setAllBlogs(Array.isArray(data) ? data : []))
+      .catch(() => setAllBlogs([]))
+      .finally(() => setLoading(false));
+  }, []);
 
   const filtered = allBlogs.filter(b => {
     const matchCat = category === 'All' || b.category === category;
@@ -67,7 +75,12 @@ export default function Blog() {
           </div>
 
           {/* Blog Grid */}
-          {paginated.length > 0 ? (
+          {loading ? (
+            <div className="blog-empty">
+              <div style={{fontSize:'2rem'}}>⏳</div>
+              <h3>Loading articles…</h3>
+            </div>
+          ) : paginated.length > 0 ? (
             <div className="blog-page-grid">
               {paginated.map(blog => (
                 <Link to={`/blog/${blog.slug}`} key={blog.id} className="blog-list-card card">
