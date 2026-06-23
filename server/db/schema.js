@@ -18,7 +18,7 @@ export const blogs = pgTable('blogs', {
   author: varchar('author', { length: 200 }).notNull(),
   authorTitle: varchar('author_title', { length: 200 }),
   readTime: integer('read_time').default(5),
-  coverImage: varchar('cover_image', { length: 1000 }),
+  coverImage: text('cover_image'),
   excerpt: text('excerpt'),
   content: text('content'),
   published: boolean('published').default(true),
