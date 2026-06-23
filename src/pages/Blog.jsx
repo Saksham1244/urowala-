@@ -61,17 +61,7 @@ export default function Blog() {
                 onChange={e => { setSearch(e.target.value); setPage(1); }}
               />
             </div>
-            <div className="blog-categories">
-              {CATEGORIES.map(cat => (
-                <button
-                  key={cat}
-                  className={`filter-btn ${category === cat ? 'active' : ''}`}
-                  onClick={() => { setCategory(cat); setPage(1); }}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+
           </div>
 
           {/* Blog Grid */}
