@@ -81,7 +81,9 @@ export default function Blog() {
                   <div className="blog-list-card__body">
                     <div className="blog-list-card__meta">
                       <span className="blog-meta-item"><Clock size={12}/> {blog.readTime} min read</span>
-                      <span className="blog-meta-item">{blog.date}</span>
+                      <span className="blog-meta-item">
+                        {blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' }) : ''}
+                      </span>
                     </div>
                     <h3>{blog.title}</h3>
                     <p>{blog.excerpt}</p>

@@ -408,7 +408,7 @@ const Home = () => {
                   </div>
                   <div className="blog-card__body">
                     <div className="blog-card__meta">
-                      <span>{blog.date}</span>
+                      <span>{blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' }) : ''}</span>
                       <span>·</span>
                       <span>{blog.readTime} {t('blog.minRead')}</span>
                     </div>

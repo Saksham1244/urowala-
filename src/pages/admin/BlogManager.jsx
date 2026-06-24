@@ -18,11 +18,14 @@ const emptyForm = {
 
 function formatDate(dateStr) {
   try {
-    return new Date(dateStr).toLocaleDateString('en-IN', {
+    if (!dateStr) return '—';
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return '—';
+    return d.toLocaleDateString('en-IN', {
       year: 'numeric', month: 'short', day: 'numeric',
     });
   } catch {
-    return dateStr;
+    return '—';
   }
 }
 
@@ -472,7 +475,7 @@ export default function BlogManager() {
                     </td>
                     <td><span className="bm-cat-badge">{blog.category}</span></td>
                     <td className="bm-td-author">{blog.author || '—'}</td>
-                    <td className="bm-td-date">{formatDate(blog.date)}</td>
+                    <td className="bm-td-date">{formatDate(blog.createdAt)}</td>
                     <td>
                       <span className={`bm-status ${blog.published ? 'bm-status--pub' : 'bm-status--draft'}`}>
                         {blog.published ? 'Published' : 'Draft'}

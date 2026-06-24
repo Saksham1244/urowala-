@@ -118,7 +118,7 @@ export default function BlogDetail() {
           <div className="blog-detail__meta">
             <span className="meta-chip"><User size={14}/> {blog.author}</span>
             <span className="meta-chip"><Clock size={14}/> {blog.readTime} min read</span>
-            <span className="meta-chip">{blog.date}</span>
+            <span className="meta-chip">{blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' }) : ''}</span>
           </div>
         </div>
       </section>
