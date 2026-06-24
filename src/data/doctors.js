@@ -4,7 +4,7 @@ const doctors = [
     "id": 1,
     "slug": "dr-mohit-sharma",
     "name": "Dr. Mohit Sharma",
-    "title": "Senior Urologist & Urological Surgeon",
+    "title": "Urologist and Andrologist",
     "specialty": "Urology & Andrology",
     "specialtyIcon": "Activity",
     "qualifications": "M.B.B.S., MS (General Surgery), MCh Urology (AIIMS)",

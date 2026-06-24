@@ -89,7 +89,7 @@ const Home = () => {
               <span className="hero__headline-accent">You Can Trust</span>
             </h1>
             <p className="hero__main-sub">
-              Expert surgical care by a urologist trained from <strong>AIIMS, Bhopal</strong>. {doctors[0].surgeries} successful procedures.
+              Expert surgical care by a urologist trained from <strong>AIIMS</strong>. {doctors[0].surgeries} successful procedures.
             </p>
           </div>
 
@@ -103,8 +103,8 @@ const Home = () => {
               </div>
               <div className="hero__doc-card-info">
                 <strong>{doctors[0].name}</strong>
-                <em style={{color: doctors[0].color}}>MCh Urology – AIIMS, Bhopal</em>
-                <span>Senior Urologist & Urological Surgeon</span>
+                <em style={{color: doctors[0].color}}>MCh Urology – AIIMS</em>
+                <span>{doctors[0].title}</span>
               </div>
             </div>
           </div>
